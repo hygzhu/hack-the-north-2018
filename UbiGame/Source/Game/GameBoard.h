@@ -24,6 +24,7 @@ namespace Game
 		void UpdatePlayerDying();
 		void SpawnNewDoor(const sf::Vector2f& pos, const sf::Vector2f& size, int texture);
 		void SpawnRoomA1Obstacles();
+		void SpawnRoomA2Obstacles();
 		void SpawnNewRandomObstacles();
 		void SpawnNewRandomTiledObstacles();
 		void SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id);

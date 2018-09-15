@@ -62,7 +62,7 @@ void CollidablePhysicsComponent::Update()
 				// Exit
 			case 2: 
 				GameEngineMain::GetInstance()->m_gameBoard->NewRoom(id);
-				GameEngineMain::GetInstance()->m_gameBoard->PrintDialog(1);
+				//GameEngineMain::GetInstance()->m_gameBoard->PrintDialog(1);
 			}
 
 			sf::Vector2f pos = GetEntity()->GetPos();

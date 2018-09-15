@@ -79,8 +79,20 @@ void GameBoard::SpawnRoomA1Obstacles() {
 
 	SpawnNewObstacle(deskPos, deskSize, 5, 2);
 
-	sf::Vector2f doorPos = sf::Vector2f(1075.f, 200.f);
-	sf::Vector2f doorSize = sf::Vector2f(248.f, 304.f);
+	sf::Vector2f doorPos = sf::Vector2f(1095.f, 200.f);
+	sf::Vector2f doorSize = sf::Vector2f(300.f, 300.f);
+
+	SpawnNewObstacle(doorPos, doorSize, 6, 2);
+}
+
+void GameBoard::SpawnRoomA2Obstacles() {
+	sf::Vector2f deskPos = sf::Vector2f(700.f, 600.f);
+	sf::Vector2f deskSize = sf::Vector2f(630.f, 324.f);
+
+	SpawnNewObstacle(deskPos, deskSize, 5, 2);
+
+	sf::Vector2f doorPos = sf::Vector2f(1095.f, 200.f);
+	sf::Vector2f doorSize = sf::Vector2f(300.f, 300.f);
 
 	SpawnNewObstacle(doorPos, doorSize, 6, 2);
 }
