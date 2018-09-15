@@ -53,8 +53,8 @@ namespace GameEngine
 		// Id
 		int id;
 
-	protected:
 		void DestroyComponents();
+	protected:
 
 		std::vector<Component*> m_components;
 		sf::Vector2f		   m_pos;
