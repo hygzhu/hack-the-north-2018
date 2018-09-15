@@ -195,7 +195,7 @@ void GameBoard::PrintDialog(int _id) {
 
 void GameBoard::HideDialog(GameEngine::Entity* diag) {
 
-	RepaintEverything();
+	//RepaintEverything();
 /*
 	sf::Transform d;
 	d.scale(sf::Vector2f(0.f, 0.f));*/
