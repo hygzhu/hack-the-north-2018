@@ -1,5 +1,6 @@
 #pragma once
 #include "GameEngine\EntitySystem\Components\CollidableComponent.h"
+#include "Game\GameBoard.h"
 
 namespace GameEngine
 {

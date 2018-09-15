@@ -30,6 +30,8 @@ namespace GameEngine
 		void OnInitialised();
 		bool IsGameOver() const { return m_gameBoard && m_gameBoard->IsGameOver(); }
 
+		Game::GameBoard*    m_gameBoard;
+
 	private:
 		GameEngineMain();
 
@@ -55,7 +57,6 @@ namespace GameEngine
 		sf::RenderTarget*   m_renderTarget;
 		sf::RenderWindow*   m_renderWindow; //In future they will be different						
 
-		Game::GameBoard*    m_gameBoard;
 		float				m_lastDT;
 
 		bool m_windowInitialised;

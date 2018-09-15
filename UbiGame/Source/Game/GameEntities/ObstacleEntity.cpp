@@ -6,8 +6,10 @@
 
 using namespace Game;
 
-ObstacleEntity::ObstacleEntity(int texture)
+ObstacleEntity::ObstacleEntity(int texture, int _id)
 {
+	id = _id;
+
 	enum GameEngine::eTexture::type textEnum = static_cast<GameEngine::eTexture::type>(texture);
 	m_renderComponent = static_cast<GameEngine::SpriteRenderComponent*>(AddComponent<GameEngine::SpriteRenderComponent>());
 	/*m_renderComponent->SetFillColor(sf::Color::Red);*/

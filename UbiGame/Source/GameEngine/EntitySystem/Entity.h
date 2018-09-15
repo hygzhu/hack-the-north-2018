@@ -50,6 +50,9 @@ namespace GameEngine
 			return newComponent;
 		}
 
+		// Id
+		int id;
+
 	protected:
 		void DestroyComponents();
 

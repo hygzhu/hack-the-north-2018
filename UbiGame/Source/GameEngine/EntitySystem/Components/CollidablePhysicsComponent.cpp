@@ -2,8 +2,10 @@
 
 #include "GameEngine/Util/CollisionManager.h"
 #include "GameEngine/EntitySystem/Entity.h"
+#include "GameEngine\GameEngineMain.h"
 
 #include <vector>
+#include <iostream>
 
 using namespace GameEngine;
 
@@ -49,6 +51,13 @@ void CollidablePhysicsComponent::Update()
 		AABBRect colideBox = colComponent->GetWorldAABB();
 		if (myBox.intersects(colideBox, intersection))
 		{
+			printf("collision %d\n", colComponent->GetEntity()->id);
+
+			if (colComponent->GetEntity()->id == 2) {
+				// Check if comp is exit
+				GameEngineMain::GetInstance()->m_gameBoard->NewRoom();
+			}
+
 			sf::Vector2f pos = GetEntity()->GetPos();
 			if (intersection.width < intersection.height)
 			{

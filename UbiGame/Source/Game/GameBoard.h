@@ -23,9 +23,11 @@ namespace Game
 		void SpawnNewObstacles();
 		void SpawnNewRandomObstacles();
 		void SpawnNewRandomTiledObstacles();
-		void SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture);
+		void SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id);
 
-		bool IsGameOver() const { return m_isGameOver; }		
+		bool IsGameOver() const { return m_isGameOver; }	
+
+		void NewRoom();
 
 	protected:
 		//Placeholder temp - should go to helpers or smth.

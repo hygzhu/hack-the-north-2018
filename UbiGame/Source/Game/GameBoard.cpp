@@ -99,7 +99,11 @@ void GameBoard::SpawnNewObstacles() {
 	sf::Vector2f pos = sf::Vector2f(700.f, 380.f);
 	sf::Vector2f size = sf::Vector2f(768.f,576.f);
 
-	SpawnNewObstacle(pos, size, 5);
+	//SpawnNewObstacle(pos, size, 5, 1);
+
+	pos = sf::Vector2f(300.f, 380.f);
+	size = sf::Vector2f(768.f, 576.f);
+	SpawnNewObstacle(pos, size, 5, 2);
 }
 
 void GameBoard::SpawnNewRandomObstacles()
@@ -153,9 +157,9 @@ void GameBoard::SpawnNewRandomTiledObstacles()
 }
 
 
-void GameBoard::SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture)
+void GameBoard::SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id)
 {
-	ObstacleEntity* obstacle = new ObstacleEntity(texture);
+	ObstacleEntity* obstacle = new ObstacleEntity(texture, _id);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(obstacle);
 	obstacle->SetPos(pos);
 	obstacle->SetSize(sf::Vector2f(size.x, size.y));
@@ -187,4 +191,8 @@ void GameBoard::UpdateBackGround()
 		return;
 
 	m_backGround->SetPos(m_player->GetPos());
+}
+
+void GameBoard::NewRoom() {
+	printf("HI!");
 }

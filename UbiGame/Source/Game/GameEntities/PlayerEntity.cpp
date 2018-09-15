@@ -12,6 +12,8 @@ using namespace Game;
 
 PlayerEntity::PlayerEntity()
 {
+	id = 0;
+
 	//Movement
 	m_playerMovementComponent = static_cast<PlayerMovementComponent*>(AddComponent<PlayerMovementComponent>());
 
