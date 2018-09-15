@@ -26,10 +26,10 @@ PlayerEntity::PlayerEntity()
 	//Collisions
 	AddComponent<GameEngine::CollidablePhysicsComponent>();
 	
-	//Particles
-	GameEngine::ParticleEmitterComponent* emitterComponent = static_cast<GameEngine::ParticleEmitterComponent*>(AddComponent<GameEngine::ParticleEmitterComponent>());
-	GameEngine::SParticleDefinition particleDef = GameEngine::SParticleDefinition(GameEngine::eTexture::Particles, 1, sf::Vector2f(32.f, 32.f), GameEngine::EAnimationId::Smoke, 1.f);
-	emitterComponent->SetParticleDefinition(particleDef);
+	////Particles
+	//GameEngine::ParticleEmitterComponent* emitterComponent = static_cast<GameEngine::ParticleEmitterComponent*>(AddComponent<GameEngine::ParticleEmitterComponent>());
+	//GameEngine::SParticleDefinition particleDef = GameEngine::SParticleDefinition(GameEngine::eTexture::Particles, 1, sf::Vector2f(32.f, 32.f), GameEngine::EAnimationId::Smoke, 1.f);
+	//emitterComponent->SetParticleDefinition(particleDef);
 
 
 	//Sound

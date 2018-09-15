@@ -20,7 +20,7 @@ GameBoard::GameBoard()
 	
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player);
 	m_player->SetPos(sf::Vector2f(50.f, 50.f));	
-	m_player->SetSize(sf::Vector2f(40.f, 40.f));
+	m_player->SetSize(sf::Vector2f(160.f, 160.f));
 	
 	CreateBackGround();
 	//Debug
@@ -59,25 +59,25 @@ void GameBoard::Update()
 
 void GameBoard::UpdateObstacles(float dt)
 {
-	static float obstacleSpeed = 100.f;
-	
-	for (std::vector<GameEngine::Entity*>::iterator it = m_obstacles.begin(); it != m_obstacles.end();)
-	{
-		GameEngine::Entity* obstacle = (*it);
-		sf::Vector2f currPos = obstacle->GetPos();
-		currPos.x -= obstacleSpeed * dt;
-		obstacle->SetPos(currPos);
-		//If we are to remove ourselves
-		if (currPos.x < -50.f)
-		{
-			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(obstacle);
-			it = m_obstacles.erase(it);
-		}
-		else
-		{
-			it++;
-		}
-	}
+//	static float obstacleSpeed = 100.f;
+//	
+//	for (std::vector<GameEngine::Entity*>::iterator it = m_obstacles.begin(); it != m_obstacles.end();)
+//	{
+//		GameEngine::Entity* obstacle = (*it);
+//		sf::Vector2f currPos = obstacle->GetPos();
+//		currPos.x -= obstacleSpeed * dt;
+//		obstacle->SetPos(currPos);
+//		//If we are to remove ourselves
+//		if (currPos.x < -50.f)
+//		{
+//			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(obstacle);
+//			it = m_obstacles.erase(it);
+//		}
+//		else
+//		{
+//			it++;
+//		}
+//	}
 }
 
 
@@ -104,7 +104,7 @@ void GameBoard::SpawnNewObstacles() {
 
 void GameBoard::SpawnNewRandomObstacles()
 {
-	static float minNextSpawnTime = 0.3f;
+	/*static float minNextSpawnTime = 0.3f;
 	static float maxNextSpawnTime = 0.7f;
 
 	static float minObstacleXPos = 50.f;
@@ -122,13 +122,13 @@ void GameBoard::SpawnNewRandomObstacles()
 
 	SpawnNewObstacle(pos, size, 5);
 
-	m_lastObstacleSpawnTimer = RandomFloatRange(minNextSpawnTime, maxNextSpawnTime);
+	m_lastObstacleSpawnTimer = RandomFloatRange(minNextSpawnTime, maxNextSpawnTime);*/
 }
 
 
 void GameBoard::SpawnNewRandomTiledObstacles()
 {
-	static int minObstacleCount = 2;
+	/*static int minObstacleCount = 2;
 	static int maxObstacleCount = 7;
 
 	static float minNextSpawnTime = 0.3f;
@@ -149,7 +149,7 @@ void GameBoard::SpawnNewRandomTiledObstacles()
 		pos.y += size.y;
 	}
 
-	m_lastObstacleSpawnTimer = RandomFloatRange(minNextSpawnTime, maxNextSpawnTime);
+	m_lastObstacleSpawnTimer = RandomFloatRange(minNextSpawnTime, maxNextSpawnTime);*/
 }
 
 
