@@ -57,7 +57,7 @@ void PlayerEntity::OnAddToWorld()
 
 	if (m_animComponent)
 	{
-		m_animComponent->PlayAnim(GameEngine::EAnimationId::BirdIdle);
+		m_animComponent->PlayAnim(GameEngine::EAnimationId::PlayerIdle);
 	}
 }
 

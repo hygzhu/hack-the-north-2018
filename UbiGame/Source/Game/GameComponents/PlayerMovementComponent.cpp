@@ -13,9 +13,7 @@
 using namespace Game;
 
 PlayerMovementComponent::PlayerMovementComponent()
-	: m_flyTimerDt(0.f)
-	, m_flyTimerMaxTime(2.f)
-	, m_animComponent(nullptr)
+	: m_animComponent(nullptr)
 	, m_playerSoundComponent(nullptr)
 {
 
@@ -54,53 +52,66 @@ void PlayerMovementComponent::Update()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		wantedVel.x -= playerVel * dt;
+
+		if (m_animComponent)
+		{
+			if (m_animComponent->GetCurrentAnimation() != GameEngine::EAnimationId::WalkLeft)
+			{
+				m_animComponent->PlayAnim(GameEngine::EAnimationId::WalkLeft);
+			}
+		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		wantedVel.x += playerVel * dt;
+
+		if (m_animComponent)
+		{
+			if (m_animComponent->GetCurrentAnimation() != GameEngine::EAnimationId::WalkRight)
+			{
+				m_animComponent->PlayAnim(GameEngine::EAnimationId::WalkRight);
+			}
+		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		wantedVel.y -= playerVel * dt;
-		if (m_playerSoundComponent)
+
+		if (m_animComponent)
 		{
-			m_playerSoundComponent->RequestSound(true);
+			if (m_animComponent->GetCurrentAnimation() != GameEngine::EAnimationId::WalkBack)
+			{
+				m_animComponent->PlayAnim(GameEngine::EAnimationId::WalkBack);
+			}
 		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		wantedVel.y += playerVel * dt;
-		if (m_playerSoundComponent)
+
+		if (m_animComponent)
 		{
-			m_playerSoundComponent->RequestSound(false);
-		}
-	}
-
-	GetEntity()->SetPos(GetEntity()->GetPos() + wantedVel);
-
-	if (wantedVel != sf::Vector2f(0.f, 0.f))
-	{
-		m_flyTimerDt = m_flyTimerMaxTime;
-	}
-	else
-	{
-		m_flyTimerDt -= dt;
-	}
-
-	if (m_animComponent)
-	{
-		if (m_flyTimerDt > 0.f)
-		{
-			if (m_animComponent->GetCurrentAnimation() != GameEngine::EAnimationId::BirdFly)
+			if (m_animComponent->GetCurrentAnimation() != GameEngine::EAnimationId::WalkFront)
 			{
-				m_animComponent->PlayAnim(GameEngine::EAnimationId::BirdFly);
+				m_animComponent->PlayAnim(GameEngine::EAnimationId::WalkFront);
 			}
 		}
-		else if(m_animComponent->GetCurrentAnimation() != GameEngine::EAnimationId::BirdIdle)
+	}
+
+
+	GetEntity()->SetPos(GetEntity()->GetPos() + wantedVel);
+	
+	if (wantedVel == sf::Vector2f(0.f, 0.f))
+	{
+		if (m_animComponent)
 		{
-			m_animComponent->PlayAnim(GameEngine::EAnimationId::BirdIdle);
+			if (m_animComponent->GetCurrentAnimation() != GameEngine::EAnimationId::PlayerIdle)
+			{
+				m_animComponent->PlayAnim(GameEngine::EAnimationId::PlayerIdle);
+			}
 		}
 	}
+
 
 	//
 	//static float rotationVel = 50.f; //Deg/s
