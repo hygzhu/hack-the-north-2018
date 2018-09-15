@@ -102,43 +102,43 @@ void PlayerMovementComponent::Update()
 		}
 	}
 
-	
-	static float rotationVel = 50.f; //Deg/s
-	static float maxRotation = 20.f; //Deg
-	
-	float currentRotation = GetEntity()->GetRot();
-	float wantedRot = 0.f;
-	bool  reseting = false;
+	//
+	//static float rotationVel = 50.f; //Deg/s
+	//static float maxRotation = 20.f; //Deg
+	//
+	//float currentRotation = GetEntity()->GetRot();
+	//float wantedRot = 0.f;
+	//bool  reseting = false;
 
-	if (wantedVel.y > 0.f)
-		wantedRot = rotationVel;
-	else if (wantedVel.y < 0.f)
-		wantedRot = -rotationVel;
-	else
-	{				
-		if (currentRotation > 0.f)
-			wantedRot = -rotationVel;
-		else if (currentRotation < 0.f)
-			wantedRot = rotationVel;
-	}
+	//if (wantedVel.y > 0.f)
+	//	wantedRot = rotationVel;
+	//else if (wantedVel.y < 0.f)
+	//	wantedRot = -rotationVel;
+	//else
+	//{				
+	//	if (currentRotation > 0.f)
+	//		wantedRot = -rotationVel;
+	//	else if (currentRotation < 0.f)
+	//		wantedRot = rotationVel;
+	//}
 
-	float frameRot = wantedRot * dt;
-	float totalRot = currentRotation + frameRot;
+	//float frameRot = wantedRot * dt;
+	//float totalRot = currentRotation + frameRot;
 
-	if (!reseting)
-	{
-		if (totalRot > maxRotation)
-			totalRot = maxRotation;
-		else if (totalRot < -maxRotation)
-			totalRot = -maxRotation;
-	}
-	else
-	{
-		if (currentRotation > 0.f && totalRot < 0.f)
-			totalRot = 0.f;
-		if (currentRotation < 0.f && totalRot > 0.f)
-			totalRot = 0.f;
-	}
+	//if (!reseting)
+	//{
+	//	if (totalRot > maxRotation)
+	//		totalRot = maxRotation;
+	//	else if (totalRot < -maxRotation)
+	//		totalRot = -maxRotation;
+	//}
+	//else
+	//{
+	//	if (currentRotation > 0.f && totalRot < 0.f)
+	//		totalRot = 0.f;
+	//	if (currentRotation < 0.f && totalRot > 0.f)
+	//		totalRot = 0.f;
+	//}
 
-	GetEntity()->SetRotation(totalRot);
+	//GetEntity()->SetRotation(totalRot);
 }
