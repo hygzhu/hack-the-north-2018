@@ -12,13 +12,14 @@ CollidableComponent::CollidableComponent()
 
 }
 
-// Constructor overloaded to account for exit object
-//CollidableComponent::CollidableComponent(bool isExit)
-//	: m_AABBBox()
-//	, m_useDefaultBox(true)
-//{
-//
-//}
+ //Constructor overloaded to account for exit object
+CollidableComponent::CollidableComponent(sf::Vector2f size)
+	: m_AABBBox()
+	, m_useDefaultBox(false)
+	, boxInitSize(size)
+{
+
+}
 
 
 CollidableComponent::~CollidableComponent()
@@ -32,8 +33,12 @@ void CollidableComponent::OnAddToWorld()
 	__super::OnAddToWorld();
 	CollisionManager::GetInstance()->RegisterCollidable(this);
 
-	if (m_useDefaultBox)
+	if (m_useDefaultBox) {
 		SetupDefaultBoundingBox();
+	}
+	else {
+		SetBoundingBox(boxInitSize);
+	}
 }
 
 
@@ -68,7 +73,7 @@ const AABBRect CollidableComponent::GetWorldAABB() const
 	AABBRect box = m_AABBBox;
 	
 	box.left += GetEntity()->GetPos().x;
-	box.top  += GetEntity()->GetPos().y;	
+	box.top  += GetEntity()->GetPos().y;
 
 	return box;
 }

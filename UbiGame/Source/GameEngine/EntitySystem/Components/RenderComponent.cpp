@@ -34,7 +34,7 @@ void RenderComponent::Render(sf::RenderTarget* target)
 		return;
 	}
 
-	static bool drawDebug = false;
+	static bool drawDebug = true;
 	//Debug draw of bounding boxes
 	if (drawDebug)
 	{
