@@ -79,6 +79,7 @@ void CollidablePhysicsComponent::Update()
 					pos.y += intersection.height;
 			}
 
+
 			GetEntity()->SetPos(pos);
 		}
 	}

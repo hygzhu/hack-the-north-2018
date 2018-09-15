@@ -17,7 +17,12 @@ ObstacleEntity::ObstacleEntity(int texture, int _id)
 	m_renderComponent->SetZLevel(2);
 	m_renderComponent->SetTileIndex(0, 0);
 
-	m_colComponent = static_cast<GameEngine::CollidableComponent*>(AddComponent<GameEngine::CollidableComponent>());
+	if (_id == 2) {
+		m_colComponent = static_cast<GameEngine::CollidableComponent*>(AddComponent<GameEngine::CollidableComponent>());
+	}
+	else {
+		m_colComponent = static_cast<GameEngine::CollidableComponent*>(AddComponent<GameEngine::CollidableComponent>());
+	}
 }
 
 

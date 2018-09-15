@@ -12,6 +12,7 @@ namespace GameEngine
 	{
 	public:
 		CollidableComponent();
+		CollidableComponent(sf::Vector2f size);
 		virtual ~CollidableComponent();
 
 		virtual void OnAddToWorld() override;
@@ -27,6 +28,8 @@ namespace GameEngine
 		
 		bool	 m_useDefaultBox;
 		AABBRect m_AABBBox;
+
+		sf::Vector2f boxInitSize;
 
 		bool	isExit;
 	};
