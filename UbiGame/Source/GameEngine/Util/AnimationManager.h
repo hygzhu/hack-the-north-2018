@@ -15,6 +15,9 @@ namespace GameEngine
 			BirdFly,
 			Smoke,
 			None,
+			WalkBack,
+			WalkFront,
+			WalkSide
 		};
 	}
 
