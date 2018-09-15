@@ -5,6 +5,8 @@
 #include <vector>
 #include <string>
 
+using namespace std;
+
 namespace Game
 {
 	//Used for storing and controling all game related entities
@@ -29,6 +31,8 @@ namespace Game
 		bool IsGameOver() const { return m_isGameOver; }	
 
 		void NewRoom(int _id);
+		void PrintDialog(int _id);
+		void HideDialog();
 
 	protected:
 		//Placeholder temp - should go to helpers or smth.
@@ -39,9 +43,13 @@ namespace Game
 
 		void CreateBackGround();
 		void UpdateBackGround();
+		void RepaintEverything();
 
 		PlayerEntity* m_player;
 		GameEngine::Entity* m_backGround;
+		GameEngine::Entity* m_dialog;
+
+		int z_level;
 
 		std::vector<GameEngine::Entity*> m_obstacles;
 		float m_lastObstacleSpawnTimer;

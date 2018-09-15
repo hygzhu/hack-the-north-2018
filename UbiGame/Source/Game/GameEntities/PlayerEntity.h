@@ -10,11 +10,13 @@ namespace Game
 	class PlayerEntity : public GameEngine::Entity
 	{
 	public:
-		PlayerEntity();
+		PlayerEntity(int z);
 		~PlayerEntity();
 
 		virtual void OnAddToWorld() override;
 		virtual void OnRemoveFromWorld() override;
+/*
+		void RerenderPlayer(int z);*/
 
 	protected:
 		GameEngine::SpriteRenderComponent* m_renderComponent;		
