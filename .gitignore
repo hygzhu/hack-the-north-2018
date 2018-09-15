@@ -1,3 +1,10 @@
-# /x64
-/SFML-2.5.0
-# /UbiGame/x64
+UbiGame.sln
+SFML-2.5.0
+.vs
+UbiGame.VC.db
+x64/
+UbiGame/UbiGame.vcxproj
+UbiGame/UbiGame.vcxproj.user
+UbiGame/Debug/
+UbiGame/x64/Release/
+x64/Release/
