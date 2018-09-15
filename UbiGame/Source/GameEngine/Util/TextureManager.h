@@ -65,7 +65,7 @@ namespace TextureHelper
 		case  GameEngine::eTexture::BG:	     return sf::Vector2f(500.f, 500.f);
 		case  GameEngine::eTexture::Particles: return sf::Vector2f(31.f, 32.f);
 		case  GameEngine::eTexture::RoomA1Bg: return sf::Vector2f(128.f, 90.f);
-		case  GameEngine::eTexture::DesksAndChairs: return sf::Vector2f(31.f, 32.f);
+		case  GameEngine::eTexture::DesksAndChairs: return sf::Vector2f(128.f, 96.f);
 		default:							 return sf::Vector2f(-1.f, -1.f);
 		}
 	}

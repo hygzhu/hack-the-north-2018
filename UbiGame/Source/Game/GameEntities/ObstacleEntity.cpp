@@ -6,11 +6,12 @@
 
 using namespace Game;
 
-ObstacleEntity::ObstacleEntity()	
+ObstacleEntity::ObstacleEntity(int texture)
 {
+	enum GameEngine::eTexture::type textEnum = static_cast<GameEngine::eTexture::type>(texture);
 	m_renderComponent = static_cast<GameEngine::SpriteRenderComponent*>(AddComponent<GameEngine::SpriteRenderComponent>());
-	m_renderComponent->SetFillColor(sf::Color::Red);
-	m_renderComponent->SetTexture(GameEngine::eTexture::Tileset);
+	/*m_renderComponent->SetFillColor(sf::Color::Red);*/
+	m_renderComponent->SetTexture(textEnum);
 	m_renderComponent->SetZLevel(2);
 	m_renderComponent->SetTileIndex(0, 0);
 

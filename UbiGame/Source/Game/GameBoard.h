@@ -3,6 +3,7 @@
 
 #include <SFML/System/Vector2.hpp>
 #include <vector>
+#include <string>
 
 namespace Game
 {
@@ -19,9 +20,10 @@ namespace Game
 		void Update();
 		void UpdateObstacles(float dt);
 		void UpdatePlayerDying();
+		void SpawnNewObstacles();
 		void SpawnNewRandomObstacles();
 		void SpawnNewRandomTiledObstacles();
-		void SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size);
+		void SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture);
 
 		bool IsGameOver() const { return m_isGameOver; }		
 
