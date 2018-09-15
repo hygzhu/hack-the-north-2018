@@ -181,14 +181,14 @@ void GameBoard::PrintDialog(int _id) {
 	m_dialog = dialogEntity;
 }
 
-void GameBoard::HideDialog() {
+void GameBoard::HideDialog(GameEngine::Entity* diag) {
 
-	//RepaintEverything();
+	RepaintEverything();
+/*
+	sf::Transform d;
+	d.scale(sf::Vector2f(0.f, 0.f));*/
 
-	//if (m_dialog != nullptr) {
-	//	GameEngine::GameEngineMain::GetInstance()->RemoveEntity(m_dialog);
-	//	m_dialog = nullptr;
-
+	//diag = static_cast<GameEngine::Entity>(d);
 
 	//	//create invis diag to replace
 	//	GameEngine::Entity* dialogEntity = new GameEngine::Entity();
