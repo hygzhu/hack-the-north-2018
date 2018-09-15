@@ -4,6 +4,7 @@
 #include "GameEngine\EntitySystem\Components\CollidableComponent.h"
 #include "GameEngine\EntitySystem\Components\SpriteRenderComponent.h"
 #include "GameEngine\Util\CameraManager.h"
+#include "GameEngine\Util\TextureManager.h"
 #include "Game\GameEntities\PlayerEntity.h"
 #include "Game\GameEntities\ObstacleEntity.h"
 
@@ -46,6 +47,7 @@ void GameBoard::Update()
 		{
 			//SpawnNewRandomObstacles();
 			SpawnNewRandomTiledObstacles();
+			SpawnNewObstacles();
 		}
 
 		UpdateObstacles(dt);
@@ -93,6 +95,12 @@ void GameBoard::UpdatePlayerDying()
 	}
 }
 
+void GameBoard::SpawnNewObstacles() {
+	sf::Vector2f pos = sf::Vector2f(50.f, 50.f);
+	sf::Vector2f size = sf::Vector2f(50.f,50.f);
+
+	SpawnNewObstacle(pos, size, 5);
+}
 
 void GameBoard::SpawnNewRandomObstacles()
 {
@@ -112,7 +120,7 @@ void GameBoard::SpawnNewRandomObstacles()
 	sf::Vector2f pos = sf::Vector2f(RandomFloatRange(minObstacleXPos, maxObstacleXPos), RandomFloatRange(minObstacleYPos, maxObstacleYPos));
 	sf::Vector2f size = sf::Vector2f(RandomFloatRange(minObstacleWidth, maxObstacleWidth), RandomFloatRange(minObstacleHeight, maxObstacleHeight));
 
-	SpawnNewObstacle(pos, size);
+	SpawnNewObstacle(pos, size, 5);
 
 	m_lastObstacleSpawnTimer = RandomFloatRange(minNextSpawnTime, maxNextSpawnTime);*/
 }
@@ -137,7 +145,7 @@ void GameBoard::SpawnNewRandomTiledObstacles()
 	int obstacleCount = (int)RandomFloatRange((float)minObstacleCount, (float)maxObstacleCount);
 	for (int a = 0; a < obstacleCount; ++a)
 	{
-		SpawnNewObstacle(pos, size);
+		SpawnNewObstacle(pos, size, 5);
 		pos.y += size.y;
 	}
 
@@ -145,9 +153,9 @@ void GameBoard::SpawnNewRandomTiledObstacles()
 }
 
 
-void GameBoard::SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size)
+void GameBoard::SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture)
 {
-	ObstacleEntity* obstacle = new ObstacleEntity();
+	ObstacleEntity* obstacle = new ObstacleEntity(texture);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(obstacle);
 	obstacle->SetPos(pos);
 	obstacle->SetSize(sf::Vector2f(size.x, size.y));
