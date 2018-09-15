@@ -57,25 +57,25 @@ void GameBoard::Update()
 
 void GameBoard::UpdateObstacles(float dt)
 {
-	static float obstacleSpeed = 100.f;
-	
-	for (std::vector<GameEngine::Entity*>::iterator it = m_obstacles.begin(); it != m_obstacles.end();)
-	{
-		GameEngine::Entity* obstacle = (*it);
-		sf::Vector2f currPos = obstacle->GetPos();
-		currPos.x -= obstacleSpeed * dt;
-		obstacle->SetPos(currPos);
-		//If we are to remove ourselves
-		if (currPos.x < -50.f)
-		{
-			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(obstacle);
-			it = m_obstacles.erase(it);
-		}
-		else
-		{
-			it++;
-		}
-	}
+	//static float obstacleSpeed = 100.f;
+	//
+	//for (std::vector<GameEngine::Entity*>::iterator it = m_obstacles.begin(); it != m_obstacles.end();)
+	//{
+	//	GameEngine::Entity* obstacle = (*it);
+	//	sf::Vector2f currPos = obstacle->GetPos();
+	//	currPos.x -= obstacleSpeed * dt;
+	//	obstacle->SetPos(currPos);
+	//	//If we are to remove ourselves
+	//	if (currPos.x < -50.f)
+	//	{
+	//		GameEngine::GameEngineMain::GetInstance()->RemoveEntity(obstacle);
+	//		it = m_obstacles.erase(it);
+	//	}
+	//	else
+	//	{
+	//		it++;
+	//	}
+	//}
 }
 
 
