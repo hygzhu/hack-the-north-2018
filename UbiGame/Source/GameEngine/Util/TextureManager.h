@@ -17,6 +17,7 @@ namespace GameEngine
 			Particles,
 			RoomA1Bg,
 			DesksAndChairs,
+			Door,
 			Hallway1Bg,
 			DialogExample,
 			Count
@@ -33,6 +34,7 @@ namespace GameEngine
 		case eTexture::Particles: return "particles.png";
 		case eTexture::RoomA1Bg: return "room-a1-bg.png";
 		case eTexture::DesksAndChairs: return "room-a1-boxes.png";
+		case eTexture::Door: return  "room-a1-door.png";
 		case eTexture::Hallway1Bg: return "hallway-1-bg.png";
 		case eTexture::DialogExample: return "dialog-example.png";
 		default:       return "UnknownTexType";
@@ -70,6 +72,7 @@ namespace TextureHelper
 		case  GameEngine::eTexture::Particles: return sf::Vector2f(31.f, 32.f);
 		case  GameEngine::eTexture::RoomA1Bg: return sf::Vector2f(128.f, 90.f);
 		case  GameEngine::eTexture::DesksAndChairs: return sf::Vector2f(105.f, 54.f);
+		case  GameEngine::eTexture::Door: return sf::Vector2f(31.f, 38.f);
 		case  GameEngine::eTexture::Hallway1Bg: return sf::Vector2f(128.f, 90.f);
 		case  GameEngine::eTexture::DialogExample: return sf::Vector2f(1280.f, 360.f);
 		default:							 return sf::Vector2f(-1.f, -1.f);

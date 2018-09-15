@@ -48,35 +48,41 @@ void CollidablePhysicsComponent::Update()
 
 		AABBRect intersection;
 		AABBRect myBox = GetWorldAABB();
-		AABBRect colideBox = colComponent->GetWorldAABB();
-		if (myBox.intersects(colideBox, intersection))
+		AABBRect collideBox = colComponent->GetWorldAABB();
+		if (myBox.intersects(collideBox, intersection))
 		{
 			int id = colComponent->GetEntity()->id;
 
 			printf("collision %d\n", id);
 
 			switch(id) {
-				// Hacking Desk
 			case 1:
+<<<<<<< HEAD
 				printf("dialogue");
 
 				// Exit
 			case 2: 
 				GameEngineMain::GetInstance()->m_gameBoard->NewRoom(id);
 				GameEngineMain::GetInstance()->m_gameBoard->PrintDialog(1);
+=======
+				// Hack at desk
+			case 2:
+				// Exit
+				GameEngineMain::GetInstance()->m_gameBoard->NewRoom(id);
+>>>>>>> a7dbc29d56c680af073189f0b9f39d4fbad72b67
 			}
 
 			sf::Vector2f pos = GetEntity()->GetPos();
 			if (intersection.width < intersection.height)
 			{
-				if (myBox.left < colideBox.left)
+				if (myBox.left < collideBox.left)
 					pos.x -= intersection.width;
 				else
 					pos.x += intersection.width;
 			}
 			else
 			{
-				if (myBox.top < colideBox.top)
+				if (myBox.top < collideBox.top)
 					pos.y -= intersection.height;
 				else
 					pos.y += intersection.height;

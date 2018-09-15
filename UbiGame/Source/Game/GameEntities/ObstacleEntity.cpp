@@ -17,7 +17,7 @@ ObstacleEntity::ObstacleEntity(int texture, int _id)
 	m_renderComponent->SetZLevel(2);
 	m_renderComponent->SetTileIndex(0, 0);
 
-	AddComponent<GameEngine::CollidableComponent>();
+	m_colComponent = static_cast<GameEngine::CollidableComponent*>(AddComponent<GameEngine::CollidableComponent>());
 }
 
 
@@ -25,7 +25,6 @@ ObstacleEntity::~ObstacleEntity()
 {
 
 }
-
 
 void ObstacleEntity::OnAddToWorld()
 {
@@ -36,4 +35,9 @@ void ObstacleEntity::OnAddToWorld()
 void ObstacleEntity::OnRemoveFromWorld()
 {
 	__super::OnRemoveFromWorld();
+}
+
+void ObstacleEntity::SetBoundingBox(sf::Vector2f size) {
+	printf("!!!!!!!!");
+	m_colComponent->SetBoundingBox(size);
 }
