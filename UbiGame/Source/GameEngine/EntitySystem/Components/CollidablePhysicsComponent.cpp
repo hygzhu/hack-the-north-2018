@@ -59,8 +59,11 @@ void CollidablePhysicsComponent::Update()
 				// Hacking Desk
 			case 1:
 				printf("dialogue");
+
 				// Exit
-			case 2: GameEngineMain::GetInstance()->m_gameBoard->NewRoom(id);
+			case 2: 
+				GameEngineMain::GetInstance()->m_gameBoard->NewRoom(id);
+				GameEngineMain::GetInstance()->m_gameBoard->PrintDialog(1);
 			}
 
 			sf::Vector2f pos = GetEntity()->GetPos();

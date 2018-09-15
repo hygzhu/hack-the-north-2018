@@ -10,7 +10,7 @@
 
 using namespace Game;
 
-PlayerEntity::PlayerEntity()
+PlayerEntity::PlayerEntity(int z)
 {
 	id = 0;
 
@@ -20,7 +20,7 @@ PlayerEntity::PlayerEntity()
 	//Render 
 	m_renderComponent = static_cast<GameEngine::SpriteRenderComponent*>(AddComponent<GameEngine::SpriteRenderComponent>());	
 	m_renderComponent->SetTexture(GameEngine::eTexture::Player);
-	m_renderComponent->SetZLevel(2);
+	m_renderComponent->SetZLevel(2 + z);
 
 	//Animation
 	m_animComponent = static_cast<GameEngine::AnimationComponent*>(AddComponent<GameEngine::AnimationComponent>());
@@ -66,3 +66,12 @@ void PlayerEntity::OnRemoveFromWorld()
 {
 	__super::OnRemoveFromWorld();
 }
+//
+//void PlayerEntity::RerenderPlayer(int z) {
+//	printf("rerender player\n");
+//	//Render 
+//	m_renderComponent = static_cast<GameEngine::SpriteRenderComponent*>(AddComponent<GameEngine::SpriteRenderComponent>());
+//	m_renderComponent->SetTexture(GameEngine::eTexture::Player);
+//	m_renderComponent->SetZLevel(2 + 80);
+//
+//}

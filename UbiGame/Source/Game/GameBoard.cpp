@@ -8,6 +8,8 @@
 #include "Game\GameEntities\PlayerEntity.h"
 #include "Game\GameEntities\ObstacleEntity.h"
 
+#include <string>
+
 using namespace Game;
 
 GameBoard::GameBoard()
@@ -15,14 +17,17 @@ GameBoard::GameBoard()
 	, m_isGameOver(false)
 	, m_player(nullptr)
 	, m_backGround(nullptr)
+	, m_dialog(nullptr)
+	, z_level(0)
 {
-	m_player = new PlayerEntity();
+	m_player = new PlayerEntity(0);
 	
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player);
 	m_player->SetPos(sf::Vector2f(50.f, 300.f));	
 	m_player->SetSize(sf::Vector2f(114.f, 205.f));
 	
 	CreateBackGround();
+
 	//Debug
 	for (int a = 0; a < 3; ++a)
 	{
@@ -83,7 +88,7 @@ void GameBoard::UpdateObstacles(float dt)
 
 void GameBoard::UpdatePlayerDying()
 {	
-	bool noGameOver = GameEngine::CameraManager::IsFollowCameraEnabled();
+	/*bool noGameOver = GameEngine::CameraManager::IsFollowCameraEnabled();
 
 	if (noGameOver)
 		return;
@@ -92,7 +97,7 @@ void GameBoard::UpdatePlayerDying()
 	if (m_player->GetPos().x < xToPlayerDie)
 	{
 		m_isGameOver = true;
-	}
+	}*/
 }
 
 void GameBoard::SpawnNewObstacles() {
@@ -173,7 +178,7 @@ void GameBoard::CreateBackGround()
 	GameEngine::Entity* bgEntity = new GameEngine::Entity();
 	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
 	render->SetTexture(GameEngine::eTexture::RoomA1Bg);
-	render->SetZLevel(0);
+	render->SetZLevel(z_level + 0);
 	bgEntity->SetPos(sf::Vector2f(640.f, 360.f));
 	bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
@@ -193,17 +198,74 @@ void GameBoard::UpdateBackGround()
 	m_backGround->SetPos(m_player->GetPos());
 }
 
+void GameBoard::RepaintEverything()
+{
+	z_level += 5;
+	
+	//GameEngine::GameEngineMain::GetInstance()->RemoveEntity(m_backGround);
+
+	GameEngine::Entity* bgEntity = new GameEngine::Entity();
+	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
+	render->SetTexture(GameEngine::eTexture::Hallway1Bg);
+	render->SetZLevel(z_level + 0);
+	bgEntity->SetPos(sf::Vector2f(640.f, 360.f));
+	bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
+	m_backGround = bgEntity;
+
+	//m_player->RerenderPlayer(z_level);
+	sf::Vector2f oldPlayerPos = m_player->GetPos();
+	//GameEngine::GameEngineMain::GetInstance()->RemoveEntity(m_player);
+
+	m_player = new PlayerEntity(z_level);
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player);
+	m_player->SetPos(oldPlayerPos);
+	m_player->SetSize(sf::Vector2f(114.f, 205.f));
+}
+
 void GameBoard::NewRoom(int _id) {
 	printf("HI! %d\n", _id);
 	if (_id == 2) {
 		GameEngine::Entity* bgEntity = new GameEngine::Entity();
 		GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
 		render->SetTexture(GameEngine::eTexture::Hallway1Bg);
-		render->SetZLevel(0);
+		render->SetZLevel(z_level + 0);
 		bgEntity->SetPos(sf::Vector2f(640.f, 360.f));
 		bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
 		GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
 
 		m_backGround = bgEntity;
 	}
+}
+
+void GameBoard::PrintDialog(int _id) {
+	GameEngine::Entity* dialogEntity = new GameEngine::Entity();
+	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(dialogEntity->AddComponent<GameEngine::SpriteRenderComponent>());
+	render->SetTexture(GameEngine::eTexture::DialogExample);
+	render->SetZLevel(z_level + 4);
+	dialogEntity->SetPos(sf::Vector2f(640.f, 360.f));
+	dialogEntity->SetSize(sf::Vector2f(1280.f, 360.f));
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(dialogEntity);
+	m_dialog = dialogEntity;
+}
+
+void GameBoard::HideDialog() {
+
+	//RepaintEverything();
+
+	//if (m_dialog != nullptr) {
+	//	GameEngine::GameEngineMain::GetInstance()->RemoveEntity(m_dialog);
+	//	m_dialog = nullptr;
+
+
+	//	//create invis diag to replace
+	//	GameEngine::Entity* dialogEntity = new GameEngine::Entity();
+	//	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(dialogEntity->AddComponent<GameEngine::SpriteRenderComponent>());
+	//	render->SetTexture(GameEngine::eTexture::DialogExample);
+	//	render->SetZLevel(-1);
+	//	dialogEntity->SetPos(sf::Vector2f(640.f, 360.f));
+	//	dialogEntity->SetSize(sf::Vector2f(128.f, 36.f));
+	//	GameEngine::GameEngineMain::GetInstance()->AddEntity(dialogEntity);
+	//	m_dialog = dialogEntity;
+	//}
 }
