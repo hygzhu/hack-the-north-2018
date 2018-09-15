@@ -57,25 +57,25 @@ void GameBoard::Update()
 
 void GameBoard::UpdateObstacles(float dt)
 {
-	static float obstacleSpeed = 100.f;
-	
-	for (std::vector<GameEngine::Entity*>::iterator it = m_obstacles.begin(); it != m_obstacles.end();)
-	{
-		GameEngine::Entity* obstacle = (*it);
-		sf::Vector2f currPos = obstacle->GetPos();
-		currPos.x -= obstacleSpeed * dt;
-		obstacle->SetPos(currPos);
-		//If we are to remove ourselves
-		if (currPos.x < -50.f)
-		{
-			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(obstacle);
-			it = m_obstacles.erase(it);
-		}
-		else
-		{
-			it++;
-		}
-	}
+//	static float obstacleSpeed = 100.f;
+//	
+//	for (std::vector<GameEngine::Entity*>::iterator it = m_obstacles.begin(); it != m_obstacles.end();)
+//	{
+//		GameEngine::Entity* obstacle = (*it);
+//		sf::Vector2f currPos = obstacle->GetPos();
+//		currPos.x -= obstacleSpeed * dt;
+//		obstacle->SetPos(currPos);
+//		//If we are to remove ourselves
+//		if (currPos.x < -50.f)
+//		{
+//			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(obstacle);
+//			it = m_obstacles.erase(it);
+//		}
+//		else
+//		{
+//			it++;
+//		}
+//	}
 }
 
 
@@ -96,7 +96,7 @@ void GameBoard::UpdatePlayerDying()
 
 void GameBoard::SpawnNewRandomObstacles()
 {
-	static float minNextSpawnTime = 0.3f;
+	/*static float minNextSpawnTime = 0.3f;
 	static float maxNextSpawnTime = 0.7f;
 
 	static float minObstacleXPos = 50.f;
@@ -114,13 +114,13 @@ void GameBoard::SpawnNewRandomObstacles()
 
 	SpawnNewObstacle(pos, size);
 
-	m_lastObstacleSpawnTimer = RandomFloatRange(minNextSpawnTime, maxNextSpawnTime);
+	m_lastObstacleSpawnTimer = RandomFloatRange(minNextSpawnTime, maxNextSpawnTime);*/
 }
 
 
 void GameBoard::SpawnNewRandomTiledObstacles()
 {
-	static int minObstacleCount = 2;
+	/*static int minObstacleCount = 2;
 	static int maxObstacleCount = 7;
 
 	static float minNextSpawnTime = 0.3f;
@@ -141,7 +141,7 @@ void GameBoard::SpawnNewRandomTiledObstacles()
 		pos.y += size.y;
 	}
 
-	m_lastObstacleSpawnTimer = RandomFloatRange(minNextSpawnTime, maxNextSpawnTime);
+	m_lastObstacleSpawnTimer = RandomFloatRange(minNextSpawnTime, maxNextSpawnTime);*/
 }
 
 
