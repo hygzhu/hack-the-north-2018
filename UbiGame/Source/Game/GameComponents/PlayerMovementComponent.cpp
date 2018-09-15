@@ -100,7 +100,7 @@ void PlayerMovementComponent::Update()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		printf("Space pressed \n");
-		GameEngine::GameEngineMain::GetInstance()->m_gameBoard->HideDialog();
+		GameEngine::GameEngineMain::GetInstance()->m_gameBoard->HideDialog(this->GetEntity());
 	}
 
 

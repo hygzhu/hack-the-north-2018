@@ -33,7 +33,7 @@ namespace Game
 
 		void NewRoom(int _id);
 		void PrintDialog(int _id);
-		void HideDialog();
+		void HideDialog(GameEngine::Entity* diag);
 
 	protected:
 		//Placeholder temp - should go to helpers or smth.
