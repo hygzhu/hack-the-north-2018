@@ -105,10 +105,6 @@ void GameBoard::SpawnNewObstacles() {
 	sf::Vector2f doorSize = sf::Vector2f(248.f, 304.f);
 
 	SpawnNewObstacle(doorPos, doorSize, 6, 2);
-
-	/*pos = sf::Vector2f(300.f, 380.f);
-	size = sf::Vector2f(768.f, 576.f);
-	SpawnNewObstacle(pos, size, 5, 2);*/
 }
 
 void GameBoard::SpawnNewRandomObstacles()
@@ -166,9 +162,7 @@ void GameBoard::SpawnNewDoor(const sf::Vector2f& pos, const sf::Vector2f& size, 
 	ObstacleEntity* obstacle = new ObstacleEntity(texture, 2);
 	obstacle->SetPos(pos);
 	obstacle->SetSize(sf::Vector2f(size.x, size.y));
-
-	// TODO: set collidable area to middle
-
+	obstacle->SetBoundingBox(sf::Vector2f(size.x/3, size.y/3));
 	m_obstacles.push_back(obstacle);
 }
 

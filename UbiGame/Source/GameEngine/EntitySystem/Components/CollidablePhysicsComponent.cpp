@@ -48,8 +48,8 @@ void CollidablePhysicsComponent::Update()
 
 		AABBRect intersection;
 		AABBRect myBox = GetWorldAABB();
-		AABBRect colideBox = colComponent->GetWorldAABB();
-		if (myBox.intersects(colideBox, intersection))
+		AABBRect collideBox = colComponent->GetWorldAABB();
+		if (myBox.intersects(collideBox, intersection))
 		{
 			int id = colComponent->GetEntity()->id;
 
@@ -66,14 +66,14 @@ void CollidablePhysicsComponent::Update()
 			sf::Vector2f pos = GetEntity()->GetPos();
 			if (intersection.width < intersection.height)
 			{
-				if (myBox.left < colideBox.left)
+				if (myBox.left < collideBox.left)
 					pos.x -= intersection.width;
 				else
 					pos.x += intersection.width;
 			}
 			else
 			{
-				if (myBox.top < colideBox.top)
+				if (myBox.top < collideBox.top)
 					pos.y -= intersection.height;
 				else
 					pos.y += intersection.height;

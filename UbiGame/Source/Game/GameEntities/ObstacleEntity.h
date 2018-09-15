@@ -13,9 +13,11 @@ namespace Game
 
 		virtual void OnAddToWorld() override;
 		virtual void OnRemoveFromWorld() override;
+		void SetBoundingBox(sf::Vector2f size);
 
 	protected:
-		GameEngine::SpriteRenderComponent* m_renderComponent;		
+		GameEngine::SpriteRenderComponent* m_renderComponent;
+		GameEngine::CollidableComponent* m_colComponent;
 	};
 }
 
