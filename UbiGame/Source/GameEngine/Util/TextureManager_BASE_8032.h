@@ -17,6 +17,9 @@ namespace GameEngine
 			Particles,
 			RoomA1Bg,
 			DesksAndChairs,
+			WalkBack,
+			WalkFront,
+			WalkSide,
 			Count
 		};
 	}	
@@ -31,6 +34,9 @@ namespace GameEngine
 		case eTexture::Particles: return "particles.png";
 		case eTexture::RoomA1Bg: return "room-a1-bg.png";
 		case eTexture::DesksAndChairs: return "room-a1-boxes.png";
+		case eTexture::WalkBack: return "walkBack.png";
+		case eTexture::WalkFront: return "walkFront.png";
+		case eTexture::WalkSide: return "walkside.png";
 		default:       return "UnknownTexType";
 		}
 	}
@@ -65,7 +71,10 @@ namespace TextureHelper
 		case  GameEngine::eTexture::BG:	     return sf::Vector2f(500.f, 500.f);
 		case  GameEngine::eTexture::Particles: return sf::Vector2f(31.f, 32.f);
 		case  GameEngine::eTexture::RoomA1Bg: return sf::Vector2f(128.f, 90.f);
-		case  GameEngine::eTexture::DesksAndChairs: return sf::Vector2f(105.f, 54.f);
+		case  GameEngine::eTexture::DesksAndChairs: return sf::Vector2f(31.f, 32.f);
+		case  GameEngine::eTexture::WalkBack: return sf::Vector2f(32.f, 32.f);
+		case  GameEngine::eTexture::WalkFront: return sf::Vector2f(32.f, 32.f);
+		case  GameEngine::eTexture::WalkSide: return sf::Vector2f(32.f, 32.f);
 		default:							 return sf::Vector2f(-1.f, -1.f);
 		}
 	}

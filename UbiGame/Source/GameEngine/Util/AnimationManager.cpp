@@ -22,7 +22,7 @@ void AnimationManager::InitStaticGameAnimations()
 	m_animDefinitions.push_back
 	(
 		SAnimationDefinition(
-			EAnimationId::BirdIdle,
+			EAnimationId::PlayerIdle,
 			eTexture::Player,
 			sf::Vector2i(0, 0),
 			20,
@@ -31,9 +31,19 @@ void AnimationManager::InitStaticGameAnimations()
 	m_animDefinitions.push_back
 	(
 		SAnimationDefinition(
-			EAnimationId::BirdFly,
+			EAnimationId::WalkFront,
 			eTexture::Player,
 			sf::Vector2i(0, 1),
+			4,
+			10)
+	);
+	
+	m_animDefinitions.push_back
+	(
+		SAnimationDefinition(
+			EAnimationId::WalkBack,
+			eTexture::Player,
+			sf::Vector2i(0, 2),
 			4,
 			10)
 	);
@@ -41,23 +51,22 @@ void AnimationManager::InitStaticGameAnimations()
 	m_animDefinitions.push_back
 	(
 		SAnimationDefinition(
-			EAnimationId::WalkBack,
-			eTexture::WalkBack,
-			sf::Vector2i(0, 0),
-			10,
-			15)
+			EAnimationId::WalkRight,
+			eTexture::Player,
+			sf::Vector2i(0, 3),
+			4,
+			10)
 	);
 
-	/*
 	m_animDefinitions.push_back
 	(
 		SAnimationDefinition(
-			EAnimationId::Smoke,
-			eTexture::Particles,
-			sf::Vector2i(0, 0),
-			10,
-			15)
-	);*/
+			EAnimationId::WalkLeft,
+			eTexture::Player,
+			sf::Vector2i(0, 4),
+			4,
+			10)
+	);
 }
 
 

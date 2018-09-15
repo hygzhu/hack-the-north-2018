@@ -19,8 +19,8 @@ GameBoard::GameBoard()
 	m_player = new PlayerEntity();
 	
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player);
-	m_player->SetPos(sf::Vector2f(50.f, 50.f));	
-	m_player->SetSize(sf::Vector2f(160.f, 160.f));
+	m_player->SetPos(sf::Vector2f(50.f, 300.f));	
+	m_player->SetSize(sf::Vector2f(114.f, 205.f));
 	
 	CreateBackGround();
 	//Debug
@@ -96,8 +96,8 @@ void GameBoard::UpdatePlayerDying()
 }
 
 void GameBoard::SpawnNewObstacles() {
-	sf::Vector2f pos = sf::Vector2f(700.f, 380.f);
-	sf::Vector2f size = sf::Vector2f(768.f,576.f);
+	sf::Vector2f pos = sf::Vector2f(700.f, 600.f);
+	sf::Vector2f size = sf::Vector2f(630.f, 324.f);
 
 	SpawnNewObstacle(pos, size, 5, 1);
 
