@@ -11,13 +11,13 @@ namespace GameEngine
 	{
 		enum type
 		{
-			BirdIdle,
-			BirdFly,
+			PlayerIdle,
 			Smoke,
 			None,
 			WalkBack,
 			WalkFront,
-			WalkSide
+			WalkRight,
+			WalkLeft
 		};
 	}
 

@@ -17,9 +17,6 @@ namespace Game
 		virtual void OnAddToWorld() override;
 
 	private:
-		float m_flyTimerDt;
-		float m_flyTimerMaxTime;
-
 		GameEngine::AnimationComponent* m_animComponent;
 		PlayerSoundComponent*			m_playerSoundComponent;
 	};

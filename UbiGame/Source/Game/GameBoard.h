@@ -27,7 +27,7 @@ namespace Game
 
 		bool IsGameOver() const { return m_isGameOver; }	
 
-		void NewRoom();
+		void NewRoom(int _id);
 
 	protected:
 		//Placeholder temp - should go to helpers or smth.
