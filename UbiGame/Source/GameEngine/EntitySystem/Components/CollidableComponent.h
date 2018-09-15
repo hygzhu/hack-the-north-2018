@@ -27,6 +27,8 @@ namespace GameEngine
 		
 		bool	 m_useDefaultBox;
 		AABBRect m_AABBBox;
+
+		bool	isExit;
 	};
 }
 

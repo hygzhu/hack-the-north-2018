@@ -12,6 +12,14 @@ CollidableComponent::CollidableComponent()
 
 }
 
+// Constructor overloaded to account for exit object
+//CollidableComponent::CollidableComponent(bool isExit)
+//	: m_AABBBox()
+//	, m_useDefaultBox(true)
+//{
+//
+//}
+
 
 CollidableComponent::~CollidableComponent()
 {

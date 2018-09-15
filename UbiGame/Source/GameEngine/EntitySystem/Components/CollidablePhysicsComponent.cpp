@@ -40,6 +40,8 @@ void CollidablePhysicsComponent::Update()
 	{
 		CollidableComponent* colComponent = collidables[a];
 		if (colComponent == this)
+			// Detect if this is a room exit
+			// if (this->GetEntity()->GetID())
 			continue;
 
 		AABBRect intersection;

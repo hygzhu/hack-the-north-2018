@@ -96,8 +96,8 @@ void GameBoard::UpdatePlayerDying()
 }
 
 void GameBoard::SpawnNewObstacles() {
-	sf::Vector2f pos = sf::Vector2f(50.f, 50.f);
-	sf::Vector2f size = sf::Vector2f(50.f,50.f);
+	sf::Vector2f pos = sf::Vector2f(700.f, 380.f);
+	sf::Vector2f size = sf::Vector2f(768.f,576.f);
 
 	SpawnNewObstacle(pos, size, 5);
 }

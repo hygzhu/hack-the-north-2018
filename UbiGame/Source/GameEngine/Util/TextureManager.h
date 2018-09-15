@@ -25,7 +25,7 @@ namespace GameEngine
 	{
 		switch (texture)
 		{
-		case eTexture::Player:    return "player1.png";
+		case eTexture::Player:    return "playerModel.png";
 		case eTexture::Tileset:   return "tileset.png";
 		case eTexture::BG:		  return "bg.png";
 		case eTexture::Particles: return "particles.png";
@@ -60,7 +60,7 @@ namespace TextureHelper
 	{
 		switch (texture)
 		{
-		case  GameEngine::eTexture::Player:  return sf::Vector2f(32.f, 32.f);
+		case  GameEngine::eTexture::Player:  return sf::Vector2f(35.f, 63.f);
 		case  GameEngine::eTexture::Tileset: return sf::Vector2f(32.f, 32.f);
 		case  GameEngine::eTexture::BG:	     return sf::Vector2f(500.f, 500.f);
 		case  GameEngine::eTexture::Particles: return sf::Vector2f(31.f, 32.f);
