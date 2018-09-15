@@ -56,11 +56,11 @@ void CollidablePhysicsComponent::Update()
 			printf("collision %d\n", id);
 
 			switch(id) {
-				// Hacking Desk
 			case 1:
-				printf("dialogue");
+				// Hack at desk
+			case 2:
 				// Exit
-			case 2: GameEngineMain::GetInstance()->m_gameBoard->NewRoom(id);
+				GameEngineMain::GetInstance()->m_gameBoard->NewRoom(id);
 			}
 
 			sf::Vector2f pos = GetEntity()->GetPos();

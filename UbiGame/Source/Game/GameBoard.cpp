@@ -96,10 +96,15 @@ void GameBoard::UpdatePlayerDying()
 }
 
 void GameBoard::SpawnNewObstacles() {
-	sf::Vector2f pos = sf::Vector2f(700.f, 600.f);
-	sf::Vector2f size = sf::Vector2f(630.f, 324.f);
+	sf::Vector2f deskPos = sf::Vector2f(700.f, 600.f);
+	sf::Vector2f deskSize = sf::Vector2f(630.f, 324.f);
 
-	SpawnNewObstacle(pos, size, 5, 1);
+	SpawnNewObstacle(deskPos, deskSize, 5, 1);
+
+	sf::Vector2f doorPos = sf::Vector2f(1075.f, 200.f);
+	sf::Vector2f doorSize = sf::Vector2f(248.f, 304.f);
+
+	SpawnNewObstacle(doorPos, doorSize, 6, 2);
 
 	/*pos = sf::Vector2f(300.f, 380.f);
 	size = sf::Vector2f(768.f, 576.f);
@@ -156,6 +161,16 @@ void GameBoard::SpawnNewRandomTiledObstacles()
 	m_lastObstacleSpawnTimer = RandomFloatRange(minNextSpawnTime, maxNextSpawnTime);*/
 }
 
+// Doors have half hitboxes
+void GameBoard::SpawnNewDoor(const sf::Vector2f& pos, const sf::Vector2f& size, int texture) {
+	ObstacleEntity* obstacle = new ObstacleEntity(texture, 2);
+	obstacle->SetPos(pos);
+	obstacle->SetSize(sf::Vector2f(size.x, size.y));
+
+	// TODO: set collidable area to middle
+
+	m_obstacles.push_back(obstacle);
+}
 
 void GameBoard::SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id)
 {
