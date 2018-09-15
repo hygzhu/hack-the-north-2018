@@ -57,25 +57,25 @@ void GameBoard::Update()
 
 void GameBoard::UpdateObstacles(float dt)
 {
-	//static float obstacleSpeed = 100.f;
-	//
-	//for (std::vector<GameEngine::Entity*>::iterator it = m_obstacles.begin(); it != m_obstacles.end();)
-	//{
-	//	GameEngine::Entity* obstacle = (*it);
-	//	sf::Vector2f currPos = obstacle->GetPos();
-	//	currPos.x -= obstacleSpeed * dt;
-	//	obstacle->SetPos(currPos);
-	//	//If we are to remove ourselves
-	//	if (currPos.x < -50.f)
-	//	{
-	//		GameEngine::GameEngineMain::GetInstance()->RemoveEntity(obstacle);
-	//		it = m_obstacles.erase(it);
-	//	}
-	//	else
-	//	{
-	//		it++;
-	//	}
-	//}
+	static float obstacleSpeed = 100.f;
+	
+	for (std::vector<GameEngine::Entity*>::iterator it = m_obstacles.begin(); it != m_obstacles.end();)
+	{
+		GameEngine::Entity* obstacle = (*it);
+		sf::Vector2f currPos = obstacle->GetPos();
+		currPos.x -= obstacleSpeed * dt;
+		obstacle->SetPos(currPos);
+		//If we are to remove ourselves
+		if (currPos.x < -50.f)
+		{
+			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(obstacle);
+			it = m_obstacles.erase(it);
+		}
+		else
+		{
+			it++;
+		}
+	}
 }
 
 
@@ -162,8 +162,8 @@ void GameBoard::CreateBackGround()
 	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
 	render->SetTexture(GameEngine::eTexture::BG);
 	render->SetZLevel(0);
-	bgEntity->SetPos(sf::Vector2f(250.f, 250.f));
-	bgEntity->SetSize(sf::Vector2f(500.f, 500.f));
+	bgEntity->SetPos(sf::Vector2f(640.f, 360.f));
+	bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
 
 	m_backGround = bgEntity;
