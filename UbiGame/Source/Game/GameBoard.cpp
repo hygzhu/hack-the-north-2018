@@ -99,7 +99,7 @@ void GameBoard::SpawnNewObstacles() {
 	sf::Vector2f pos = sf::Vector2f(700.f, 600.f);
 	sf::Vector2f size = sf::Vector2f(630.f, 324.f);
 
-	SpawnNewObstacle(pos, size, 5, 1);
+	SpawnNewObstacle(pos, size, 5, 2);
 
 	/*pos = sf::Vector2f(300.f, 380.f);
 	size = sf::Vector2f(768.f, 576.f);
@@ -195,4 +195,15 @@ void GameBoard::UpdateBackGround()
 
 void GameBoard::NewRoom(int _id) {
 	printf("HI! %d\n", _id);
+	if (_id == 2) {
+		GameEngine::Entity* bgEntity = new GameEngine::Entity();
+		GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
+		render->SetTexture(GameEngine::eTexture::Hallway1Bg);
+		render->SetZLevel(0);
+		bgEntity->SetPos(sf::Vector2f(640.f, 360.f));
+		bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
+		GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
+
+		m_backGround = bgEntity;
+	}
 }
