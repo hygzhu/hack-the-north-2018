@@ -29,10 +29,7 @@ GameBoard::GameBoard()
 	CreateBackGround();
 
 	//Debug
-	for (int a = 0; a < 3; ++a)
-	{
-		//SpawnNewRandomObstacles();
-	}
+	SpawnRoomA1Obstacles();
 }
 
 
@@ -44,7 +41,7 @@ GameBoard::~GameBoard()
 
 void GameBoard::Update()
 {	
-	float dt = GameEngine::GameEngineMain::GetInstance()->GetTimeDelta();
+/*	float dt = GameEngine::GameEngineMain::GetInstance()->GetTimeDelta();
 	if (!m_isGameOver)
 	{
 		m_lastObstacleSpawnTimer -= dt;
@@ -53,36 +50,12 @@ void GameBoard::Update()
 			//SpawnNewRandomObstacles();
 			SpawnNewRandomTiledObstacles();
 			SpawnNewObstacles();
-		}
+		}*/
 
-		UpdateObstacles(dt);
-		UpdateBackGround();
-		UpdatePlayerDying();
-	}		
-}
-
-
-void GameBoard::UpdateObstacles(float dt)
-{
-//	static float obstacleSpeed = 100.f;
-//	
-//	for (std::vector<GameEngine::Entity*>::iterator it = m_obstacles.begin(); it != m_obstacles.end();)
-//	{
-//		GameEngine::Entity* obstacle = (*it);
-//		sf::Vector2f currPos = obstacle->GetPos();
-//		currPos.x -= obstacleSpeed * dt;
-//		obstacle->SetPos(currPos);
-//		//If we are to remove ourselves
-//		if (currPos.x < -50.f)
-//		{
-//			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(obstacle);
-//			it = m_obstacles.erase(it);
-//		}
-//		else
-//		{
-//			it++;
-//		}
-//	}
+//		UpdateObstacles(dt);
+//		UpdateBackGround();
+//		UpdatePlayerDying();
+//	}		
 }
 
 
@@ -100,7 +73,7 @@ void GameBoard::UpdatePlayerDying()
 	}*/
 }
 
-void GameBoard::SpawnNewObstacles() {
+void GameBoard::SpawnRoomA1Obstacles() {
 	sf::Vector2f deskPos = sf::Vector2f(700.f, 600.f);
 	sf::Vector2f deskSize = sf::Vector2f(630.f, 324.f);
 
@@ -110,56 +83,6 @@ void GameBoard::SpawnNewObstacles() {
 	sf::Vector2f doorSize = sf::Vector2f(248.f, 304.f);
 
 	SpawnNewObstacle(doorPos, doorSize, 6, 2);
-}
-
-void GameBoard::SpawnNewRandomObstacles()
-{
-	/*static float minNextSpawnTime = 0.3f;
-	static float maxNextSpawnTime = 0.7f;
-
-	static float minObstacleXPos = 50.f;
-	static float maxObstacleXPos = 450.f;
-	static float minObstacleYPos = 20.f;
-	static float maxObstacleYPos = 450.f;
-	
-	static float minObstacleHeight = 50.f;
-	static float maxObstacleHeight = 170.f;
-	static float minObstacleWidth = 20.f;
-	static float maxObstacleWidth = 40.f;
-
-	sf::Vector2f pos = sf::Vector2f(RandomFloatRange(minObstacleXPos, maxObstacleXPos), RandomFloatRange(minObstacleYPos, maxObstacleYPos));
-	sf::Vector2f size = sf::Vector2f(RandomFloatRange(minObstacleWidth, maxObstacleWidth), RandomFloatRange(minObstacleHeight, maxObstacleHeight));
-
-	SpawnNewObstacle(pos, size, 5);
-
-	m_lastObstacleSpawnTimer = RandomFloatRange(minNextSpawnTime, maxNextSpawnTime);*/
-}
-
-
-void GameBoard::SpawnNewRandomTiledObstacles()
-{
-	/*static int minObstacleCount = 2;
-	static int maxObstacleCount = 7;
-
-	static float minNextSpawnTime = 0.3f;
-	static float maxNextSpawnTime = 0.7f;
-
-	static float minObstacleXPos = 350.f;
-	static float maxObstacleXPos = 450.f;
-	static float minObstacleYPos = 20.f;
-	static float maxObstacleYPos = 450.f;
-
-	sf::Vector2f pos = sf::Vector2f(RandomFloatRange(minObstacleXPos, maxObstacleXPos), RandomFloatRange(minObstacleYPos, maxObstacleYPos));	
-	sf::Vector2f size = sf::Vector2f(32.f, 32.f);
-
-	int obstacleCount = (int)RandomFloatRange((float)minObstacleCount, (float)maxObstacleCount);
-	for (int a = 0; a < obstacleCount; ++a)
-	{
-		SpawnNewObstacle(pos, size, 5);
-		pos.y += size.y;
-	}
-
-	m_lastObstacleSpawnTimer = RandomFloatRange(minNextSpawnTime, maxNextSpawnTime);*/
 }
 
 // Doors have half hitboxes
