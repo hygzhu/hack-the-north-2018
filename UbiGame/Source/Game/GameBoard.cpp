@@ -160,7 +160,7 @@ void GameBoard::CreateBackGround()
 {
 	GameEngine::Entity* bgEntity = new GameEngine::Entity();
 	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
-	render->SetTexture(GameEngine::eTexture::BG);
+	render->SetTexture(GameEngine::eTexture::RoomA1Bg);
 	render->SetZLevel(0);
 	bgEntity->SetPos(sf::Vector2f(640.f, 360.f));
 	bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
