@@ -55,7 +55,7 @@ void CollidablePhysicsComponent::Update()
 
 			if (colComponent->GetEntity()->id == 2) {
 				// Check if comp is exit
-				GameEngineMain::GetInstance()->m_gameBoard->NewRoom();
+				GameEngineMain::GetInstance()->m_gameBoard->NewRoom(colComponent->GetEntity()->id);
 			}
 
 			sf::Vector2f pos = GetEntity()->GetPos();
