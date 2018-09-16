@@ -99,8 +99,7 @@ void PlayerMovementComponent::Update()
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		printf("X: %d, Y: %d\n", this->GetEntity()->GetPos().x, this->GetEntity()->GetPos().y);
-		GameEngine::GameEngineMain::GetInstance()->m_gameBoard->HideDialog(this->GetEntity());
+		GameEngine::GameEngineMain::GetInstance()->m_gameBoard->HideDialogue();
 	}
 
 

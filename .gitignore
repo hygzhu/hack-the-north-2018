@@ -9,3 +9,6 @@ UbiGame/Debug/
 UbiGame/x64/Release/
 x64/Release/
 /UbiGame/UbiGame.vcxproj
+UbiGame/x64/Debug/UbiGame.tlog/CL.command.1.tlog
+UbiGame/x64/Debug/UbiGame.tlog/CL.read.1.tlog
+UbiGame/x64/Debug/UbiGame.tlog/CL.write.1.tlog

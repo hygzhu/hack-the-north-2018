@@ -23,14 +23,20 @@ namespace Game
 		void UpdatePlayerDying();
 		void SpawnNewDoor(const sf::Vector2f& pos, const sf::Vector2f& size, int texture);
 		void SpawnRoomObstacles(int id);
-		void SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id, int _curId, int zVal=2);
+		void SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id, int _curId);
 		void ClearObstacles();
 
 		bool IsGameOver() const { return m_isGameOver; }	
 
-		void NewRoom(int _id, int _prevId);
+<<<<<<< HEAD
+		void NewRoom(int _id);
 		void ShowDialogue(int _id);
 		void HideDialogue();
+=======
+		void NewRoom(int _id, int _prevId);
+		void PrintDialog(int _id);
+		void HideDialog(GameEngine::Entity* diag);
+>>>>>>> ee6250c15effa9734e2187e27ab3975cf18381f5
 
 	protected:
 		//Placeholder temp - should go to helpers or smth.
