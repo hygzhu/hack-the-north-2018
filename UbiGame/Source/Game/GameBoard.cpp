@@ -160,14 +160,14 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		//Right stair (GOTO 8 ROOM)
 		SpawnNewObstacle(sf::Vector2f(490.f, 540.f), sf::Vector2f(20, 100.f), 1, 8, id);
 
-		//Top Wall boundaries (GO TO SEVEN WHICH IS SPONSORS)
-		SpawnNewObstacle(sf::Vector2f(640.f, 110.f), sf::Vector2f(1280.f, 10.f), 1, 7, id);
+		//Top Wall boundaries (Door 4)
+		SpawnNewObstacle(sf::Vector2f(640.f, 110.f), sf::Vector2f(1280.f, 10.f), 1, 4, id);
 		//Left wall 
 		SpawnNewObstacle(sf::Vector2f(130.f, 360.f), sf::Vector2f(10, 720.f), 1, 1, id);
 		//right wall 
 		SpawnNewObstacle(sf::Vector2f(490.f, 360.f), sf::Vector2f(10, 720.f), 1, 1, id);
-		//bottom wall (Door 4)
-		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 10.f), 1, 4, id);
+		//bottom wall (GO TO SEVEN WHICH IS SPONSORS)
+		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 10.f), 1, 7, id);
 	}
 
 	if (id == 7) {
@@ -328,13 +328,13 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
 		{
 		case 4:
-			m_player->SetPos(sf::Vector2f(300.f, 550.f));
+			m_player->SetPos(sf::Vector2f(300.f, 300.f));
 			break;
 		case 5:
-			m_player->SetPos(sf::Vector2f(250.f, 500.f));
+			m_player->SetPos(sf::Vector2f(300.f, 500.f));
 			break;
 		case 7:
-			m_player->SetPos(sf::Vector2f(300.f, 300.f));
+			m_player->SetPos(sf::Vector2f(300.f, 550.f));
 			break;
 		default:
 			break;
@@ -342,14 +342,14 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 		break;
 	case 7:
 		render->SetTexture(GameEngine::eTexture::SponsorFoodBg);
-		m_player->SetPos(sf::Vector2f(1100.f, 300.f));
+		m_player->SetPos(sf::Vector2f(1100.f, 500.f));
 		break;
 	case 8:
 		render->SetTexture(GameEngine::eTexture::StairsBg1);
 		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
 		{
 		case 6:
-			m_player->SetPos(sf::Vector2f(250.f, 500.f));
+			m_player->SetPos(sf::Vector2f(300.f, 500.f));
 			break;
 		case 9:
 			m_player->SetPos(sf::Vector2f(300.f, 500.f));
