@@ -97,42 +97,37 @@ void GameBoard::SpawnRoomObstacles(int id) {
 
 	}
 	if (id == 2) { // Room A-2: Elevators and snacks
-		// (door 4)
+		// (GO TO BOTTOM ELEVATOR 4)
 		sf::Vector2f doorPos1 = sf::Vector2f(830.f, 120.f);
 		sf::Vector2f doorSize1 = sf::Vector2f(300.f, 100.f);
 		SpawnNewObstacle(doorPos1, doorSize1, 1, 4, id);
 
-		//Door 4
-		sf::Vector2f doorPos2 = sf::Vector2f(40.f, 500.f);
-		sf::Vector2f doorSize2 = sf::Vector2f(50.f, 100.f);
-		SpawnNewObstacle(doorPos2, doorSize2, 1, 3, id);
-
-		//Door 5
-		sf::Vector2f doorPos3 = sf::Vector2f(1200.f, 500.f);
-		sf::Vector2f doorSize3 = sf::Vector2f(50.f, 100.f);
-		SpawnNewObstacle(doorPos3, doorSize3, 1, 5, id);
-
 		// Snack Table
 		sf::Vector2f snackTablePos = sf::Vector2f(1200.f, 500.f);
 		sf::Vector2f snackTableSize = sf::Vector2f(184.f, 312.f);
-		SpawnNewObstacle(snackTablePos, snackTableSize, 7, 1, id);
+		SpawnNewObstacle(snackTablePos, snackTableSize, 8, 1, id);
 
 		//Top Wall boundaries
 		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 5.f), 1, 1, id);
-		//Left wall
-		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
+		//Left wall (GO TO ROOM 3)
+		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(5, 720.f), 1, 3, id);
 		//right wall
 		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
-		//bottom wall
-		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 1, id);
+		//bottom wall (GO TO ROOM 5)
+		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 5, id);
 
 	}	
-	if (id == 4) {
+	if (id == 4) { //ELAVATOR AND SNACK 2: ELECTRIC BOOLGJOISD
+
+		// (GO TO BOTTOM ELEVATOR 2)
+		sf::Vector2f doorPos1 = sf::Vector2f(830.f, 120.f);
+		sf::Vector2f doorSize1 = sf::Vector2f(300.f, 100.f);
+		SpawnNewObstacle(doorPos1, doorSize1, 1, 2, id);
 
 		// Snack Table
 		sf::Vector2f snackTablePos = sf::Vector2f(1200.f, 500.f);
 		sf::Vector2f snackTableSize = sf::Vector2f(184.f, 312.f);
-		SpawnNewObstacle(snackTablePos, snackTableSize, 7, 1, id);
+		SpawnNewObstacle(snackTablePos, snackTableSize, 8, 1, id);
 
 		//Top Wall boundaries
 		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 5.f), 1, 1, id);
@@ -152,6 +147,16 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
 		//bottom wall (Door 2)
 		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 2, id);
+	}
+	if (id == 6) {
+		//Top Wall boundaries (GO TO SEVEN WHICH IS SPONSORS)
+		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 5.f), 1, 7, id);
+		//Left wall 
+		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
+		//right wall 
+		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
+		//bottom wall (Door 4)
+		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 4, id);
 	}
 }
 
@@ -243,10 +248,13 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 		{
 		case 3:
 			m_player->SetPos(sf::Vector2f(150.f, 450.f));
+			break;
 		case 4:
-			m_player->SetPos(sf::Vector2f(800.f, 350.f));
+			m_player->SetPos(sf::Vector2f(825.f, 400.f));
+			break;
 		case 5:
-			m_player->SetPos(sf::Vector2f(1100.f, 600.f));
+			m_player->SetPos(sf::Vector2f(640.f, 500.f));
+			break;
 		default:
 			break;
 		}
@@ -257,15 +265,37 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 		break;
 	case 4: // From elevator hallway to hacker room
 		render->SetTexture(GameEngine::eTexture::HallwayBg1);
-		m_player->SetPos(sf::Vector2f(1100.f, 300.f));
+		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
+		{
+		case 2:
+			m_player->SetPos(sf::Vector2f(825.f, 400.f));
+			break;
+		default:
+			break;
+		}
+		break;
 		break;
 	case 5:
 		render->SetTexture(GameEngine::eTexture::StairsBg);
-		m_player->SetPos(sf::Vector2f(1100.f, 300.f));
+		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
+		{
+		case 2:
+			m_player->SetPos(sf::Vector2f(300.f, 500.f));
+			break;
+		default:
+			break;
+		}
 		break;
 	case 6:
 		render->SetTexture(GameEngine::eTexture::StairsBg);
-		m_player->SetPos(sf::Vector2f(1100.f, 300.f));
+		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
+		{
+		case 4:
+			m_player->SetPos(sf::Vector2f(300.f, 500.f));
+			break;
+		default:
+			break;
+		}
 		break;
 	case 7:
 		render->SetTexture(GameEngine::eTexture::SponsorFoodBg);
