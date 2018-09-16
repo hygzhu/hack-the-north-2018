@@ -54,15 +54,12 @@ void CollidablePhysicsComponent::Update()
 			int id = colComponent->GetEntity()->id;
 
 			printf("collision %d\n", id);
-
-			switch(id) {
-			case 1:
-				printf("dialogue");
-
-				// Exit
-			case 2: 
+			if (id == 1) {
+				printf("dialogue\n");
+			}
+			else if (id == 2) { // Exit room
+				GameEngineMain::GetInstance()->m_gameBoard->ClearObstacles();
 				GameEngineMain::GetInstance()->m_gameBoard->NewRoom(id);
-				//GameEngineMain::GetInstance()->m_gameBoard->PrintDialog(1);
 			}
 
 			sf::Vector2f pos = GetEntity()->GetPos();

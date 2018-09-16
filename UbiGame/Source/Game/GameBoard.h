@@ -20,14 +20,11 @@ namespace Game
 
 		//Temp - for nice architecture this should be within some sort of IUpdatable interface that GameEngine handles (so that not only entities can be updated)
 		void Update();
-		void UpdateObstacles(float dt);
 		void UpdatePlayerDying();
 		void SpawnNewDoor(const sf::Vector2f& pos, const sf::Vector2f& size, int texture);
-		void SpawnRoomA1Obstacles();
-		void SpawnRoomA2Obstacles();
-		void SpawnNewRandomObstacles();
-		void SpawnNewRandomTiledObstacles();
+		void SpawnRoomObstacles(int id);
 		void SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id);
+		void ClearObstacles();
 
 		bool IsGameOver() const { return m_isGameOver; }	
 

@@ -29,7 +29,7 @@ GameBoard::GameBoard()
 	CreateBackGround();
 
 	//Debug
-	SpawnRoomA1Obstacles();
+	SpawnRoomObstacles(1);
 }
 
 
@@ -73,28 +73,21 @@ void GameBoard::UpdatePlayerDying()
 	}*/
 }
 
-void GameBoard::SpawnRoomA1Obstacles() {
-	sf::Vector2f deskPos = sf::Vector2f(700.f, 600.f);
-	sf::Vector2f deskSize = sf::Vector2f(630.f, 324.f);
+void GameBoard::SpawnRoomObstacles(int id) {
+	if (id == 1) { // Room A-1: Desk and door
+		sf::Vector2f deskPos = sf::Vector2f(700.f, 600.f);
+		sf::Vector2f deskSize = sf::Vector2f(630.f, 324.f);
 
-	SpawnNewObstacle(deskPos, deskSize, 5, 2);
+		SpawnNewObstacle(deskPos, deskSize, 5, 1);
 
-	sf::Vector2f doorPos = sf::Vector2f(1095.f, 200.f);
-	sf::Vector2f doorSize = sf::Vector2f(300.f, 300.f);
+		sf::Vector2f doorPos = sf::Vector2f(1095.f, 200.f);
+		sf::Vector2f doorSize = sf::Vector2f(300.f, 300.f);
 
-	SpawnNewObstacle(doorPos, doorSize, 6, 2);
-}
+		SpawnNewObstacle(doorPos, doorSize, 6, 2);
+	}
+	if (id == 2) { // Room A-2: Elevators and stairs
 
-void GameBoard::SpawnRoomA2Obstacles() {
-	sf::Vector2f deskPos = sf::Vector2f(700.f, 600.f);
-	sf::Vector2f deskSize = sf::Vector2f(630.f, 324.f);
-
-	SpawnNewObstacle(deskPos, deskSize, 5, 2);
-
-	sf::Vector2f doorPos = sf::Vector2f(1095.f, 200.f);
-	sf::Vector2f doorSize = sf::Vector2f(300.f, 300.f);
-
-	SpawnNewObstacle(doorPos, doorSize, 6, 2);
+	}	
 }
 
 // Doors have half hitboxes
@@ -114,6 +107,14 @@ void GameBoard::SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& si
 	obstacle->SetSize(sf::Vector2f(size.x, size.y));
 
 	m_obstacles.push_back(obstacle);
+}
+
+void GameBoard::ClearObstacles() {
+	for (std::vector<GameEngine::Entity*>::iterator it = m_obstacles.begin(); it != m_obstacles.end();) {
+		GameEngine::Entity* obstacle = (*it);
+		GameEngine::GameEngineMain::GetInstance()->RemoveEntity(obstacle);
+		it = m_obstacles.erase(it);
+	}
 }
 
 
@@ -168,7 +169,8 @@ void GameBoard::RepaintEverything()
 }
 
 void GameBoard::NewRoom(int _id) {
-	printf("HI! %d\n", _id);
+	printf("Loading new room ID: %d\n", _id);
+	GameBoard::SpawnRoomObstacles(_id);
 	if (_id == 2) {
 		GameEngine::Entity* bgEntity = new GameEngine::Entity();
 		GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
