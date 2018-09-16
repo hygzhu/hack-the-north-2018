@@ -42,8 +42,10 @@ namespace GameEngine
 			DialogueDesk = 100,
 			DialogueSponsor = 101,
 			DialogueFood = 102,
-			DialogueElevator1 = 103,
-			DialogueElevator2 = 104,
+			DialogueGameOverEnergyFail = 103,
+			DialogueGameOverTimeFail = 104,
+			DialogueGameOverSuccess = 105,
+			DialogueSnack = 106,
 
 			// Levels
 			EnergyLevel = 200,
@@ -85,8 +87,10 @@ namespace GameEngine
 		case eTexture::DialogueBox: return "dialogue.png";
 		case eTexture::DialogueDesk: return "dialogueDesk.png";
 		case eTexture::DialogueFood: return "dialogueFood.png";
-		case eTexture::DialogueElevator1: return "dialogueElevator1.png";
-		case eTexture::DialogueElevator2: return "dialogueElevator2.png";
+		case eTexture::DialogueSnack: return "dialogueFood.png";
+		case eTexture::DialogueGameOverEnergyFail: return "dialogueGameOverEnergyFail.png";
+		case eTexture::DialogueGameOverTimeFail: return "dialogueGameOverEnergyFail.png";
+		case eTexture::DialogueGameOverSuccess: return "dialogueGameOverSuccess.png";
 		case eTexture::DialogueSponsor: return "dialogueSponsor.png";
 
 		case eTexture::EnergyLevel: return "energyBar.png";
@@ -151,9 +155,11 @@ namespace TextureHelper
 		case GameEngine::eTexture::DialogueBox: return sf::Vector2f(192.f, 48.f);
 		case GameEngine::eTexture::DialogueDesk: return sf::Vector2f(192.f, 48.f);
 		case GameEngine::eTexture::DialogueFood: return sf::Vector2f(192.f, 48.f);
-		case GameEngine::eTexture::DialogueElevator1: return sf::Vector2f(192.f, 48.f);
-		case GameEngine::eTexture::DialogueElevator2: return sf::Vector2f(192.f, 48.f);
+		case GameEngine::eTexture::DialogueGameOverEnergyFail: return sf::Vector2f(192.f, 48.f);
+		case GameEngine::eTexture::DialogueGameOverTimeFail: return sf::Vector2f(192.f, 48.f);
 		case GameEngine::eTexture::DialogueSponsor: return sf::Vector2f(192.f, 48.f);
+		case GameEngine::eTexture::DialogueGameOverSuccess: return sf::Vector2f(192.f, 48.f);
+		case GameEngine::eTexture::DialogueSnack: return sf::Vector2f(192.f, 48.f);
 
 		case GameEngine::eTexture::EnergyLevel: return sf::Vector2f(51.f, 12.f);
 		case GameEngine::eTexture::HungerLevel: return sf::Vector2f(51.f, 12.f);

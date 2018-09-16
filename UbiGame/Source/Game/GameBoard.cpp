@@ -53,6 +53,15 @@ void GameBoard::Update()
 		m_isGameOver = true;
 		ClearObstacles();
 		NewRoom(10, 3);
+		if (m_project_completion_level == 100) {
+			GameBoard::ShowDialogue(105);
+		}
+		if (m_energy_level == 0) {
+			GameBoard::ShowDialogue(103);
+		}
+		if (m_time_level == 0) {
+			GameBoard::ShowDialogue(104);
+		}
 	}
 }
 
@@ -104,7 +113,7 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		// Snack Table
 		sf::Vector2f snackTablePos = sf::Vector2f(1200.f, 500.f);
 		sf::Vector2f snackTableSize = sf::Vector2f(184.f, 312.f);
-		SpawnNewObstacle(snackTablePos, snackTableSize, 9, 102, id);
+		SpawnNewObstacle(snackTablePos, snackTableSize, 9, 106, id);
 
 		//Top Wall boundaries
 		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 10.f), 1, 1, id);
@@ -126,7 +135,7 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		// Snack Table
 		sf::Vector2f snackTablePos = sf::Vector2f(1200.f, 500.f);
 		sf::Vector2f snackTableSize = sf::Vector2f(184.f, 312.f);
-		SpawnNewObstacle(snackTablePos, snackTableSize, 9, 1, id);
+		SpawnNewObstacle(snackTablePos, snackTableSize, 9, 106, id);
 
 		//Top Wall boundaries
 		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 10.f), 1, 1, id);
@@ -280,22 +289,20 @@ void GameBoard::CreateBackGround()
 
 void GameBoard::ChangeEnergyLevel(int amount) {
 	m_energy_level += amount;
-	printf("Energy Level: %d", m_energy_level);
 	int x = 19 - m_energy_level / 5;
-	int tileIndex = min(19, x);
+	int tileIndex = max(min(19, x), 0);
 	m_energyBar->GetComponent<GameEngine::SpriteRenderComponent>()->SetTileIndex(tileIndex, 0);
 }
 void GameBoard::ChangeHungerLevel(int amount) {
 	m_hunger_level += amount;
 	int x = 19 - m_hunger_level / 5;
-	int tileIndex = min(19, x);
+	int tileIndex = max(min(19, x), 0);
 	m_hungerBar->GetComponent<GameEngine::SpriteRenderComponent>()->SetTileIndex(tileIndex, 0);
 }
 void GameBoard::ChangeTimeLevel(int amount) {
 	m_time_level += amount;
-	printf("Time Level: %d", m_time_level);
 	int x = 19 - m_time_level / 5;
-	int tileIndex = min(19, x);
+	int tileIndex = max(min(19, x), 0);
 	m_timeBar->GetComponent<GameEngine::SpriteRenderComponent>()->SetTileIndex(tileIndex, 0);
 }
 void GameBoard::ChangeProjectCompletionLevel(int amount) {
@@ -467,12 +474,16 @@ void GameBoard::ShowDialogue(int _id) {
 		m_eventId = 102;
 		break;
 	case 103:
-		render->SetTexture(GameEngine::eTexture::DialogueElevator1);
+		render->SetTexture(GameEngine::eTexture::DialogueGameOverEnergyFail);
 		m_eventId = 103;
 		break;
 	case 104:
-		render->SetTexture(GameEngine::eTexture::DialogueElevator2);
+		render->SetTexture(GameEngine::eTexture::DialogueGameOverTimeFail);
 		m_eventId = 104;
+		break;
+	case 106:
+		render->SetTexture(GameEngine::eTexture::DialogueFood);
+		m_eventId = 106;
 		break;
 	default:
 		render->SetTexture(GameEngine::eTexture::DialogueBox);

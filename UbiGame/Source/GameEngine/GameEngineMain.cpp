@@ -176,6 +176,10 @@ void GameEngineMain::UpdateWindowEvents()
 					GameEngineMain::GetInstance()->m_gameBoard->ChangeEnergyLevel(+10);
 					GameEngineMain::GetInstance()->m_gameBoard->ChangeTimeLevel(-5);
 				}
+				if (GameEngineMain::GetInstance()->m_gameBoard->eventId() == 106) {
+					GameEngineMain::GetInstance()->m_gameBoard->ChangeEnergyLevel(+5);
+					GameEngineMain::GetInstance()->m_gameBoard->ChangeTimeLevel(-3);
+				}
 			}
 		}
 	}
