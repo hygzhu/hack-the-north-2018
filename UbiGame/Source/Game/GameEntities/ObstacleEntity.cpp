@@ -6,7 +6,7 @@
 
 using namespace Game;
 
-ObstacleEntity::ObstacleEntity(int texture, int _id, int _curId)
+ObstacleEntity::ObstacleEntity(int texture, int _id, int _curId, int zVal)
 {
 	id = _id;
 	curId = _curId;
@@ -15,7 +15,7 @@ ObstacleEntity::ObstacleEntity(int texture, int _id, int _curId)
 	m_renderComponent = static_cast<GameEngine::SpriteRenderComponent*>(AddComponent<GameEngine::SpriteRenderComponent>());
 	/*m_renderComponent->SetFillColor(sf::Color::Red);*/
 	m_renderComponent->SetTexture(textEnum);
-	m_renderComponent->SetZLevel(2);
+	m_renderComponent->SetZLevel(zVal);
 	m_renderComponent->SetTileIndex(0, 0);
 
 	if (_id == 2) {

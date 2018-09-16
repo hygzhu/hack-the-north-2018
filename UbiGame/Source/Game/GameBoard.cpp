@@ -27,6 +27,7 @@ GameBoard::GameBoard()
 	m_player->SetSize(sf::Vector2f(114.f, 205.f));
 	
 	CreateBackGround();
+	//NewRoom(7, 6);
 
 	//Initial room
 	SpawnRoomObstacles(3);
@@ -96,7 +97,7 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 1, id);
 
 	}
-	if (id == 2) { // Room A-2: Elevators and snacks
+	else if (id == 2) { // Room A-2: Elevators and snacks
 		// (door 4)
 		sf::Vector2f doorPos1 = sf::Vector2f(830.f, 120.f);
 		sf::Vector2f doorSize1 = sf::Vector2f(300.f, 100.f);
@@ -127,7 +128,7 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 1, id);
 
 	}	
-	if (id == 4) {
+	else if (id == 4) {
 
 		// Snack Table
 		sf::Vector2f snackTablePos = sf::Vector2f(1200.f, 500.f);
@@ -143,7 +144,58 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		//bottom wall (Door 6)
 		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 6, id);
 	}
-	if (id == 5) {
+	else if (id == 5) {
+		//Top Wall boundaries
+		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 5.f), 1, 1, id);
+		//Left wall 
+		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
+		//right wall 
+		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
+		//bottom wall (Door 2)
+		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 2, id);
+	}
+	else if (id == 6) {
+		//Top Wall boundaries
+		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 5.f), 1, 1, id);
+		//Left wall 
+		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
+		//right wall 
+		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
+		//bottom wall (Door 2)
+		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 2, id);
+	}
+	else if (id == 7) {
+
+		// Sponsor Table 1
+		sf::Vector2f sponsorTableSize1 = sf::Vector2f(1100.f, 184.f);
+		sf::Vector2f sponsorTablePos1 = sf::Vector2f(780.f, 205.f);
+		SpawnNewObstacle(sponsorTablePos1, sponsorTableSize1, GameEngine::eTexture::SponsorTableBackRow, -1, id, 1);
+
+		// Sponsor Table 2
+		sf::Vector2f sponsorTableSize2 = sf::Vector2f(1100.f, 184.f);
+		sf::Vector2f sponsorTablePos2 = sf::Vector2f(460.f, 475.f);
+		SpawnNewObstacle(sponsorTablePos2, sponsorTableSize2, GameEngine::eTexture::SponsorTableFrontRow, -1, id);
+
+		//Top Wall boundaries
+		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 5.f), 1, 1, id);
+		//Left wall 
+		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
+		//right wall 
+		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
+		//bottom wall (Door 2)
+		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 2, id);
+	}
+	else if (id == 8) {
+		//Top Wall boundaries
+		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 5.f), 1, 1, id);
+		//Left wall 
+		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
+		//right wall 
+		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
+		//bottom wall (Door 2)
+		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 2, id);
+	}
+	else if (id == 9) {
 		//Top Wall boundaries
 		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 5.f), 1, 1, id);
 		//Left wall 
@@ -155,9 +207,9 @@ void GameBoard::SpawnRoomObstacles(int id) {
 	}
 }
 
-void GameBoard::SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id, int _curId)
+void GameBoard::SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id, int _curId, int zVal)
 {
-	ObstacleEntity* obstacle = new ObstacleEntity(texture, _id, _curId);
+	ObstacleEntity* obstacle = new ObstacleEntity(texture, _id, _curId, zVal);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(obstacle);
 	obstacle->SetPos(pos);
 	obstacle->SetSize(sf::Vector2f(size.x, size.y));
@@ -243,10 +295,13 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 		{
 		case 3:
 			m_player->SetPos(sf::Vector2f(150.f, 450.f));
+			break;
 		case 4:
 			m_player->SetPos(sf::Vector2f(800.f, 350.f));
+			break;
 		case 5:
 			m_player->SetPos(sf::Vector2f(1100.f, 600.f));
+			break;
 		default:
 			break;
 		}
