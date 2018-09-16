@@ -66,8 +66,10 @@ void CollidablePhysicsComponent::Update()
 				GameEngineMain::GetInstance()->m_gameBoard->ClearObstacles();
 				GameEngineMain::GetInstance()->m_gameBoard->NewRoom(id, prevId);
 			}
-			if (id >= 100) {
-				GameEngineMain::GetInstance()->m_gameBoard->ShowDialogue(id);
+			else if (id >= 100) {
+				GameEngineMain::GetInstance()->m_gameBoard->ShowDialogue(id);/*
+				GameEngineMain::GetInstance()->m_gameBoard->ClearObstacles();
+				GameEngineMain::GetInstance()->m_gameBoard->NewRoom(prevId, prevId, false);*/
 			}
 
 			sf::Vector2f pos = GetEntity()->GetPos();

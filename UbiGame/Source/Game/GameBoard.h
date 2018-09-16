@@ -27,7 +27,7 @@ namespace Game
 
 		bool IsGameOver() const { return m_isGameOver; }	
 
-		void NewRoom(int _id, int _prevId);
+		void NewRoom(int _id, int _prevId, bool resetPlayer = true);
 		void ShowDialogue(int _id);
 		void HideDialogue();
 		void DrawBars();

@@ -33,6 +33,9 @@ namespace GameEngine
 			SponsorTableFrontRow,
 			FoodTables,
 
+			// Final
+			TheaterStage,
+
 			// Dialogue
 			DialogueBox,
 
@@ -76,6 +79,8 @@ namespace GameEngine
 		case eTexture::SponsorTableBackRow: return "sponsors-boxes-1.png";
 		case eTexture::SponsorTableFrontRow: return "sponsors-boxes-2.png";
 		case eTexture::FoodTables: return "cafeteria-boxes.png";
+
+		case eTexture::TheaterStage: return "auditorium-bg.png";
 
 		case eTexture::DialogueBox: return "dialogue.png";
 		case eTexture::DialogueDesk: return "dialogueDesk.png";
@@ -140,6 +145,8 @@ namespace TextureHelper
 		case  GameEngine::eTexture::SponsorTableFrontRow: return sf::Vector2f(202.f, 41.f);
 
 		case  GameEngine::eTexture::FoodTables: return sf::Vector2f(214.f, 64.f);
+
+		case  GameEngine::eTexture::TheaterStage: return sf::Vector2f(160.f, 160.f);
 
 		case GameEngine::eTexture::DialogueBox: return sf::Vector2f(192.f, 48.f);
 		case GameEngine::eTexture::DialogueDesk: return sf::Vector2f(192.f, 48.f);

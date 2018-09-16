@@ -50,6 +50,8 @@ void GameBoard::Update()
 {	
 	if ((m_energy_level == 0) || (m_time_level == 0) || (m_project_completion_level == 100)) {
 		m_isGameOver = true;
+		ClearObstacles();
+		NewRoom(10, 3);
 	}
 }
 
@@ -174,7 +176,7 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		// Sponsor Table Border
 		sf::Vector2f sponsorTableBorderSize1 = sf::Vector2f(1100.f, 40.f);
 		sf::Vector2f sponsorTableBorderPos1 = sf::Vector2f(780.f, 205.f);
-		SpawnNewObstacle(sponsorTableBorderPos1, sponsorTableBorderSize1, GameEngine::eTexture::Transparent, 1, id, 1);
+		SpawnNewObstacle(sponsorTableBorderPos1, sponsorTableBorderSize1, GameEngine::eTexture::Transparent, 101, id, 1);
 
 		// Sponsor Table 2
 		sf::Vector2f sponsorTableSize2 = sf::Vector2f(1100.f, 184.f);
@@ -184,7 +186,7 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		// Sponsor Table Border 2
 		sf::Vector2f sponsorTableBorderSize2 = sf::Vector2f(1100.f, 40.f);
 		sf::Vector2f sponsorTableBorderPos2 = sf::Vector2f(460.f, 475.f);
-		SpawnNewObstacle(sponsorTableBorderPos2, sponsorTableBorderSize2, GameEngine::eTexture::Transparent, 1, id, 1);
+		SpawnNewObstacle(sponsorTableBorderPos2, sponsorTableBorderSize2, GameEngine::eTexture::Transparent, 101, id, 1);
 
 	
 		//Top Wall boundaries (RETURN TO STAIIR 6)
@@ -217,12 +219,12 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		// Sponsor Table 1
 		sf::Vector2f sponsorTableSize1 = sf::Vector2f(900.f, 400.f);
 		sf::Vector2f sponsorTablePos1 = sf::Vector2f(680.f, 450.f);
-		SpawnNewObstacle(sponsorTablePos1, sponsorTableSize1, GameEngine::eTexture::FoodTables, -1, id, 1);
+		SpawnNewObstacle(sponsorTablePos1, sponsorTableSize1, GameEngine::eTexture::FoodTables, 102, id, 1);
 
 		// Food Table Border Top
 		sf::Vector2f sponsorTableBorderSize1 = sf::Vector2f(1100.f, 40.f);
 		sf::Vector2f sponsorTableBorderPos1 = sf::Vector2f(720.f, 205.f);
-		SpawnNewObstacle(sponsorTableBorderPos1, sponsorTableBorderSize1, GameEngine::eTexture::Transparent, -1, id, 1);
+		SpawnNewObstacle(sponsorTableBorderPos1, sponsorTableBorderSize1, GameEngine::eTexture::Transparent, 1, id, 1);
 		// Food Table Border Bot
 		sf::Vector2f sponsorTableBorderSize2 = sf::Vector2f(1100.f, 40.f);
 		sf::Vector2f sponsorTableBorderPos2 = sf::Vector2f(780.f, 515.f);
@@ -307,7 +309,7 @@ void GameBoard::UpdateBackGround()
 	m_backGround->SetPos(m_player->GetPos());
 }
 
-void GameBoard::NewRoom(int _id, int _prevId) {
+void GameBoard::NewRoom(int _id, int _prevId, bool resetPlayer) {
 	printf("Loading new room ID: %d, Prev ID: %d\n", _id, _prevId);
 	GameBoard::SpawnRoomObstacles(_id);
 
@@ -322,6 +324,7 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 	case 2: // Upper Elevator
 		render->SetTexture(GameEngine::eTexture::HallwayBg3);
 		printf("Prev ID: %d", _prevId);
+		if (!resetPlayer) break;
 		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
 		{
 		case 3:
@@ -339,10 +342,12 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 		break;
 	case 3: // From upper elevator hallway to lower elevator hallway
 		render->SetTexture(GameEngine::eTexture::HackRoomBg);
+		if (!resetPlayer) break;
 		m_player->SetPos(sf::Vector2f(1100.f, 300.f));
 		break;
 	case 4: // From elevator hallway to hacker room
 		render->SetTexture(GameEngine::eTexture::HallwayBg2);
+		if (!resetPlayer) break;
 		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
 		{
 		case 2:
@@ -357,13 +362,14 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 		break;
 	case 5:
 		render->SetTexture(GameEngine::eTexture::StairsBg3);
+		if (!resetPlayer) break;
 		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
 		{
 		case 2:
 			m_player->SetPos(sf::Vector2f(300.f, 300.f));
 			break;
 		case 6:
-			m_player->SetPos(sf::Vector2f(300.f, 500.f));
+			m_player->SetPos(sf::Vector2f(340.f, 500.f));
 			break;
 		default:
 			break;
@@ -371,19 +377,20 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 		break;
 	case 6:
 		render->SetTexture(GameEngine::eTexture::StairsBg2);
+		if (!resetPlayer) break;
 		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
 		{
 		case 4:
 			m_player->SetPos(sf::Vector2f(300.f, 300.f));
 			break;
 		case 5:
-			m_player->SetPos(sf::Vector2f(300.f, 500.f));
+			m_player->SetPos(sf::Vector2f(250.f, 500.f));
 			break;
 		case 7:
 			m_player->SetPos(sf::Vector2f(300.f, 550.f));
 			break;
 		case 8:
-			m_player->SetPos(sf::Vector2f(350.f, 50.f));
+			m_player->SetPos(sf::Vector2f(350.f, 500.f));
 			break;
 		default:
 			break;
@@ -391,7 +398,7 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 		break;
 	case 7:
 		render->SetTexture(GameEngine::eTexture::SponsorFoodBg);
-		m_player->SetPos(sf::Vector2f(1100.f, 300.f));
+		if (!resetPlayer) break;
 		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
 		{
 		case 6:
@@ -403,6 +410,7 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 		break;
 	case 8:
 		render->SetTexture(GameEngine::eTexture::StairsBg1);
+		if (!resetPlayer) break;
 		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
 		{
 		case 6:
@@ -417,6 +425,7 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 		break;
 	case 9:
 		render->SetTexture(GameEngine::eTexture::SponsorFoodBg);
+		if (!resetPlayer) break;
 		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
 		{
 		case 8:
@@ -426,10 +435,16 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 			break;
 		}
 		break;
+	case 10:
+		render->SetTexture(GameEngine::eTexture::TheaterStage);
+		if (!resetPlayer) break;
+		m_player->SetPos(sf::Vector2f(640.f, 360.f));
 	default:
+		printf("Invalid room id: %d\n", _id);
 		break;
 	}
 
+	printf("Bg updated!");
 	render->SetZLevel(z_level + 0);
 	bgEntity->SetPos(sf::Vector2f(640.f, 360.f));
 	bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
