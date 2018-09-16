@@ -224,6 +224,15 @@ void GameBoard::NewRoom(int _id) {
 		render->SetTexture(GameEngine::eTexture::StairsBg);
 		break;
 	case 6:
+		render->SetTexture(GameEngine::eTexture::StairsBg);
+		break;
+	case 7:
+		render->SetTexture(GameEngine::eTexture::SponsorFoodBg);
+		break;
+	case 8:
+		render->SetTexture(GameEngine::eTexture::StairsBg);
+		break;
+	case 9:
 		render->SetTexture(GameEngine::eTexture::SponsorFoodBg);
 		break;
 	default:
