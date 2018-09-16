@@ -157,6 +157,17 @@ void GameEngineMain::UpdateWindowEvents()
 			m_renderTarget = nullptr;		
 			break;
 		}
+		if (event.type == sf::Event::KeyReleased) {
+			if (event.key.code == sf::Keyboard::N) {
+				GameEngineMain::GetInstance()->m_gameBoard->HideDialogue();
+			}
+			if (event.key.code == sf::Keyboard::Y) {
+				GameEngineMain::GetInstance()->m_gameBoard->HideDialogue();
+				GameEngineMain::GetInstance()->m_gameBoard->ChangeEnergyLevel(-5);
+				GameEngineMain::GetInstance()->m_gameBoard->ChangeTimeLevel(-10);
+				GameEngineMain::GetInstance()->m_gameBoard->ChangeProjectCompletionLevel(+10);
+			}
+		}
 	}
 }
 

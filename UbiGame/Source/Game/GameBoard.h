@@ -21,7 +21,6 @@ namespace Game
 		//Temp - for nice architecture this should be within some sort of IUpdatable interface that GameEngine handles (so that not only entities can be updated)
 		void Update();
 		void UpdatePlayerDying();
-		void SpawnNewDoor(const sf::Vector2f& pos, const sf::Vector2f& size, int texture);
 		void SpawnRoomObstacles(int id);
 		void SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id, int _curId, int zVal=2);
 		void ClearObstacles();
@@ -31,6 +30,11 @@ namespace Game
 		void NewRoom(int _id, int _prevId);
 		void ShowDialogue(int _id);
 		void HideDialogue();
+		void DrawBars();
+		void GameBoard::ChangeEnergyLevel(int amount);
+		void GameBoard::ChangeHungerLevel(int amount);
+		void GameBoard::ChangeTimeLevel(int amount);
+		void GameBoard::ChangeProjectCompletionLevel(int amount);
 
 	protected:
 		//Placeholder temp - should go to helpers or smth.
@@ -44,13 +48,23 @@ namespace Game
 
 		PlayerEntity* m_player;
 		GameEngine::Entity* m_backGround;
+
+		GameEngine::Entity* m_energyBar;
+		GameEngine::Entity* m_timeBar;
+		GameEngine::Entity* m_hungerBar;
+
 		std::vector<GameEngine::Entity*> m_dialogues;
+
 
 		int z_level;
 
 		std::vector<GameEngine::Entity*> m_obstacles;
-		float m_lastObstacleSpawnTimer;
 		bool  m_isGameOver;
+
+		int m_energy_level;
+		int m_time_level;
+		int m_hunger_level;
+		int m_project_completion_level;
 	};
 }
 

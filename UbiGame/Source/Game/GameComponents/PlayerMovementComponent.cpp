@@ -97,12 +97,6 @@ void PlayerMovementComponent::Update()
 			}
 		}
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-	{
-		GameEngine::GameEngineMain::GetInstance()->m_gameBoard->HideDialogue();
-	}
-
-
 
 	GetEntity()->SetPos(GetEntity()->GetPos() + wantedVel);
 	

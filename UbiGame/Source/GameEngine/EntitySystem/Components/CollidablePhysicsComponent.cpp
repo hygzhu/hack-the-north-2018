@@ -66,7 +66,7 @@ void CollidablePhysicsComponent::Update()
 				GameEngineMain::GetInstance()->m_gameBoard->ClearObstacles();
 				GameEngineMain::GetInstance()->m_gameBoard->NewRoom(id, prevId);
 			}
-			if (id == 100) {
+			if (id >= 100) {
 				GameEngineMain::GetInstance()->m_gameBoard->ShowDialogue(id);
 			}
 

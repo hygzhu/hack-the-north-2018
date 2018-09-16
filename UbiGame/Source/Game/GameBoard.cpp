@@ -13,11 +13,17 @@
 using namespace Game;
 
 GameBoard::GameBoard()
-	: m_lastObstacleSpawnTimer(0.f)
-	, m_isGameOver(false)
+	: m_isGameOver(false)
 	, m_player(nullptr)
 	, m_backGround(nullptr)
 	, z_level(0)
+	, m_energy_level(100)
+	, m_time_level(100)
+	, m_hunger_level(100)
+	, m_project_completion_level(0)
+	, m_energyBar(nullptr)
+	, m_timeBar(nullptr)
+	, m_hungerBar(nullptr)
 {
 	m_player = new PlayerEntity(0);
 	
@@ -30,6 +36,7 @@ GameBoard::GameBoard()
 
 	//Initial room
 	SpawnRoomObstacles(3);
+	DrawBars();
 }
 
 
@@ -41,21 +48,6 @@ GameBoard::~GameBoard()
 
 void GameBoard::Update()
 {	
-/*	float dt = GameEngine::GameEngineMain::GetInstance()->GetTimeDelta();
-	if (!m_isGameOver)
-	{
-		m_lastObstacleSpawnTimer -= dt;
-		if (m_lastObstacleSpawnTimer <= 0.f)
-		{
-			//SpawnNewRandomObstacles();
-			SpawnNewRandomTiledObstacles();
-			SpawnNewObstacles();
-		}*/
-
-//		UpdateObstacles(dt);
-//		UpdateBackGround();
-//		UpdatePlayerDying();
-//	}		
 }
 
 
@@ -250,6 +242,28 @@ void GameBoard::CreateBackGround()
 	m_backGround = bgEntity;
 }
 
+void GameBoard::ChangeEnergyLevel(int amount) {
+	m_energy_level += amount;
+	int x = 19 - m_energy_level / 5;
+	int tileIndex = min(19, x);
+	m_energyBar->GetComponent<GameEngine::SpriteRenderComponent>()->SetTileIndex(tileIndex, 0);
+}
+void GameBoard::ChangeHungerLevel(int amount) {
+	m_hunger_level += amount;
+	int x = 19 - m_energy_level / 5;
+	int tileIndex = min(19, x);
+	m_hungerBar->GetComponent<GameEngine::SpriteRenderComponent>()->SetTileIndex(tileIndex, 0);
+}
+void GameBoard::ChangeTimeLevel(int amount) {
+	m_time_level += amount;
+	int x = 19 - m_energy_level / 5;
+	int tileIndex = min(19, x);
+	m_timeBar->GetComponent<GameEngine::SpriteRenderComponent>()->SetTileIndex(tileIndex, 0);
+}
+void GameBoard::ChangeProjectCompletionLevel(int amount) {
+	m_project_completion_level += amount;
+}
+
 void GameBoard::UpdateBackGround()
 {
 	if (!m_backGround || !m_player)
@@ -383,7 +397,28 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 void GameBoard::ShowDialogue(int _id) {
 	GameEngine::Entity* dialogueEntity = new GameEngine::Entity();
 	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(dialogueEntity->AddComponent<GameEngine::SpriteRenderComponent>());
-	render->SetTexture(GameEngine::eTexture::DialogueBox);
+
+	switch (_id) {
+	case 100:
+		render->SetTexture(GameEngine::eTexture::DialogueDesk);
+		break;
+	case 101:
+		render->SetTexture(GameEngine::eTexture::DialogueSponsor);
+		break;
+	case 102:
+		render->SetTexture(GameEngine::eTexture::DialogueFood);
+		break;
+	case 103:
+		render->SetTexture(GameEngine::eTexture::DialogueElevator1);
+		break;
+	case 104:
+		render->SetTexture(GameEngine::eTexture::DialogueElevator2);
+		break;
+	default:
+		render->SetTexture(GameEngine::eTexture::DialogueBox);
+		break;
+	}
+
 	render->SetZLevel(z_level + 4);
 	dialogueEntity->SetPos(sf::Vector2f(640.f, 625.f));
 	dialogueEntity->SetSize(sf::Vector2f(672.f, 168.f));
@@ -401,4 +436,33 @@ void GameBoard::HideDialogue() {
 		GameEngine::GameEngineMain::GetInstance()->RemoveEntity(dialogue);
 		it = m_dialogues.erase(it);
 	}
+}
+
+void GameBoard::DrawBars() {
+	GameEngine::Entity* energyBarEntity = new GameEngine::Entity();
+	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(energyBarEntity->AddComponent<GameEngine::SpriteRenderComponent>());
+	render->SetTexture(GameEngine::eTexture::EnergyLevel);
+	render->SetZLevel(z_level + 5);
+	energyBarEntity->SetPos(sf::Vector2f(100.f, 50.f));
+	energyBarEntity->SetSize(sf::Vector2f(153.f, 36.f));
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(energyBarEntity);
+	m_energyBar = energyBarEntity;
+
+	GameEngine::Entity* timeBarEntity = new GameEngine::Entity();
+	GameEngine::SpriteRenderComponent* render2 = static_cast<GameEngine::SpriteRenderComponent*>(timeBarEntity->AddComponent<GameEngine::SpriteRenderComponent>());
+	render2->SetTexture(GameEngine::eTexture::TimeLevel);
+	render2->SetZLevel(z_level + 5);
+	timeBarEntity->SetPos(sf::Vector2f(263.f, 50.f));
+	timeBarEntity->SetSize(sf::Vector2f(153.f, 36.f));
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(timeBarEntity);
+	m_timeBar = timeBarEntity;
+
+	GameEngine::Entity* hungerBarEntity = new GameEngine::Entity();
+	GameEngine::SpriteRenderComponent* render3 = static_cast<GameEngine::SpriteRenderComponent*>(hungerBarEntity->AddComponent<GameEngine::SpriteRenderComponent>());
+	render3->SetTexture(GameEngine::eTexture::HungerLevel);
+	render3->SetZLevel(z_level + 5);
+	hungerBarEntity->SetPos(sf::Vector2f(426.f, 50.f));
+	hungerBarEntity->SetSize(sf::Vector2f(153.f, 36.f));
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(hungerBarEntity);
+	m_hungerBar = hungerBarEntity;
 }
