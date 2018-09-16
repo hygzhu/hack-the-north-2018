@@ -78,25 +78,16 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		sf::Vector2f deskPos = sf::Vector2f(700.f, 600.f);
 		sf::Vector2f deskSize = sf::Vector2f(630.f, 324.f);
 
-		SpawnNewObstacle(deskPos, deskSize, 5, 1);
+		SpawnNewObstacle(deskPos, deskSize, 3, 1);
 
 		sf::Vector2f doorPos = sf::Vector2f(1095.f, 100.f);
 		sf::Vector2f doorSize = sf::Vector2f(300.f, 100.f);
 
-		SpawnNewObstacle(doorPos, doorSize, 9, 2);
+		SpawnNewObstacle(doorPos, doorSize, 4, 2);
 	}
 	if (id == 2) { // Room A-2: Elevators and stairs
 
 	}	
-}
-
-// Doors have half hitboxes
-void GameBoard::SpawnNewDoor(const sf::Vector2f& pos, const sf::Vector2f& size, int texture) {
-	ObstacleEntity* obstacle = new ObstacleEntity(texture, 2);
-	obstacle->SetPos(pos);
-	obstacle->SetSize(sf::Vector2f(size.x, size.y));
-	obstacle->SetBoundingBox(sf::Vector2f(size.x/3, size.y/3));
-	m_obstacles.push_back(obstacle);
 }
 
 void GameBoard::SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id)
@@ -122,7 +113,7 @@ void GameBoard::CreateBackGround()
 {
 	GameEngine::Entity* bgEntity = new GameEngine::Entity();
 	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
-	render->SetTexture(GameEngine::eTexture::RoomA1Bg);
+	render->SetTexture(GameEngine::eTexture::HackRoomBg);
 	render->SetZLevel(z_level + 0);
 	bgEntity->SetPos(sf::Vector2f(640.f, 360.f));
 	bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
@@ -151,7 +142,7 @@ void GameBoard::RepaintEverything()
 
 	GameEngine::Entity* bgEntity = new GameEngine::Entity();
 	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
-	render->SetTexture(GameEngine::eTexture::Hallway1Bg);
+	render->SetTexture(GameEngine::eTexture::HallwayBg);
 	render->SetZLevel(z_level + 0);
 	bgEntity->SetPos(sf::Vector2f(640.f, 360.f));
 	bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
@@ -174,7 +165,7 @@ void GameBoard::NewRoom(int _id) {
 	if (_id == 2) {
 		GameEngine::Entity* bgEntity = new GameEngine::Entity();
 		GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
-		render->SetTexture(GameEngine::eTexture::Hallway1Bg);
+		render->SetTexture(GameEngine::eTexture::HallwayBg);
 		render->SetZLevel(z_level + 0);
 		bgEntity->SetPos(sf::Vector2f(640.f, 360.f));
 		bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
@@ -183,7 +174,8 @@ void GameBoard::NewRoom(int _id) {
 		m_backGround = bgEntity;
 	}
 }
-
+// TODO: CHRISTINA
+/*
 void GameBoard::PrintDialog(int _id) {
 	GameEngine::Entity* dialogEntity = new GameEngine::Entity();
 	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(dialogEntity->AddComponent<GameEngine::SpriteRenderComponent>());
@@ -193,7 +185,7 @@ void GameBoard::PrintDialog(int _id) {
 	dialogEntity->SetSize(sf::Vector2f(1280.f, 360.f));
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(dialogEntity);
 	m_dialog = dialogEntity;
-}
+}*/
 
 void GameBoard::HideDialog(GameEngine::Entity* diag) {
 

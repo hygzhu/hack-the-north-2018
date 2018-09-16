@@ -12,15 +12,22 @@ namespace GameEngine
 		{
 			None = -1,
 			Player = 0,
-			Tileset,
-			BG,
-			Particles,
-			RoomA1Bg,
-			DesksAndChairs,
-			Door,
-			Hallway1Bg,
-			DialogExample,
-			Trans,
+			Transparent,
+			// HackRoom
+			HackRoomBg,
+			HackRoomDesksAndChairs,
+			HackRoomDoor,
+			// Elevator Hallway
+			HallwayBg,
+			HallwayElevatorDoor,
+			HallwaySnackTable,
+			// Stairs
+			StairsBg,
+			// Food & Sponsors
+			SponsorFoodBg,
+			SponsorTableBackRow,
+			SponsorTableFrontRow,
+			FoodTables,
 			Count
 		};
 	}	
@@ -29,16 +36,25 @@ namespace GameEngine
 	{
 		switch (texture)
 		{
-		case eTexture::Player:    return "playerModel.png";
-		case eTexture::Tileset:   return "tileset.png";
-		case eTexture::BG:		  return "bg.png";
-		case eTexture::Particles: return "particles.png";
-		case eTexture::RoomA1Bg: return "room-a1-bg.png";
-		case eTexture::DesksAndChairs: return "room-a1-boxes.png";
-		case eTexture::Door: return  "room-a1-door.png";
-		case eTexture::Hallway1Bg: return "hallway-1-bg.png";
-		case eTexture::DialogExample: return "dialog-example.png";
-		case eTexture::Trans: return "trans.png";
+		case eTexture::Player: return "playerModel.png";
+		case eTexture::Transparent: return "trans.png";
+
+		case eTexture::HackRoomBg: return "room-a1-bg.png";
+		case eTexture::HackRoomDesksAndChairs: return "room-a1-boxes.png";
+		case eTexture::HackRoomDoor: return  "room-a1-door.png";
+
+		case eTexture::HallwayBg: return "hallway-1-bg.png";
+		case eTexture::HallwayElevatorDoor: return "elevatorDoor.png";
+		case eTexture::HallwaySnackTable: return "snackTable.png";
+
+		case eTexture::StairsBg: return "stairs-1.png";
+
+		case eTexture::SponsorFoodBg: return "sponsors-1-bg.png";
+		case eTexture::SponsorTableBackRow: return "sponsors-boxes-1.png";
+		case eTexture::SponsorTableFrontRow: return "sponsors-boxes-2.png";
+		case eTexture::FoodTables: return "cafeteria-boxes.png";
+
+		// Dialog goes here (do not touch!)
 		default:       return "UnknownTexType";
 		}
 	}
@@ -69,15 +85,25 @@ namespace TextureHelper
 		switch (texture)
 		{
 		case  GameEngine::eTexture::Player:  return sf::Vector2f(35.f, 63.f);
-		case  GameEngine::eTexture::Tileset: return sf::Vector2f(32.f, 32.f);
-		case  GameEngine::eTexture::BG:	     return sf::Vector2f(500.f, 500.f);
-		case  GameEngine::eTexture::Particles: return sf::Vector2f(31.f, 32.f);
-		case  GameEngine::eTexture::RoomA1Bg: return sf::Vector2f(128.f, 90.f);
-		case  GameEngine::eTexture::DesksAndChairs: return sf::Vector2f(105.f, 54.f);
-		case  GameEngine::eTexture::Door: return sf::Vector2f(31.f, 38.f);
-		case  GameEngine::eTexture::Hallway1Bg: return sf::Vector2f(128.f, 90.f);
-		case  GameEngine::eTexture::DialogExample: return sf::Vector2f(1280.f, 360.f);
-		case  GameEngine::eTexture::Trans: return sf::Vector2f(100.f, 100.f);
+
+		case  GameEngine::eTexture::HackRoomBg: return sf::Vector2f(128.f, 90.f);
+		case  GameEngine::eTexture::HackRoomDesksAndChairs: return sf::Vector2f(105.f, 54.f);
+		case  GameEngine::eTexture::HackRoomDoor: return sf::Vector2f(31.f, 38.f);
+
+		case  GameEngine::eTexture::HallwayBg: return sf::Vector2f(128.f, 90.f);
+		case  GameEngine::eTexture::HallwayElevatorDoor: return sf::Vector2f(30.f, 37.f);
+		case  GameEngine::eTexture::HallwaySnackTable: return sf::Vector2f(23.f, 39.f);
+
+		case  GameEngine::eTexture::StairsBg: return sf::Vector2f(128.f, 96.f);
+		
+		case  GameEngine::eTexture::SponsorFoodBg: return sf::Vector2f(256.f, 160.f);
+		case  GameEngine::eTexture::SponsorTableBackRow: return sf::Vector2f(250.f, 41.f);
+		case  GameEngine::eTexture::SponsorTableFrontRow: return sf::Vector2f(202.f, 41.f);
+
+
+		case  GameEngine::eTexture::FoodTables: return sf::Vector2f(214.f, 64.f);
+
+		case  GameEngine::eTexture::Transparent: return sf::Vector2f(100.f, 100.f);
 		default:							 return sf::Vector2f(-1.f, -1.f);
 		}
 	}
