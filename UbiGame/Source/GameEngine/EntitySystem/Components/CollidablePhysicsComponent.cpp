@@ -57,7 +57,7 @@ void CollidablePhysicsComponent::Update()
 			if (id == 1) {
 				printf("dialogue\n");
 			}
-			else if (id == 2) { // Exit room
+			else if (id >= 2) { // Exit room
 				GameEngineMain::GetInstance()->m_gameBoard->ClearObstacles();
 				GameEngineMain::GetInstance()->m_gameBoard->NewRoom(id);
 			}

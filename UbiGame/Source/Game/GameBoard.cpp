@@ -103,8 +103,8 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		SpawnNewObstacle(doorPos1, doorSize1, 9, 3);
 
 		//Door 4
-		sf::Vector2f doorPos2 = sf::Vector2f(1220.f, 120.f);
-		sf::Vector2f doorSize2 = sf::Vector2f(300.f, 100.f);
+		sf::Vector2f doorPos2 = sf::Vector2f(40.f, 500.f);
+		sf::Vector2f doorSize2 = sf::Vector2f(50.f, 100.f);
 		SpawnNewObstacle(doorPos2, doorSize2, 9, 4);
 
 		//Top Wall boundaries
@@ -208,9 +208,10 @@ void GameBoard::NewRoom(int _id) {
 	{
 	case 2: // From hacking room to elevator hallway
 		render->SetTexture(GameEngine::eTexture::Hallway1Bg);
+		m_player->SetPos(sf::Vector2f(300.f, 500.f));
 		break;
 	case 3: // From upper elevator hallway to lower elevator hallway
-		render->SetTexture(GameEngine::eTexture::Hallway1Bg);
+		render->SetTexture(GameEngine::eTexture::RoomA1Bg);
 		break;
 	case 4: // From Lower
 		render->SetTexture(GameEngine::eTexture::Hallway1Bg);
