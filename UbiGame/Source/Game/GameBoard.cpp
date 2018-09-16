@@ -95,8 +95,7 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 1);
 
 	}
-	if (id == 2) { // Room A-2: Elevators and stairs
-
+	if (id == 2) { // Room A-2: Elevators and snacks
 		//Door 3
 		sf::Vector2f doorPos1 = sf::Vector2f(830.f, 120.f);
 		sf::Vector2f doorSize1 = sf::Vector2f(300.f, 100.f);
@@ -111,6 +110,11 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		sf::Vector2f doorPos3 = sf::Vector2f(1200.f, 500.f);
 		sf::Vector2f doorSize3 = sf::Vector2f(50.f, 100.f);
 		SpawnNewObstacle(doorPos3, doorSize3, 1, 5);
+
+		// Snack Table
+		sf::Vector2f snackTablePos = sf::Vector2f(1200.f, 500.f);
+		sf::Vector2f snackTableSize = sf::Vector2f(184.f, 312.f);
+		SpawnNewObstacle(snackTablePos, snackTableSize, 7, 1);
 
 		//Top Wall boundaries
 		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 5.f), 1, 1);
