@@ -169,19 +169,38 @@ void GameBoard::RepaintEverything()
 }
 
 void GameBoard::NewRoom(int _id) {
-	printf("Loading new room ID: %d\n", _id);
+	//printf("Loading new room ID: %d\n", _id);
 	GameBoard::SpawnRoomObstacles(_id);
-	if (_id == 2) {
-		GameEngine::Entity* bgEntity = new GameEngine::Entity();
-		GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
-		render->SetTexture(GameEngine::eTexture::Hallway1Bg);
-		render->SetZLevel(z_level + 0);
-		bgEntity->SetPos(sf::Vector2f(640.f, 360.f));
-		bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
-		GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
 
-		m_backGround = bgEntity;
+	GameEngine::Entity* bgEntity = new GameEngine::Entity();
+	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
+
+	switch (_id)
+	{
+	case 2: // From hacking room to elevator hallway
+		render->SetTexture(GameEngine::eTexture::Hallway1Bg);
+		break;
+	case 3: // From upper elevator hallway to lower elevator hallway
+		render->SetTexture(GameEngine::eTexture::Hallway1Bg);
+		break;
+	case 4: // From Lower
+		render->SetTexture(GameEngine::eTexture::Hallway1Bg);
+		break;
+	case 5:
+		render->SetTexture(GameEngine::eTexture::Hallway1Bg);
+		break;
+	case 6:
+		render->SetTexture(GameEngine::eTexture::Hallway1Bg);
+		break;
+	default:
+		break;
 	}
+
+	render->SetZLevel(z_level + 0);
+	bgEntity->SetPos(sf::Vector2f(640.f, 360.f));
+	bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
+	m_backGround = bgEntity;
 }
 
 void GameBoard::PrintDialog(int _id) {
