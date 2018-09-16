@@ -272,6 +272,7 @@ void GameBoard::CreateBackGround()
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
 
 	m_backGround = bgEntity;
+	m_backGrounds.emplace_back(bgEntity);
 }
 
 void GameBoard::ChangeEnergyLevel(int amount) {
@@ -308,6 +309,7 @@ void GameBoard::UpdateBackGround()
 }
 
 void GameBoard::NewRoom(int _id, int _prevId) {
+	ClearBackgrounds();
 	printf("Loading new room ID: %d, Prev ID: %d\n", _id, _prevId);
 	GameBoard::SpawnRoomObstacles(_id);
 
@@ -435,6 +437,7 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 	bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
 	m_backGround = bgEntity;
+	m_backGrounds.emplace_back(bgEntity);
 }
 
 void GameBoard::ShowDialogue(int _id) {
@@ -478,6 +481,14 @@ void GameBoard::HideDialogue() {
 		GameEngine::Entity* dialogue = (*it);
 		GameEngine::GameEngineMain::GetInstance()->RemoveEntity(dialogue);
 		it = m_dialogues.erase(it);
+	}
+}
+
+void GameBoard::ClearBackgrounds() {
+	for (std::vector<GameEngine::Entity*>::iterator it = m_backGrounds.begin(); it != m_backGrounds.end();) {
+		GameEngine::Entity* bg = (*it);
+		GameEngine::GameEngineMain::GetInstance()->RemoveEntity(bg);
+		it = m_backGrounds.erase(it);
 	}
 }
 
