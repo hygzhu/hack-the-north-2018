@@ -74,6 +74,7 @@ void GameBoard::UpdatePlayerDying()
 }
 
 void GameBoard::SpawnRoomObstacles(int id) {
+
 	if (id == 3) { // Room A-1: Desk and door
 		sf::Vector2f deskPos = sf::Vector2f(700.f, 600.f);
 		sf::Vector2f deskSize = sf::Vector2f(630.f, 324.f);
@@ -96,7 +97,7 @@ void GameBoard::SpawnRoomObstacles(int id) {
 
 	}
 	if (id == 2) { // Room A-2: Elevators and snacks
-		//Door 3
+		// (door 4)
 		sf::Vector2f doorPos1 = sf::Vector2f(830.f, 120.f);
 		sf::Vector2f doorSize1 = sf::Vector2f(300.f, 100.f);
 		SpawnNewObstacle(doorPos1, doorSize1, 1, 4, id);
@@ -126,6 +127,32 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 1, id);
 
 	}	
+	if (id == 4) {
+
+		// Snack Table
+		sf::Vector2f snackTablePos = sf::Vector2f(1200.f, 500.f);
+		sf::Vector2f snackTableSize = sf::Vector2f(184.f, 312.f);
+		SpawnNewObstacle(snackTablePos, snackTableSize, 7, 1);
+
+		//Top Wall boundaries
+		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 5.f), 1, 1);
+		//Left wall 
+		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(5, 720.f), 1, 1);
+		//right wall 
+		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(5, 720.f), 1, 1);
+		//bottom wall (Door 6)
+		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 6);
+	}
+	if (id == 5) {
+		//Top Wall boundaries
+		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 5.f), 1, 1);
+		//Left wall 
+		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(5, 720.f), 1, 1);
+		//right wall 
+		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(5, 720.f), 1, 1);
+		//bottom wall (Door 2)
+		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 2);
+	}
 }
 
 void GameBoard::SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id, int _curId)
