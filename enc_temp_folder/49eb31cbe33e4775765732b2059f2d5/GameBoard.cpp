@@ -24,7 +24,6 @@ GameBoard::GameBoard()
 	, m_energyBar(nullptr)
 	, m_timeBar(nullptr)
 	, m_hungerBar(nullptr)
-	, m_eventId(100)
 {
 	m_player = new PlayerEntity(0);
 	
@@ -49,11 +48,6 @@ GameBoard::~GameBoard()
 
 void GameBoard::Update()
 {	
-	if ((m_energy_level == 0) || (m_time_level == 0) || (m_project_completion_level == 100)) {
-		m_isGameOver = true;
-		ClearObstacles();
-		NewRoom(10, 3);
-	}
 }
 
 
@@ -104,7 +98,7 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		// Snack Table
 		sf::Vector2f snackTablePos = sf::Vector2f(1200.f, 500.f);
 		sf::Vector2f snackTableSize = sf::Vector2f(184.f, 312.f);
-		SpawnNewObstacle(snackTablePos, snackTableSize, 9, 102, id);
+		SpawnNewObstacle(snackTablePos, snackTableSize, 9, 1, id);
 
 		//Top Wall boundaries
 		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 10.f), 1, 1, id);
@@ -177,7 +171,7 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		// Sponsor Table Border
 		sf::Vector2f sponsorTableBorderSize1 = sf::Vector2f(1100.f, 40.f);
 		sf::Vector2f sponsorTableBorderPos1 = sf::Vector2f(780.f, 205.f);
-		SpawnNewObstacle(sponsorTableBorderPos1, sponsorTableBorderSize1, GameEngine::eTexture::Transparent, 101, id, 1);
+		SpawnNewObstacle(sponsorTableBorderPos1, sponsorTableBorderSize1, GameEngine::eTexture::Transparent, 1, id, 1);
 
 		// Sponsor Table 2
 		sf::Vector2f sponsorTableSize2 = sf::Vector2f(1100.f, 184.f);
@@ -187,7 +181,7 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		// Sponsor Table Border 2
 		sf::Vector2f sponsorTableBorderSize2 = sf::Vector2f(1100.f, 40.f);
 		sf::Vector2f sponsorTableBorderPos2 = sf::Vector2f(460.f, 475.f);
-		SpawnNewObstacle(sponsorTableBorderPos2, sponsorTableBorderSize2, GameEngine::eTexture::Transparent, 101, id, 1);
+		SpawnNewObstacle(sponsorTableBorderPos2, sponsorTableBorderSize2, GameEngine::eTexture::Transparent, 1, id, 1);
 
 	
 		//Top Wall boundaries (RETURN TO STAIIR 6)
@@ -220,12 +214,12 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		// Sponsor Table 1
 		sf::Vector2f sponsorTableSize1 = sf::Vector2f(900.f, 400.f);
 		sf::Vector2f sponsorTablePos1 = sf::Vector2f(680.f, 450.f);
-		SpawnNewObstacle(sponsorTablePos1, sponsorTableSize1, GameEngine::eTexture::FoodTables, 102, id, 1);
+		SpawnNewObstacle(sponsorTablePos1, sponsorTableSize1, GameEngine::eTexture::FoodTables, -1, id, 1);
 
 		// Food Table Border Top
 		sf::Vector2f sponsorTableBorderSize1 = sf::Vector2f(1100.f, 40.f);
 		sf::Vector2f sponsorTableBorderPos1 = sf::Vector2f(720.f, 205.f);
-		SpawnNewObstacle(sponsorTableBorderPos1, sponsorTableBorderSize1, GameEngine::eTexture::Transparent, 1, id, 1);
+		SpawnNewObstacle(sponsorTableBorderPos1, sponsorTableBorderSize1, GameEngine::eTexture::Transparent, -1, id, 1);
 		// Food Table Border Bot
 		sf::Vector2f sponsorTableBorderSize2 = sf::Vector2f(1100.f, 40.f);
 		sf::Vector2f sponsorTableBorderPos2 = sf::Vector2f(780.f, 515.f);
@@ -275,26 +269,23 @@ void GameBoard::CreateBackGround()
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
 
 	m_backGround = bgEntity;
-	m_backGrounds.emplace_back(bgEntity);
 }
 
 void GameBoard::ChangeEnergyLevel(int amount) {
 	m_energy_level += amount;
-	printf("Energy Level: %d", m_energy_level);
 	int x = 19 - m_energy_level / 5;
 	int tileIndex = min(19, x);
 	m_energyBar->GetComponent<GameEngine::SpriteRenderComponent>()->SetTileIndex(tileIndex, 0);
 }
 void GameBoard::ChangeHungerLevel(int amount) {
 	m_hunger_level += amount;
-	int x = 19 - m_hunger_level / 5;
+	int x = 19 - m_energy_level / 5;
 	int tileIndex = min(19, x);
 	m_hungerBar->GetComponent<GameEngine::SpriteRenderComponent>()->SetTileIndex(tileIndex, 0);
 }
 void GameBoard::ChangeTimeLevel(int amount) {
 	m_time_level += amount;
-	printf("Time Level: %d", m_time_level);
-	int x = 19 - m_time_level / 5;
+	int x = 19 - m_energy_level / 5;
 	int tileIndex = min(19, x);
 	m_timeBar->GetComponent<GameEngine::SpriteRenderComponent>()->SetTileIndex(tileIndex, 0);
 }
@@ -314,7 +305,6 @@ void GameBoard::UpdateBackGround()
 }
 
 void GameBoard::NewRoom(int _id, int _prevId) {
-	ClearBackgrounds();
 	printf("Loading new room ID: %d, Prev ID: %d\n", _id, _prevId);
 	GameBoard::SpawnRoomObstacles(_id);
 
@@ -370,7 +360,7 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 			m_player->SetPos(sf::Vector2f(300.f, 300.f));
 			break;
 		case 6:
-			m_player->SetPos(sf::Vector2f(340.f, 500.f));
+			m_player->SetPos(sf::Vector2f(300.f, 500.f));
 			break;
 		default:
 			break;
@@ -384,13 +374,13 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 			m_player->SetPos(sf::Vector2f(300.f, 300.f));
 			break;
 		case 5:
-			m_player->SetPos(sf::Vector2f(250.f, 500.f));
+			m_player->SetPos(sf::Vector2f(300.f, 500.f));
 			break;
 		case 7:
 			m_player->SetPos(sf::Vector2f(300.f, 550.f));
 			break;
 		case 8:
-			m_player->SetPos(sf::Vector2f(350.f, 500.f));
+			m_player->SetPos(sf::Vector2f(350.f, 50.f));
 			break;
 		default:
 			break;
@@ -398,6 +388,7 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 		break;
 	case 7:
 		render->SetTexture(GameEngine::eTexture::SponsorFoodBg);
+		m_player->SetPos(sf::Vector2f(1100.f, 300.f));
 		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
 		{
 		case 6:
@@ -432,21 +423,15 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 			break;
 		}
 		break;
-	case 10:
-		render->SetTexture(GameEngine::eTexture::TheaterStage);
-		m_player->SetPos(sf::Vector2f(640.f, 360.f));
 	default:
-		printf("Invalid room id: %d\n", _id);
 		break;
 	}
 
-	printf("Bg updated!");
 	render->SetZLevel(z_level + 0);
 	bgEntity->SetPos(sf::Vector2f(640.f, 360.f));
 	bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
 	m_backGround = bgEntity;
-	m_backGrounds.emplace_back(bgEntity);
 }
 
 void GameBoard::ShowDialogue(int _id) {
@@ -456,27 +441,21 @@ void GameBoard::ShowDialogue(int _id) {
 	switch (_id) {
 	case 100:
 		render->SetTexture(GameEngine::eTexture::DialogueDesk);
-		m_eventId = 100;
 		break;
 	case 101:
 		render->SetTexture(GameEngine::eTexture::DialogueSponsor);
-		m_eventId = 101;
 		break;
 	case 102:
 		render->SetTexture(GameEngine::eTexture::DialogueFood);
-		m_eventId = 102;
 		break;
 	case 103:
 		render->SetTexture(GameEngine::eTexture::DialogueElevator1);
-		m_eventId = 103;
 		break;
 	case 104:
 		render->SetTexture(GameEngine::eTexture::DialogueElevator2);
-		m_eventId = 104;
 		break;
 	default:
 		render->SetTexture(GameEngine::eTexture::DialogueBox);
-		m_eventId = 100;
 		break;
 	}
 
@@ -485,6 +464,10 @@ void GameBoard::ShowDialogue(int _id) {
 	dialogueEntity->SetSize(sf::Vector2f(672.f, 168.f));
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(dialogueEntity);
 	m_dialogues.push_back(dialogueEntity);
+
+	if (_id == 100) {
+		// table
+	}
 }
 
 void GameBoard::HideDialogue() {
@@ -492,14 +475,6 @@ void GameBoard::HideDialogue() {
 		GameEngine::Entity* dialogue = (*it);
 		GameEngine::GameEngineMain::GetInstance()->RemoveEntity(dialogue);
 		it = m_dialogues.erase(it);
-	}
-}
-
-void GameBoard::ClearBackgrounds() {
-	for (std::vector<GameEngine::Entity*>::iterator it = m_backGrounds.begin(); it != m_backGrounds.end();) {
-		GameEngine::Entity* bg = (*it);
-		GameEngine::GameEngineMain::GetInstance()->RemoveEntity(bg);
-		it = m_backGrounds.erase(it);
 	}
 }
 
@@ -522,12 +497,12 @@ void GameBoard::DrawBars() {
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(timeBarEntity);
 	m_timeBar = timeBarEntity;
 
-	/*GameEngine::Entity* hungerBarEntity = new GameEngine::Entity();
+	GameEngine::Entity* hungerBarEntity = new GameEngine::Entity();
 	GameEngine::SpriteRenderComponent* render3 = static_cast<GameEngine::SpriteRenderComponent*>(hungerBarEntity->AddComponent<GameEngine::SpriteRenderComponent>());
 	render3->SetTexture(GameEngine::eTexture::HungerLevel);
 	render3->SetZLevel(z_level + 5);
 	hungerBarEntity->SetPos(sf::Vector2f(426.f, 50.f));
 	hungerBarEntity->SetSize(sf::Vector2f(153.f, 36.f));
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(hungerBarEntity);
-	m_hungerBar = hungerBarEntity;*/
+	m_hungerBar = hungerBarEntity;
 }

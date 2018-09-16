@@ -60,11 +60,16 @@ void CollidablePhysicsComponent::Update()
 
 			printf("collision %d\n", id);
 			if (id == 1) {
-				GameEngineMain::GetInstance()->m_gameBoard->ShowDialogue(id);
+
 			}
-			else if (id >= 2) { // Exit room
+			if ((id >= 2) && (id < 100)) { // Exit room
 				GameEngineMain::GetInstance()->m_gameBoard->ClearObstacles();
 				GameEngineMain::GetInstance()->m_gameBoard->NewRoom(id, prevId);
+			}
+			else if (id >= 100) {
+				GameEngineMain::GetInstance()->m_gameBoard->ShowDialogue(id);/*
+				GameEngineMain::GetInstance()->m_gameBoard->ClearObstacles();
+				GameEngineMain::GetInstance()->m_gameBoard->NewRoom(prevId, prevId, false);*/
 			}
 
 			sf::Vector2f pos = GetEntity()->GetPos();

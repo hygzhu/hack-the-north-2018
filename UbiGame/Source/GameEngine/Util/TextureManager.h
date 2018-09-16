@@ -20,17 +20,36 @@ namespace GameEngine
 			// Elevator Hallway
 			HallwayBg1,
 			HallwayBg2,
+			HallwayBg3,
 			HallwayElevatorDoor,
 			HallwaySnackTable,
 			// Stairs
-			StairsBg,
+			StairsBg1,
+			StairsBg2,
+			StairsBg3,
 			// Food & Sponsors
 			SponsorFoodBg,
 			SponsorTableBackRow,
 			SponsorTableFrontRow,
 			FoodTables,
+
+			// Final
+			TheaterStage,
+
 			// Dialogue
 			DialogueBox,
+
+			DialogueDesk = 100,
+			DialogueSponsor = 101,
+			DialogueFood = 102,
+			DialogueElevator1 = 103,
+			DialogueElevator2 = 104,
+
+			// Levels
+			EnergyLevel = 200,
+			TimeLevel = 201,
+			HungerLevel = 202,
+			ProjectCompletionLevel = 203,
 			Count
 		};
 	}	
@@ -48,17 +67,33 @@ namespace GameEngine
 
 		case eTexture::HallwayBg1: return "hallway-floor-1-bg.png";
 		case eTexture::HallwayBg2: return "hallway-floor-2-bg.png";
+		case eTexture::HallwayBg3: return "hallway-floor-3-bg.png";
 		case eTexture::HallwayElevatorDoor: return "elevatorDoor.png";
 		case eTexture::HallwaySnackTable: return "snackTable.png";
 
-		case eTexture::StairsBg: return "stairs-1.png";
+		case eTexture::StairsBg1: return "stairs-1.png";
+		case eTexture::StairsBg2: return "stairs-2.png";
+		case eTexture::StairsBg3: return "stairs-3.png";
 
 		case eTexture::SponsorFoodBg: return "sponsors-1-bg.png";
 		case eTexture::SponsorTableBackRow: return "sponsors-boxes-1.png";
 		case eTexture::SponsorTableFrontRow: return "sponsors-boxes-2.png";
 		case eTexture::FoodTables: return "cafeteria-boxes.png";
 
+		case eTexture::TheaterStage: return "auditorium-bg.png";
+
 		case eTexture::DialogueBox: return "dialogue.png";
+		case eTexture::DialogueDesk: return "dialogueDesk.png";
+		case eTexture::DialogueFood: return "dialogueFood.png";
+		case eTexture::DialogueElevator1: return "dialogueElevator1.png";
+		case eTexture::DialogueElevator2: return "dialogueElevator2.png";
+		case eTexture::DialogueSponsor: return "dialogueSponsor.png";
+
+		case eTexture::EnergyLevel: return "energyBar.png";
+		case eTexture::TimeLevel: return "timeBar.png";
+		case eTexture::HungerLevel: return "hungerBar.png";
+		case eTexture::ProjectCompletionLevel: return "";
+
 		default:       return "UnknownTexType";
 		}
 	}
@@ -96,10 +131,14 @@ namespace TextureHelper
 
 		case  GameEngine::eTexture::HallwayBg1: return sf::Vector2f(128.f, 90.f);
 		case  GameEngine::eTexture::HallwayBg2: return sf::Vector2f(128.f, 90.f);
+		case  GameEngine::eTexture::HallwayBg3: return sf::Vector2f(128.f, 90.f);
+
 		case  GameEngine::eTexture::HallwayElevatorDoor: return sf::Vector2f(30.f, 37.f);
 		case  GameEngine::eTexture::HallwaySnackTable: return sf::Vector2f(23.f, 39.f);
 
-		case  GameEngine::eTexture::StairsBg: return sf::Vector2f(128.f, 96.f);
+		case  GameEngine::eTexture::StairsBg1: return sf::Vector2f(128.f, 96.f);
+		case  GameEngine::eTexture::StairsBg2: return sf::Vector2f(128.f, 96.f);
+		case  GameEngine::eTexture::StairsBg3: return sf::Vector2f(128.f, 96.f);
 		
 		case  GameEngine::eTexture::SponsorFoodBg: return sf::Vector2f(256.f, 160.f);
 		case  GameEngine::eTexture::SponsorTableBackRow: return sf::Vector2f(250.f, 41.f);
@@ -107,7 +146,19 @@ namespace TextureHelper
 
 		case  GameEngine::eTexture::FoodTables: return sf::Vector2f(214.f, 64.f);
 
+		case  GameEngine::eTexture::TheaterStage: return sf::Vector2f(160.f, 160.f);
+
 		case GameEngine::eTexture::DialogueBox: return sf::Vector2f(192.f, 48.f);
+		case GameEngine::eTexture::DialogueDesk: return sf::Vector2f(192.f, 48.f);
+		case GameEngine::eTexture::DialogueFood: return sf::Vector2f(192.f, 48.f);
+		case GameEngine::eTexture::DialogueElevator1: return sf::Vector2f(192.f, 48.f);
+		case GameEngine::eTexture::DialogueElevator2: return sf::Vector2f(192.f, 48.f);
+		case GameEngine::eTexture::DialogueSponsor: return sf::Vector2f(192.f, 48.f);
+
+		case GameEngine::eTexture::EnergyLevel: return sf::Vector2f(51.f, 12.f);
+		case GameEngine::eTexture::HungerLevel: return sf::Vector2f(51.f, 12.f);
+		case GameEngine::eTexture::TimeLevel: return sf::Vector2f(51.f, 12.f);
+			// project completion level?
 
 		case  GameEngine::eTexture::Transparent: return sf::Vector2f(100.f, 100.f);
 		default:							 return sf::Vector2f(-1.f, -1.f);

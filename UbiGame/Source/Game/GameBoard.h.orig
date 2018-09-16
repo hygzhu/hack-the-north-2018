@@ -21,22 +21,22 @@ namespace Game
 		//Temp - for nice architecture this should be within some sort of IUpdatable interface that GameEngine handles (so that not only entities can be updated)
 		void Update();
 		void UpdatePlayerDying();
+		void SpawnNewDoor(const sf::Vector2f& pos, const sf::Vector2f& size, int texture);
 		void SpawnRoomObstacles(int id);
-		void SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id, int _curId, int zVal = 2);
+		void SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id, int _curId);
 		void ClearObstacles();
 
-		bool IsGameOver() const { return m_isGameOver; }
-		int eventId() { return m_eventId; }
+		bool IsGameOver() const { return m_isGameOver; }	
 
-		void NewRoom(int _id, int _prevId);
+<<<<<<< HEAD
+		void NewRoom(int _id);
 		void ShowDialogue(int _id);
 		void HideDialogue();
-		void ClearBackgrounds();
-		void DrawBars();
-		void GameBoard::ChangeEnergyLevel(int amount);
-		void GameBoard::ChangeHungerLevel(int amount);
-		void GameBoard::ChangeTimeLevel(int amount);
-		void GameBoard::ChangeProjectCompletionLevel(int amount);
+=======
+		void NewRoom(int _id, int _prevId);
+		void PrintDialog(int _id);
+		void HideDialog(GameEngine::Entity* diag);
+>>>>>>> ee6250c15effa9734e2187e27ab3975cf18381f5
 
 	protected:
 		//Placeholder temp - should go to helpers or smth.
@@ -50,24 +50,13 @@ namespace Game
 
 		PlayerEntity* m_player;
 		GameEngine::Entity* m_backGround;
-
-		GameEngine::Entity* m_energyBar;
-		GameEngine::Entity* m_timeBar;
-		GameEngine::Entity* m_hungerBar;
-
 		std::vector<GameEngine::Entity*> m_dialogues;
-		std::vector<GameEngine::Entity*> m_backGrounds;
 
 		int z_level;
 
 		std::vector<GameEngine::Entity*> m_obstacles;
+		float m_lastObstacleSpawnTimer;
 		bool  m_isGameOver;
-
-		int m_energy_level;
-		int m_time_level;
-		int m_hunger_level;
-		int m_project_completion_level;
-		int m_eventId;
 	};
 }
 

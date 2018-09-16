@@ -93,7 +93,8 @@ void SpriteRenderComponent::Update()
 
 
 void SpriteRenderComponent::SetTexture(eTexture::type texture)
-{
+{	
+	printf("Texture: %d\n", texture);
 	m_texture = texture;	
 }
 
