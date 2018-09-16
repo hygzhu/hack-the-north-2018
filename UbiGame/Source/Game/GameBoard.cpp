@@ -207,7 +207,7 @@ void GameBoard::RepaintEverything()
 
 	GameEngine::Entity* bgEntity = new GameEngine::Entity();
 	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
-	render->SetTexture(GameEngine::eTexture::HallwayBg);
+	render->SetTexture(GameEngine::eTexture::HallwayBg1);
 	render->SetZLevel(z_level + 0);
 	bgEntity->SetPos(sf::Vector2f(640.f, 360.f));
 	bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
@@ -237,7 +237,7 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 		printf("SHOULD NOT BE HERE!");
 		break;
 	case 2: // Upper Elevator
-		render->SetTexture(GameEngine::eTexture::HallwayBg);
+		render->SetTexture(GameEngine::eTexture::HallwayBg2);
 		printf("Prev ID: %d", _prevId);
 		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
 		{
@@ -256,7 +256,7 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 		m_player->SetPos(sf::Vector2f(1100.f, 300.f));
 		break;
 	case 4: // From elevator hallway to hacker room
-		render->SetTexture(GameEngine::eTexture::HallwayBg);
+		render->SetTexture(GameEngine::eTexture::HallwayBg1);
 		m_player->SetPos(sf::Vector2f(1100.f, 300.f));
 		break;
 	case 5:
