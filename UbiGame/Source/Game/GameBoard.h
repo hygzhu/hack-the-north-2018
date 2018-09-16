@@ -23,7 +23,7 @@ namespace Game
 		void UpdatePlayerDying();
 		void SpawnNewDoor(const sf::Vector2f& pos, const sf::Vector2f& size, int texture);
 		void SpawnRoomObstacles(int id);
-		void SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id, int _curId);
+		void SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id, int _curId, int zVal=2);
 		void ClearObstacles();
 
 		bool IsGameOver() const { return m_isGameOver; }	

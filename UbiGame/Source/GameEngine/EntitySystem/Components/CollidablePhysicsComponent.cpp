@@ -54,6 +54,10 @@ void CollidablePhysicsComponent::Update()
 			int id = colComponent->GetEntity()->id;
 			int prevId = colComponent->GetEntity()->curId;
 
+			if (id == -1) {
+				continue;
+			}
+
 			printf("collision %d\n", id);
 			if (id == 1) {
 
