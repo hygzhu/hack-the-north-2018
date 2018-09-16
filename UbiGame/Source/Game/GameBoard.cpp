@@ -80,10 +80,10 @@ void GameBoard::SpawnRoomObstacles(int id) {
 
 		SpawnNewObstacle(deskPos, deskSize, 5, 1);
 
-		sf::Vector2f doorPos = sf::Vector2f(1095.f, 200.f);
-		sf::Vector2f doorSize = sf::Vector2f(300.f, 300.f);
+		sf::Vector2f doorPos = sf::Vector2f(1095.f, 100.f);
+		sf::Vector2f doorSize = sf::Vector2f(300.f, 100.f);
 
-		SpawnNewObstacle(doorPos, doorSize, 6, 2);
+		SpawnNewObstacle(doorPos, doorSize, 9, 2);
 	}
 	if (id == 2) { // Room A-2: Elevators and stairs
 

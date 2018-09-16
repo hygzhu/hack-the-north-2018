@@ -20,6 +20,7 @@ namespace GameEngine
 			Door,
 			Hallway1Bg,
 			DialogExample,
+			Trans,
 			Count
 		};
 	}	
@@ -37,6 +38,7 @@ namespace GameEngine
 		case eTexture::Door: return  "room-a1-door.png";
 		case eTexture::Hallway1Bg: return "hallway-1-bg.png";
 		case eTexture::DialogExample: return "dialog-example.png";
+		case eTexture::Trans: return "trans.png";
 		default:       return "UnknownTexType";
 		}
 	}
@@ -75,6 +77,7 @@ namespace TextureHelper
 		case  GameEngine::eTexture::Door: return sf::Vector2f(31.f, 38.f);
 		case  GameEngine::eTexture::Hallway1Bg: return sf::Vector2f(128.f, 90.f);
 		case  GameEngine::eTexture::DialogExample: return sf::Vector2f(1280.f, 360.f);
+		case  GameEngine::eTexture::Trans: return sf::Vector2f(100.f, 100.f);
 		default:							 return sf::Vector2f(-1.f, -1.f);
 		}
 	}
