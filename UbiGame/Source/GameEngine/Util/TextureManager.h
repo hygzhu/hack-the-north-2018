@@ -20,10 +20,13 @@ namespace GameEngine
 			// Elevator Hallway
 			HallwayBg1,
 			HallwayBg2,
+			HallwayBg3,
 			HallwayElevatorDoor,
 			HallwaySnackTable,
 			// Stairs
-			StairsBg,
+			StairsBg1,
+			StairsBg2,
+			StairsBg3,
 			// Food & Sponsors
 			SponsorFoodBg,
 			SponsorTableBackRow,
@@ -46,10 +49,13 @@ namespace GameEngine
 
 		case eTexture::HallwayBg1: return "hallway-floor-1-bg.png";
 		case eTexture::HallwayBg2: return "hallway-floor-2-bg.png";
+		case eTexture::HallwayBg3: return "hallway-floor-3-bg.png";
 		case eTexture::HallwayElevatorDoor: return "elevatorDoor.png";
 		case eTexture::HallwaySnackTable: return "snackTable.png";
 
-		case eTexture::StairsBg: return "stairs-1.png";
+		case eTexture::StairsBg1: return "stairs-1.png";
+		case eTexture::StairsBg2: return "stairs-2.png";
+		case eTexture::StairsBg3: return "stairs-3.png";
 
 		case eTexture::SponsorFoodBg: return "sponsors-1-bg.png";
 		case eTexture::SponsorTableBackRow: return "sponsors-boxes-1.png";
@@ -94,10 +100,14 @@ namespace TextureHelper
 
 		case  GameEngine::eTexture::HallwayBg1: return sf::Vector2f(128.f, 90.f);
 		case  GameEngine::eTexture::HallwayBg2: return sf::Vector2f(128.f, 90.f);
+		case  GameEngine::eTexture::HallwayBg3: return sf::Vector2f(128.f, 90.f);
+
 		case  GameEngine::eTexture::HallwayElevatorDoor: return sf::Vector2f(30.f, 37.f);
 		case  GameEngine::eTexture::HallwaySnackTable: return sf::Vector2f(23.f, 39.f);
 
-		case  GameEngine::eTexture::StairsBg: return sf::Vector2f(128.f, 96.f);
+		case  GameEngine::eTexture::StairsBg1: return sf::Vector2f(128.f, 96.f);
+		case  GameEngine::eTexture::StairsBg2: return sf::Vector2f(128.f, 96.f);
+		case  GameEngine::eTexture::StairsBg3: return sf::Vector2f(128.f, 96.f);
 		
 		case  GameEngine::eTexture::SponsorFoodBg: return sf::Vector2f(256.f, 160.f);
 		case  GameEngine::eTexture::SponsorTableBackRow: return sf::Vector2f(250.f, 41.f);
