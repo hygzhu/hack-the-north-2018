@@ -219,7 +219,7 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		// Food Table Border Top
 		sf::Vector2f sponsorTableBorderSize1 = sf::Vector2f(1100.f, 40.f);
 		sf::Vector2f sponsorTableBorderPos1 = sf::Vector2f(720.f, 205.f);
-		SpawnNewObstacle(sponsorTableBorderPos1, sponsorTableBorderSize1, GameEngine::eTexture::Transparent, 1, id, 1);
+		SpawnNewObstacle(sponsorTableBorderPos1, sponsorTableBorderSize1, GameEngine::eTexture::Transparent, -1, id, 1);
 		// Food Table Border Bot
 		sf::Vector2f sponsorTableBorderSize2 = sf::Vector2f(1100.f, 40.f);
 		sf::Vector2f sponsorTableBorderPos2 = sf::Vector2f(780.f, 515.f);
