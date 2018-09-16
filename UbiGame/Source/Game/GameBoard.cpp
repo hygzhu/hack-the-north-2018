@@ -28,8 +28,8 @@ GameBoard::GameBoard()
 	
 	CreateBackGround();
 
-	//Debug
-	SpawnRoomObstacles(1);
+	//Initial room
+	SpawnRoomObstacles(3);
 }
 
 
@@ -74,7 +74,7 @@ void GameBoard::UpdatePlayerDying()
 }
 
 void GameBoard::SpawnRoomObstacles(int id) {
-	if (id == 1) { // Room A-1: Desk and door
+	if (id == 3) { // Room A-1: Desk and door
 		sf::Vector2f deskPos = sf::Vector2f(700.f, 600.f);
 		sf::Vector2f deskSize = sf::Vector2f(630.f, 324.f);
 
@@ -83,7 +83,7 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		sf::Vector2f doorPos = sf::Vector2f(1095.f, 100.f);
 		sf::Vector2f doorSize = sf::Vector2f(300.f, 100.f);
 
-		SpawnNewObstacle(doorPos, doorSize, 4, 2);
+		SpawnNewObstacle(doorPos, doorSize, 1, 2);
 
 		//Top Wall boundaries
 		SpawnNewObstacle(sf::Vector2f(300.f, 150.f), sf::Vector2f(1280, 100.f), 1, 1);
@@ -100,12 +100,17 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		//Door 3
 		sf::Vector2f doorPos1 = sf::Vector2f(830.f, 120.f);
 		sf::Vector2f doorSize1 = sf::Vector2f(300.f, 100.f);
-		SpawnNewObstacle(doorPos1, doorSize1, 1, 3);
+		SpawnNewObstacle(doorPos1, doorSize1, 1, 4);
 
 		//Door 4
 		sf::Vector2f doorPos2 = sf::Vector2f(40.f, 500.f);
 		sf::Vector2f doorSize2 = sf::Vector2f(50.f, 100.f);
-		SpawnNewObstacle(doorPos2, doorSize2, 1, 4);
+		SpawnNewObstacle(doorPos2, doorSize2, 1, 3);
+
+		//Door 5
+		sf::Vector2f doorPos3 = sf::Vector2f(1200.f, 500.f);
+		sf::Vector2f doorSize3 = sf::Vector2f(50.f, 100.f);
+		SpawnNewObstacle(doorPos3, doorSize3, 1, 5);
 
 		//Top Wall boundaries
 		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 5.f), 1, 1);
@@ -197,21 +202,25 @@ void GameBoard::NewRoom(int _id) {
 
 	switch (_id)
 	{
-	case 2: // From hacking room to elevator hallway
-		render->SetTexture(GameEngine::eTexture::Hallway1Bg);
-		m_player->SetPos(sf::Vector2f(300.f, 500.f));
+	case 1:
+		printf("SHOULD NOT BE HERE!");
+		break;
+	case 2: // Upper Elevator
+		render->SetTexture(GameEngine::eTexture::HallwayBg);
+		m_player->SetPos(sf::Vector2f(150.f, 450.f));
 		break;
 	case 3: // From upper elevator hallway to lower elevator hallway
-		render->SetTexture(GameEngine::eTexture::RoomA1Bg);
+		render->SetTexture(GameEngine::eTexture::HackRoomBg);
+		m_player->SetPos(sf::Vector2f(1100.f, 300.f));
 		break;
-	case 4: // From Lower
+	case 4: // From elevator hallway to hacker room
 		render->SetTexture(GameEngine::eTexture::HallwayBg);
 		break;
 	case 5:
-		render->SetTexture(GameEngine::eTexture::HallwayBg);
+		render->SetTexture(GameEngine::eTexture::StairsBg);
 		break;
 	case 6:
-		render->SetTexture(GameEngine::eTexture::HallwayBg);
+		render->SetTexture(GameEngine::eTexture::SponsorFoodBg);
 		break;
 	default:
 		break;
