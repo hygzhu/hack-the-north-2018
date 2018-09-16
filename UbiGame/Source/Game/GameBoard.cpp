@@ -53,13 +53,13 @@ void GameBoard::Update()
 		m_isGameOver = true;
 		ClearObstacles();
 		NewRoom(10, 3);
-		if (m_project_completion_level == 100) {
+		if (m_project_completion_level >= 100) {
 			GameBoard::ShowDialogue(105);
 		}
-		if (m_energy_level == 0) {
+		if (m_energy_level <= 0) {
 			GameBoard::ShowDialogue(103);
 		}
-		if (m_time_level == 0) {
+		if (m_time_level <= 0) {
 			GameBoard::ShowDialogue(104);
 		}
 	}
