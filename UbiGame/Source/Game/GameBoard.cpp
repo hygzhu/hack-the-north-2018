@@ -17,7 +17,6 @@ GameBoard::GameBoard()
 	, m_isGameOver(false)
 	, m_player(nullptr)
 	, m_backGround(nullptr)
-	, m_dialog(nullptr)
 	, z_level(0)
 {
 	m_player = new PlayerEntity(0);
@@ -141,7 +140,6 @@ void GameBoard::ClearObstacles() {
 	}
 }
 
-
 void GameBoard::CreateBackGround()
 {
 	GameEngine::Entity* bgEntity = new GameEngine::Entity();
@@ -155,7 +153,6 @@ void GameBoard::CreateBackGround()
 	m_backGround = bgEntity;
 }
 
-
 void GameBoard::UpdateBackGround()
 {
 	if (!m_backGround || !m_player)
@@ -165,31 +162,6 @@ void GameBoard::UpdateBackGround()
 		return;
 
 	m_backGround->SetPos(m_player->GetPos());
-}
-
-void GameBoard::RepaintEverything()
-{
-	z_level += 5;
-	
-	//GameEngine::GameEngineMain::GetInstance()->RemoveEntity(m_backGround);
-
-	GameEngine::Entity* bgEntity = new GameEngine::Entity();
-	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
-	render->SetTexture(GameEngine::eTexture::HallwayBg);
-	render->SetZLevel(z_level + 0);
-	bgEntity->SetPos(sf::Vector2f(640.f, 360.f));
-	bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
-	m_backGround = bgEntity;
-
-	//m_player->RerenderPlayer(z_level);
-	sf::Vector2f oldPlayerPos = m_player->GetPos();
-	//GameEngine::GameEngineMain::GetInstance()->RemoveEntity(m_player);
-
-	m_player = new PlayerEntity(z_level);
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player);
-	m_player->SetPos(oldPlayerPos);
-	m_player->SetSize(sf::Vector2f(114.f, 205.f));
 }
 
 void GameBoard::NewRoom(int _id) {
@@ -202,11 +174,11 @@ void GameBoard::NewRoom(int _id) {
 	switch (_id)
 	{
 	case 2: // From hacking room to elevator hallway
-		render->SetTexture(GameEngine::eTexture::Hallway1Bg);
+		render->SetTexture(GameEngine::eTexture::HallwayBg);
 		m_player->SetPos(sf::Vector2f(300.f, 500.f));
 		break;
 	case 3: // From upper elevator hallway to lower elevator hallway
-		render->SetTexture(GameEngine::eTexture::RoomA1Bg);
+		render->SetTexture(GameEngine::eTexture::HackRoomBg);
 		break;
 	case 4: // From Lower
 		render->SetTexture(GameEngine::eTexture::HallwayBg);
@@ -227,36 +199,22 @@ void GameBoard::NewRoom(int _id) {
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
 	m_backGround = bgEntity;
 }
-// TODO: CHRISTINA
-/*
-void GameBoard::PrintDialog(int _id) {
-	GameEngine::Entity* dialogEntity = new GameEngine::Entity();
-	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(dialogEntity->AddComponent<GameEngine::SpriteRenderComponent>());
-	render->SetTexture(GameEngine::eTexture::DialogExample);
+
+void GameBoard::ShowDialogue(int _id) {
+	GameEngine::Entity* dialogueEntity = new GameEngine::Entity();
+	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(dialogueEntity->AddComponent<GameEngine::SpriteRenderComponent>());
+	render->SetTexture(GameEngine::eTexture::DialogueBox);
 	render->SetZLevel(z_level + 4);
-	dialogEntity->SetPos(sf::Vector2f(640.f, 360.f));
-	dialogEntity->SetSize(sf::Vector2f(1280.f, 360.f));
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(dialogEntity);
-	m_dialog = dialogEntity;
-}*/
+	dialogueEntity->SetPos(sf::Vector2f(640.f, 625.f));
+	dialogueEntity->SetSize(sf::Vector2f(672.f, 168.f));
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(dialogueEntity);
+	m_dialogues.push_back(dialogueEntity);
+}
 
-void GameBoard::HideDialog(GameEngine::Entity* diag) {
-
-	//RepaintEverything();
-/*
-	sf::Transform d;
-	d.scale(sf::Vector2f(0.f, 0.f));*/
-
-	//diag = static_cast<GameEngine::Entity>(d);
-
-	//	//create invis diag to replace
-	//	GameEngine::Entity* dialogEntity = new GameEngine::Entity();
-	//	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(dialogEntity->AddComponent<GameEngine::SpriteRenderComponent>());
-	//	render->SetTexture(GameEngine::eTexture::DialogExample);
-	//	render->SetZLevel(-1);
-	//	dialogEntity->SetPos(sf::Vector2f(640.f, 360.f));
-	//	dialogEntity->SetSize(sf::Vector2f(128.f, 36.f));
-	//	GameEngine::GameEngineMain::GetInstance()->AddEntity(dialogEntity);
-	//	m_dialog = dialogEntity;
-	//}
+void GameBoard::HideDialogue() {
+	for (std::vector<GameEngine::Entity*>::iterator it = m_dialogues.begin(); it != m_dialogues.end();) {
+		GameEngine::Entity* dialogue = (*it);
+		GameEngine::GameEngineMain::GetInstance()->RemoveEntity(dialogue);
+		it = m_dialogues.erase(it);
+	}
 }

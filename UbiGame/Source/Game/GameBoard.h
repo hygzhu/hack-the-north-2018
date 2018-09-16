@@ -29,8 +29,8 @@ namespace Game
 		bool IsGameOver() const { return m_isGameOver; }	
 
 		void NewRoom(int _id);
-		void PrintDialog(int _id);
-		void HideDialog(GameEngine::Entity* diag);
+		void ShowDialogue(int _id);
+		void HideDialogue();
 
 	protected:
 		//Placeholder temp - should go to helpers or smth.
@@ -41,11 +41,10 @@ namespace Game
 
 		void CreateBackGround();
 		void UpdateBackGround();
-		void RepaintEverything();
 
 		PlayerEntity* m_player;
 		GameEngine::Entity* m_backGround;
-		GameEngine::Entity* m_dialog;
+		std::vector<GameEngine::Entity*> m_dialogues;
 
 		int z_level;
 

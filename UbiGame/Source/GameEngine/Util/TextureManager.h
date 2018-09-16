@@ -28,6 +28,8 @@ namespace GameEngine
 			SponsorTableBackRow,
 			SponsorTableFrontRow,
 			FoodTables,
+			// Dialogue
+			DialogueBox,
 			Count
 		};
 	}	
@@ -54,7 +56,7 @@ namespace GameEngine
 		case eTexture::SponsorTableFrontRow: return "sponsors-boxes-2.png";
 		case eTexture::FoodTables: return "cafeteria-boxes.png";
 
-		// Dialog goes here (do not touch!)
+		case eTexture::DialogueBox: return "dialogue.png";
 		default:       return "UnknownTexType";
 		}
 	}
@@ -100,8 +102,9 @@ namespace TextureHelper
 		case  GameEngine::eTexture::SponsorTableBackRow: return sf::Vector2f(250.f, 41.f);
 		case  GameEngine::eTexture::SponsorTableFrontRow: return sf::Vector2f(202.f, 41.f);
 
-
 		case  GameEngine::eTexture::FoodTables: return sf::Vector2f(214.f, 64.f);
+
+		case GameEngine::eTexture::DialogueBox: return sf::Vector2f(192.f, 48.f);
 
 		case  GameEngine::eTexture::Transparent: return sf::Vector2f(100.f, 100.f);
 		default:							 return sf::Vector2f(-1.f, -1.f);
