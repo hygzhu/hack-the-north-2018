@@ -49,7 +49,7 @@ GameBoard::~GameBoard()
 
 void GameBoard::Update()
 {	
-	if ((m_energy_level == 0) || (m_time_level == 0) || (m_project_completion_level == 100)) {
+	if ((m_energy_level <= 0) || (m_time_level <= 0) || (m_project_completion_level >= 100)) {
 		m_isGameOver = true;
 		ClearObstacles();
 		NewRoom(10, 3);
@@ -480,6 +480,10 @@ void GameBoard::ShowDialogue(int _id) {
 	case 104:
 		render->SetTexture(GameEngine::eTexture::DialogueGameOverTimeFail);
 		m_eventId = 104;
+		break;
+	case 105:
+		render->SetTexture(GameEngine::eTexture::DialogueGameOverSuccess);
+		m_eventId = 105;
 		break;
 	case 106:
 		render->SetTexture(GameEngine::eTexture::DialogueFood);
