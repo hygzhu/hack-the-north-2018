@@ -27,9 +27,10 @@ namespace Game
 
 		bool IsGameOver() const { return m_isGameOver; }	
 
-		void NewRoom(int _id, int _prevId, bool resetPlayer = true);
+		void NewRoom(int _id, int _prevId);
 		void ShowDialogue(int _id);
 		void HideDialogue();
+		void ClearBackgrounds();
 		void DrawBars();
 		void GameBoard::ChangeEnergyLevel(int amount);
 		void GameBoard::ChangeHungerLevel(int amount);
@@ -54,7 +55,7 @@ namespace Game
 		GameEngine::Entity* m_hungerBar;
 
 		std::vector<GameEngine::Entity*> m_dialogues;
-
+		std::vector<GameEngine::Entity*> m_backGrounds;
 
 		int z_level;
 
