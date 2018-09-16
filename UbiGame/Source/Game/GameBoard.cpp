@@ -23,7 +23,7 @@ GameBoard::GameBoard()
 	m_player = new PlayerEntity(0);
 	
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player);
-	m_player->SetPos(sf::Vector2f(50.f, 300.f));	
+	m_player->SetPos(sf::Vector2f(200.f, 500.f));	
 	m_player->SetSize(sf::Vector2f(114.f, 205.f));
 	
 	CreateBackGround();
@@ -84,8 +84,37 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		sf::Vector2f doorSize = sf::Vector2f(300.f, 100.f);
 
 		SpawnNewObstacle(doorPos, doorSize, 9, 2);
+
+		//Top Wall boundaries
+		SpawnNewObstacle(sf::Vector2f(300.f, 150.f), sf::Vector2f(1280, 100.f), 9, 1);
+		//Left wall
+		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(5, 720.f), 9, 1);
+		//right wall
+		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(5, 720.f), 9, 1);
+		//bottom wall
+		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 9, 1);
+
 	}
 	if (id == 2) { // Room A-2: Elevators and stairs
+
+		//Door 3
+		sf::Vector2f doorPos1 = sf::Vector2f(830.f, 120.f);
+		sf::Vector2f doorSize1 = sf::Vector2f(300.f, 100.f);
+		SpawnNewObstacle(doorPos1, doorSize1, 9, 3);
+
+		//Door 4
+		sf::Vector2f doorPos2 = sf::Vector2f(1220.f, 120.f);
+		sf::Vector2f doorSize2 = sf::Vector2f(300.f, 100.f);
+		SpawnNewObstacle(doorPos2, doorSize2, 9, 4);
+
+		//Top Wall boundaries
+		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 5.f), 9, 1);
+		//Left wall
+		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(5, 720.f), 9, 1);
+		//right wall
+		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(5, 720.f), 9, 1);
+		//bottom wall
+		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 9, 1);
 
 	}	
 }
