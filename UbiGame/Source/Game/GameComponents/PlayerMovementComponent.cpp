@@ -43,7 +43,7 @@ void PlayerMovementComponent::Update()
 
 	float dt = GameEngine::GameEngineMain::GetTimeDelta();
 	static bool  debugSounds = false;
-	static float playerVel = 150.f; //Pixels/s
+	static float playerVel = 2000.f; //Pixels/s
 
 
 	sf::Vector2f wantedVel = sf::Vector2f(0.f, 0.f);
