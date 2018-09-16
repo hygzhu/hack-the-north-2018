@@ -360,7 +360,7 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 			m_player->SetPos(sf::Vector2f(300.f, 300.f));
 			break;
 		case 5:
-			m_player->SetPos(sf::Vector2f(250.f, 500.f));
+			m_player->SetPos(sf::Vector2f(300.f, 500.f));
 			break;
 		case 7:
 			m_player->SetPos(sf::Vector2f(300.f, 550.f));
@@ -389,7 +389,7 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
 		{
 		case 6:
-			m_player->SetPos(sf::Vector2f(250.f, 500.f));
+			m_player->SetPos(sf::Vector2f(300.f, 500.f));
 			break;
 		case 9:
 			m_player->SetPos(sf::Vector2f(300.f, 500.f));
