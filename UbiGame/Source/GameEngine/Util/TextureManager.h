@@ -18,7 +18,8 @@ namespace GameEngine
 			HackRoomDesksAndChairs,
 			HackRoomDoor,
 			// Elevator Hallway
-			HallwayBg,
+			HallwayBg1,
+			HallwayBg2,
 			HallwayElevatorDoor,
 			HallwaySnackTable,
 			// Stairs
@@ -45,7 +46,8 @@ namespace GameEngine
 		case eTexture::HackRoomDesksAndChairs: return "room-a1-boxes.png";
 		case eTexture::HackRoomDoor: return  "room-a1-door.png";
 
-		case eTexture::HallwayBg: return "hallway-1-bg.png";
+		case eTexture::HallwayBg1: return "hallway-floor-1-bg.png";
+		case eTexture::HallwayBg2: return "hallway-floor-2-bg.png";
 		case eTexture::HallwayElevatorDoor: return "elevatorDoor.png";
 		case eTexture::HallwaySnackTable: return "snackTable.png";
 
@@ -92,7 +94,8 @@ namespace TextureHelper
 		case  GameEngine::eTexture::HackRoomDesksAndChairs: return sf::Vector2f(105.f, 54.f);
 		case  GameEngine::eTexture::HackRoomDoor: return sf::Vector2f(31.f, 38.f);
 
-		case  GameEngine::eTexture::HallwayBg: return sf::Vector2f(128.f, 90.f);
+		case  GameEngine::eTexture::HallwayBg1: return sf::Vector2f(128.f, 90.f);
+		case  GameEngine::eTexture::HallwayBg2: return sf::Vector2f(128.f, 90.f);
 		case  GameEngine::eTexture::HallwayElevatorDoor: return sf::Vector2f(30.f, 37.f);
 		case  GameEngine::eTexture::HallwaySnackTable: return sf::Vector2f(23.f, 39.f);
 

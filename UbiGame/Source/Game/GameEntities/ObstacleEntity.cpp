@@ -6,9 +6,10 @@
 
 using namespace Game;
 
-ObstacleEntity::ObstacleEntity(int texture, int _id)
+ObstacleEntity::ObstacleEntity(int texture, int _id, int _curId)
 {
 	id = _id;
+	curId = _curId;
 
 	enum GameEngine::eTexture::type textEnum = static_cast<GameEngine::eTexture::type>(texture);
 	m_renderComponent = static_cast<GameEngine::SpriteRenderComponent*>(AddComponent<GameEngine::SpriteRenderComponent>());

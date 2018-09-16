@@ -52,6 +52,7 @@ void CollidablePhysicsComponent::Update()
 		if (myBox.intersects(collideBox, intersection))
 		{
 			int id = colComponent->GetEntity()->id;
+			int prevId = colComponent->GetEntity()->curId;
 
 			printf("collision %d\n", id);
 			if (id == 1) {
@@ -59,7 +60,7 @@ void CollidablePhysicsComponent::Update()
 			}
 			else if (id >= 2) { // Exit room
 				GameEngineMain::GetInstance()->m_gameBoard->ClearObstacles();
-				GameEngineMain::GetInstance()->m_gameBoard->NewRoom(id);
+				GameEngineMain::GetInstance()->m_gameBoard->NewRoom(id, prevId);
 			}
 
 			sf::Vector2f pos = GetEntity()->GetPos();

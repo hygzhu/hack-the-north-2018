@@ -8,7 +8,7 @@ namespace Game
 	class ObstacleEntity : public GameEngine::Entity
 	{
 	public:
-		ObstacleEntity(int texture, int _id);
+		ObstacleEntity(int texture, int _id, int _curId);
 		~ObstacleEntity();
 
 		virtual void OnAddToWorld() override;

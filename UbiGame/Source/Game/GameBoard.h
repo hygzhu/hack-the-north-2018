@@ -23,12 +23,12 @@ namespace Game
 		void UpdatePlayerDying();
 		void SpawnNewDoor(const sf::Vector2f& pos, const sf::Vector2f& size, int texture);
 		void SpawnRoomObstacles(int id);
-		void SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id);
+		void SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id, int _curId);
 		void ClearObstacles();
 
 		bool IsGameOver() const { return m_isGameOver; }	
 
-		void NewRoom(int _id);
+		void NewRoom(int _id, int _prevId);
 		void ShowDialogue(int _id);
 		void HideDialogue();
 

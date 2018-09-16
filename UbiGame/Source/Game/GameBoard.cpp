@@ -27,8 +27,8 @@ GameBoard::GameBoard()
 	
 	CreateBackGround();
 
-	//Debug
-	SpawnRoomObstacles(1);
+	//Initial room
+	SpawnRoomObstacles(3);
 }
 
 
@@ -73,58 +73,95 @@ void GameBoard::UpdatePlayerDying()
 }
 
 void GameBoard::SpawnRoomObstacles(int id) {
-	if (id == 1) { // Room A-1: Desk and door
+
+	if (id == 3) { // Room A-1: Desk and door
 		sf::Vector2f deskPos = sf::Vector2f(700.f, 600.f);
 		sf::Vector2f deskSize = sf::Vector2f(630.f, 324.f);
 
-		SpawnNewObstacle(deskPos, deskSize, 3, 1);
+		SpawnNewObstacle(deskPos, deskSize, 3, 1, id);
 
 		sf::Vector2f doorPos = sf::Vector2f(1095.f, 100.f);
 		sf::Vector2f doorSize = sf::Vector2f(300.f, 100.f);
 
-		SpawnNewObstacle(doorPos, doorSize, 4, 2);
+		SpawnNewObstacle(doorPos, doorSize, 1, 2, id);
 
 		//Top Wall boundaries
-		SpawnNewObstacle(sf::Vector2f(300.f, 150.f), sf::Vector2f(1280, 100.f), 1, 1);
+		SpawnNewObstacle(sf::Vector2f(300.f, 150.f), sf::Vector2f(1280, 100.f), 1, 1, id);
 		//Left wall
-		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(5, 720.f), 1, 1);
+		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
 		//right wall
-		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(5, 720.f), 1, 1);
+		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
 		//bottom wall
-		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 1);
+		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 1, id);
 
 	}
 	if (id == 2) { // Room A-2: Elevators and snacks
-		//Door 3
+		// (GO TO BOTTOM ELEVATOR 4)
 		sf::Vector2f doorPos1 = sf::Vector2f(830.f, 120.f);
 		sf::Vector2f doorSize1 = sf::Vector2f(300.f, 100.f);
-		SpawnNewObstacle(doorPos1, doorSize1, 1, 3);
-
-		//Door 4
-		sf::Vector2f doorPos2 = sf::Vector2f(40.f, 500.f);
-		sf::Vector2f doorSize2 = sf::Vector2f(50.f, 100.f);
-		SpawnNewObstacle(doorPos2, doorSize2, 1, 4);
+		SpawnNewObstacle(doorPos1, doorSize1, 1, 4, id);
 
 		// Snack Table
 		sf::Vector2f snackTablePos = sf::Vector2f(1200.f, 500.f);
 		sf::Vector2f snackTableSize = sf::Vector2f(184.f, 312.f);
-		SpawnNewObstacle(snackTablePos, snackTableSize, 7, 1);
+		SpawnNewObstacle(snackTablePos, snackTableSize, 8, 1, id);
 
 		//Top Wall boundaries
-		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 5.f), 1, 1);
-		//Left wall
-		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(5, 720.f), 1, 1);
+		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 5.f), 1, 1, id);
+		//Left wall (GO TO ROOM 3)
+		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(5, 720.f), 1, 3, id);
 		//right wall
-		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(5, 720.f), 1, 1);
-		//bottom wall
-		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 1);
+		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
+		//bottom wall (GO TO ROOM 5)
+		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 5, id);
 
 	}	
+	if (id == 4) { //ELAVATOR AND SNACK 2: ELECTRIC BOOLGJOISD
+
+		// (GO TO BOTTOM ELEVATOR 2)
+		sf::Vector2f doorPos1 = sf::Vector2f(830.f, 120.f);
+		sf::Vector2f doorSize1 = sf::Vector2f(300.f, 100.f);
+		SpawnNewObstacle(doorPos1, doorSize1, 1, 2, id);
+
+		// Snack Table
+		sf::Vector2f snackTablePos = sf::Vector2f(1200.f, 500.f);
+		sf::Vector2f snackTableSize = sf::Vector2f(184.f, 312.f);
+		SpawnNewObstacle(snackTablePos, snackTableSize, 8, 1, id);
+
+		//Top Wall boundaries
+		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 5.f), 1, 1, id);
+		//Left wall 
+		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
+		//right wall 
+		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
+		//bottom wall (Door 6)
+		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 6, id);
+	}
+	if (id == 5) {
+		//Top Wall boundaries
+		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 5.f), 1, 1, id);
+		//Left wall 
+		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
+		//right wall 
+		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
+		//bottom wall (Door 2)
+		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 2, id);
+	}
+	if (id == 6) {
+		//Top Wall boundaries (GO TO SEVEN WHICH IS SPONSORS)
+		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 5.f), 1, 7, id);
+		//Left wall 
+		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
+		//right wall 
+		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
+		//bottom wall (Door 4)
+		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 4, id);
+	}
 }
 
-void GameBoard::SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id)
+void GameBoard::SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id, int _curId)
 {
-	ObstacleEntity* obstacle = new ObstacleEntity(texture, _id);
+	ObstacleEntity* obstacle = new ObstacleEntity(texture, _id, _curId);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(obstacle);
 	obstacle->SetPos(pos);
 	obstacle->SetSize(sf::Vector2f(size.x, size.y));
@@ -164,8 +201,8 @@ void GameBoard::UpdateBackGround()
 	m_backGround->SetPos(m_player->GetPos());
 }
 
-void GameBoard::NewRoom(int _id) {
-	//printf("Loading new room ID: %d\n", _id);
+void GameBoard::NewRoom(int _id, int _prevId) {
+	printf("Loading new room ID: %d, Prev ID: %d\n", _id, _prevId);
 	GameBoard::SpawnRoomObstacles(_id);
 
 	GameEngine::Entity* bgEntity = new GameEngine::Entity();
@@ -173,21 +210,76 @@ void GameBoard::NewRoom(int _id) {
 
 	switch (_id)
 	{
-	case 2: // From hacking room to elevator hallway
-		render->SetTexture(GameEngine::eTexture::HallwayBg);
-		m_player->SetPos(sf::Vector2f(300.f, 500.f));
+	case 1:
+		printf("SHOULD NOT BE HERE!");
+		break;
+	case 2: // Upper Elevator
+		render->SetTexture(GameEngine::eTexture::HallwayBg2);
+		printf("Prev ID: %d", _prevId);
+		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
+		{
+		case 3:
+			m_player->SetPos(sf::Vector2f(150.f, 450.f));
+			break;
+		case 4:
+			m_player->SetPos(sf::Vector2f(825.f, 400.f));
+			break;
+		case 5:
+			m_player->SetPos(sf::Vector2f(640.f, 500.f));
+			break;
+		default:
+			break;
+		}
 		break;
 	case 3: // From upper elevator hallway to lower elevator hallway
 		render->SetTexture(GameEngine::eTexture::HackRoomBg);
+		m_player->SetPos(sf::Vector2f(1100.f, 300.f));
 		break;
-	case 4: // From Lower
-		render->SetTexture(GameEngine::eTexture::HallwayBg);
+	case 4: // From elevator hallway to hacker room
+		render->SetTexture(GameEngine::eTexture::HallwayBg1);
+		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
+		{
+		case 2:
+			m_player->SetPos(sf::Vector2f(825.f, 400.f));
+			break;
+		default:
+			break;
+		}
+		break;
 		break;
 	case 5:
-		render->SetTexture(GameEngine::eTexture::HallwayBg);
+		render->SetTexture(GameEngine::eTexture::StairsBg);
+		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
+		{
+		case 2:
+			m_player->SetPos(sf::Vector2f(300.f, 500.f));
+			break;
+		default:
+			break;
+		}
 		break;
 	case 6:
-		render->SetTexture(GameEngine::eTexture::HallwayBg);
+		render->SetTexture(GameEngine::eTexture::StairsBg);
+		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
+		{
+		case 4:
+			m_player->SetPos(sf::Vector2f(300.f, 500.f));
+			break;
+		default:
+			break;
+		}
+		break;
+	case 7:
+		render->SetTexture(GameEngine::eTexture::SponsorFoodBg);
+		m_player->SetPos(sf::Vector2f(1100.f, 300.f));
+		break;
+	case 8:
+		render->SetTexture(GameEngine::eTexture::StairsBg);
+		m_player->SetPos(sf::Vector2f(1100.f, 300.f));
+		break;
+	case 9:
+		render->SetTexture(GameEngine::eTexture::SponsorFoodBg);
+		m_player->SetPos(sf::Vector2f(1100.f, 300.f));
 		break;
 	default:
 		break;
