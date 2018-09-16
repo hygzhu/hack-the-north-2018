@@ -26,7 +26,7 @@ GameBoard::GameBoard()
 	m_player->SetSize(sf::Vector2f(114.f, 205.f));
 	
 	CreateBackGround();
-	//NewRoom(7, 6);
+	//NewRoom(9, 8);
 
 	//Initial room
 	SpawnRoomObstacles(3);
@@ -160,33 +160,44 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		//Right stair (GOTO 8 ROOM)
 		SpawnNewObstacle(sf::Vector2f(490.f, 540.f), sf::Vector2f(20, 100.f), 1, 8, id);
 
-		//Top Wall boundaries (GO TO SEVEN WHICH IS SPONSORS)
-		SpawnNewObstacle(sf::Vector2f(640.f, 110.f), sf::Vector2f(1280.f, 10.f), 1, 7, id);
+		//Top Wall boundaries (Door 4)
+		SpawnNewObstacle(sf::Vector2f(640.f, 110.f), sf::Vector2f(1280.f, 10.f), 1, 4, id);
 		//Left wall 
 		SpawnNewObstacle(sf::Vector2f(130.f, 360.f), sf::Vector2f(10, 720.f), 1, 1, id);
 		//right wall 
 		SpawnNewObstacle(sf::Vector2f(490.f, 360.f), sf::Vector2f(10, 720.f), 1, 1, id);
-		//bottom wall (Door 4)
-		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 10.f), 1, 4, id);
+		//bottom wall (GO TO SEVEN WHICH IS SPONSORS)
+		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 10.f), 1, 7, id);
 	}
 
 	if (id == 7) {
-    // Sponsor Table 1
+		// Sponsor Table 1
 		sf::Vector2f sponsorTableSize1 = sf::Vector2f(1100.f, 184.f);
 		sf::Vector2f sponsorTablePos1 = sf::Vector2f(780.f, 205.f);
 		SpawnNewObstacle(sponsorTablePos1, sponsorTableSize1, GameEngine::eTexture::SponsorTableBackRow, -1, id, 1);
+
+		// Sponsor Table Border
+		sf::Vector2f sponsorTableBorderSize1 = sf::Vector2f(1100.f, 40.f);
+		sf::Vector2f sponsorTableBorderPos1 = sf::Vector2f(780.f, 205.f);
+		SpawnNewObstacle(sponsorTableBorderPos1, sponsorTableBorderSize1, GameEngine::eTexture::Transparent, 1, id, 1);
 
 		// Sponsor Table 2
 		sf::Vector2f sponsorTableSize2 = sf::Vector2f(1100.f, 184.f);
 		sf::Vector2f sponsorTablePos2 = sf::Vector2f(460.f, 475.f);
 		SpawnNewObstacle(sponsorTablePos2, sponsorTableSize2, GameEngine::eTexture::SponsorTableFrontRow, -1, id);
-    
-		//Top Wall boundaries
-		SpawnNewObstacle(sf::Vector2f(640.f, 50.f), sf::Vector2f(1280, 50.f), 1, 1, id);
+
+		// Sponsor Table Border 2
+		sf::Vector2f sponsorTableBorderSize2 = sf::Vector2f(1100.f, 40.f);
+		sf::Vector2f sponsorTableBorderPos2 = sf::Vector2f(460.f, 475.f);
+		SpawnNewObstacle(sponsorTableBorderPos2, sponsorTableBorderSize2, GameEngine::eTexture::Transparent, 1, id, 1);
+
+	
+		//Top Wall boundaries (RETURN TO STAIIR 6)
+		SpawnNewObstacle(sf::Vector2f(640.f, 50.f), sf::Vector2f(1280, 50.f), 1, 6, id);
 		//Left wall
 		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(10, 720.f), 1, 1, id);
-		//right wall (RETURN TO STAIIR 6)
-		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(10, 720.f), 1, 6, id);
+		//right wall 
+		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(10, 720.f), 1, 1, id);
 		//bottom wall
 		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 10.f), 1, 1, id);
 	}
@@ -208,6 +219,24 @@ void GameBoard::SpawnRoomObstacles(int id) {
 	}
 
 	if (id == 9) {
+		// Sponsor Table 1
+		sf::Vector2f sponsorTableSize1 = sf::Vector2f(900.f, 400.f);
+		sf::Vector2f sponsorTablePos1 = sf::Vector2f(680.f, 450.f);
+		SpawnNewObstacle(sponsorTablePos1, sponsorTableSize1, GameEngine::eTexture::FoodTables, -1, id, 1);
+
+		// Food Table Border Top
+		sf::Vector2f sponsorTableBorderSize1 = sf::Vector2f(1100.f, 40.f);
+		sf::Vector2f sponsorTableBorderPos1 = sf::Vector2f(720.f, 205.f);
+		SpawnNewObstacle(sponsorTableBorderPos1, sponsorTableBorderSize1, GameEngine::eTexture::Transparent, 1, id, 1);
+		// Food Table Border Bot
+		sf::Vector2f sponsorTableBorderSize2 = sf::Vector2f(1100.f, 40.f);
+		sf::Vector2f sponsorTableBorderPos2 = sf::Vector2f(780.f, 515.f);
+		SpawnNewObstacle(sponsorTableBorderPos2, sponsorTableBorderSize2, GameEngine::eTexture::Transparent, 1, id, 1);
+		// Food Table Border Right
+		sf::Vector2f sponsorTableBorderSize3 = sf::Vector2f(20.f, 200.f);
+		sf::Vector2f sponsorTableBorderPos3 = sf::Vector2f(1030.f, 385.f);
+		SpawnNewObstacle(sponsorTableBorderPos3, sponsorTableBorderSize3, GameEngine::eTexture::Transparent, 1, id, 1);
+
 		//Top Wall boundaries
 		SpawnNewObstacle(sf::Vector2f(640.f, 50.f), sf::Vector2f(1280, 50.f), 1, 1, id);
 		//Left wall
@@ -328,13 +357,16 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
 		{
 		case 4:
-			m_player->SetPos(sf::Vector2f(300.f, 550.f));
+			m_player->SetPos(sf::Vector2f(300.f, 300.f));
 			break;
 		case 5:
 			m_player->SetPos(sf::Vector2f(250.f, 500.f));
 			break;
 		case 7:
-			m_player->SetPos(sf::Vector2f(300.f, 300.f));
+			m_player->SetPos(sf::Vector2f(300.f, 550.f));
+			break;
+		case 8:
+			m_player->SetPos(sf::Vector2f(350.f, 50.f));
 			break;
 		default:
 			break;
@@ -343,6 +375,14 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 	case 7:
 		render->SetTexture(GameEngine::eTexture::SponsorFoodBg);
 		m_player->SetPos(sf::Vector2f(1100.f, 300.f));
+		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
+		{
+		case 6:
+			m_player->SetPos(sf::Vector2f(250.f, 500.f));
+			break;
+		default:
+			break;
+		}
 		break;
 	case 8:
 		render->SetTexture(GameEngine::eTexture::StairsBg1);
