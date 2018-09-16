@@ -52,6 +52,7 @@ namespace GameEngine
 
 		// Id
 		int id;
+		int curId;
 
 		void DestroyComponents();
 	protected:
