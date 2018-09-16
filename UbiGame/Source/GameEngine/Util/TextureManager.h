@@ -18,7 +18,8 @@ namespace GameEngine
 			HackRoomDesksAndChairs,
 			HackRoomDoor,
 			// Elevator Hallway
-			HallwayBg,
+			HallwayBg1,
+			HallwayBg2,
 			HallwayElevatorDoor,
 			HallwaySnackTable,
 			// Stairs
@@ -28,6 +29,8 @@ namespace GameEngine
 			SponsorTableBackRow,
 			SponsorTableFrontRow,
 			FoodTables,
+			// Dialogue
+			DialogueBox,
 			Count
 		};
 	}	
@@ -43,7 +46,8 @@ namespace GameEngine
 		case eTexture::HackRoomDesksAndChairs: return "room-a1-boxes.png";
 		case eTexture::HackRoomDoor: return  "room-a1-door.png";
 
-		case eTexture::HallwayBg: return "hallway-1-bg.png";
+		case eTexture::HallwayBg1: return "hallway-floor-1-bg.png";
+		case eTexture::HallwayBg2: return "hallway-floor-2-bg.png";
 		case eTexture::HallwayElevatorDoor: return "elevatorDoor.png";
 		case eTexture::HallwaySnackTable: return "snackTable.png";
 
@@ -54,7 +58,7 @@ namespace GameEngine
 		case eTexture::SponsorTableFrontRow: return "sponsors-boxes-2.png";
 		case eTexture::FoodTables: return "cafeteria-boxes.png";
 
-		// Dialog goes here (do not touch!)
+		case eTexture::DialogueBox: return "dialogue.png";
 		default:       return "UnknownTexType";
 		}
 	}
@@ -90,7 +94,8 @@ namespace TextureHelper
 		case  GameEngine::eTexture::HackRoomDesksAndChairs: return sf::Vector2f(105.f, 54.f);
 		case  GameEngine::eTexture::HackRoomDoor: return sf::Vector2f(31.f, 38.f);
 
-		case  GameEngine::eTexture::HallwayBg: return sf::Vector2f(128.f, 90.f);
+		case  GameEngine::eTexture::HallwayBg1: return sf::Vector2f(128.f, 90.f);
+		case  GameEngine::eTexture::HallwayBg2: return sf::Vector2f(128.f, 90.f);
 		case  GameEngine::eTexture::HallwayElevatorDoor: return sf::Vector2f(30.f, 37.f);
 		case  GameEngine::eTexture::HallwaySnackTable: return sf::Vector2f(23.f, 39.f);
 
@@ -100,8 +105,9 @@ namespace TextureHelper
 		case  GameEngine::eTexture::SponsorTableBackRow: return sf::Vector2f(250.f, 41.f);
 		case  GameEngine::eTexture::SponsorTableFrontRow: return sf::Vector2f(202.f, 41.f);
 
-
 		case  GameEngine::eTexture::FoodTables: return sf::Vector2f(214.f, 64.f);
+
+		case GameEngine::eTexture::DialogueBox: return sf::Vector2f(192.f, 48.f);
 
 		case  GameEngine::eTexture::Transparent: return sf::Vector2f(100.f, 100.f);
 		default:							 return sf::Vector2f(-1.f, -1.f);

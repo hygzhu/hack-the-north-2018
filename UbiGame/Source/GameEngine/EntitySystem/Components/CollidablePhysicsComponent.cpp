@@ -60,7 +60,7 @@ void CollidablePhysicsComponent::Update()
 
 			printf("collision %d\n", id);
 			if (id == 1) {
-				printf("dialogue\n");
+				GameEngineMain::GetInstance()->m_gameBoard->ShowDialogue(id);
 			}
 			else if (id >= 2) { // Exit room
 				GameEngineMain::GetInstance()->m_gameBoard->ClearObstacles();

@@ -17,7 +17,6 @@ GameBoard::GameBoard()
 	, m_isGameOver(false)
 	, m_player(nullptr)
 	, m_backGround(nullptr)
-	, m_dialog(nullptr)
 	, z_level(0)
 {
 	m_player = new PlayerEntity(0);
@@ -99,41 +98,37 @@ void GameBoard::SpawnRoomObstacles(int id) {
 	}
 	else if (id == 2) { // Room A-2: Elevators and snacks
 		// (door 4)
+		// (GO TO BOTTOM ELEVATOR 4)
 		sf::Vector2f doorPos1 = sf::Vector2f(830.f, 120.f);
 		sf::Vector2f doorSize1 = sf::Vector2f(300.f, 100.f);
 		SpawnNewObstacle(doorPos1, doorSize1, 1, 4, id);
 
-		//Door 4
-		sf::Vector2f doorPos2 = sf::Vector2f(40.f, 500.f);
-		sf::Vector2f doorSize2 = sf::Vector2f(50.f, 100.f);
-		SpawnNewObstacle(doorPos2, doorSize2, 1, 3, id);
-
-		//Door 5
-		sf::Vector2f doorPos3 = sf::Vector2f(1200.f, 500.f);
-		sf::Vector2f doorSize3 = sf::Vector2f(50.f, 100.f);
-		SpawnNewObstacle(doorPos3, doorSize3, 1, 5, id);
-
 		// Snack Table
 		sf::Vector2f snackTablePos = sf::Vector2f(1200.f, 500.f);
 		sf::Vector2f snackTableSize = sf::Vector2f(184.f, 312.f);
-		SpawnNewObstacle(snackTablePos, snackTableSize, 7, 1, id);
+		SpawnNewObstacle(snackTablePos, snackTableSize, 8, 1, id);
 
 		//Top Wall boundaries
 		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 5.f), 1, 1, id);
-		//Left wall
-		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
+		//Left wall (GO TO ROOM 3)
+		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(5, 720.f), 1, 3, id);
 		//right wall
 		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
-		//bottom wall
-		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 1, id);
+		//bottom wall (GO TO ROOM 5)
+		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 5, id);
 
 	}	
-	else if (id == 4) {
+	else if (id == 4) { //ELAVATOR AND SNACK 2: ELECTRIC BOOLGJOISD
+
+		// (GO TO BOTTOM ELEVATOR 2)
+		sf::Vector2f doorPos1 = sf::Vector2f(830.f, 120.f);
+		sf::Vector2f doorSize1 = sf::Vector2f(300.f, 100.f);
+		SpawnNewObstacle(doorPos1, doorSize1, 1, 2, id);
 
 		// Snack Table
 		sf::Vector2f snackTablePos = sf::Vector2f(1200.f, 500.f);
 		sf::Vector2f snackTableSize = sf::Vector2f(184.f, 312.f);
-		SpawnNewObstacle(snackTablePos, snackTableSize, 7, 1, id);
+		SpawnNewObstacle(snackTablePos, snackTableSize, 8, 1, id);
 
 		//Top Wall boundaries
 		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 5.f), 1, 1, id);
@@ -205,6 +200,16 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		//bottom wall (Door 2)
 		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 2, id);
 	}
+	if (id == 6) {
+		//Top Wall boundaries (GO TO SEVEN WHICH IS SPONSORS)
+		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 5.f), 1, 7, id);
+		//Left wall 
+		SpawnNewObstacle(sf::Vector2f(0.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
+		//right wall 
+		SpawnNewObstacle(sf::Vector2f(1280.f, 360.f), sf::Vector2f(5, 720.f), 1, 1, id);
+		//bottom wall (Door 4)
+		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 5.f), 1, 4, id);
+	}
 }
 
 void GameBoard::SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id, int _curId, int zVal)
@@ -225,7 +230,6 @@ void GameBoard::ClearObstacles() {
 	}
 }
 
-
 void GameBoard::CreateBackGround()
 {
 	GameEngine::Entity* bgEntity = new GameEngine::Entity();
@@ -239,7 +243,6 @@ void GameBoard::CreateBackGround()
 	m_backGround = bgEntity;
 }
 
-
 void GameBoard::UpdateBackGround()
 {
 	if (!m_backGround || !m_player)
@@ -249,31 +252,6 @@ void GameBoard::UpdateBackGround()
 		return;
 
 	m_backGround->SetPos(m_player->GetPos());
-}
-
-void GameBoard::RepaintEverything()
-{
-	z_level += 5;
-	
-	//GameEngine::GameEngineMain::GetInstance()->RemoveEntity(m_backGround);
-
-	GameEngine::Entity* bgEntity = new GameEngine::Entity();
-	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
-	render->SetTexture(GameEngine::eTexture::HallwayBg);
-	render->SetZLevel(z_level + 0);
-	bgEntity->SetPos(sf::Vector2f(640.f, 360.f));
-	bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
-	m_backGround = bgEntity;
-
-	//m_player->RerenderPlayer(z_level);
-	sf::Vector2f oldPlayerPos = m_player->GetPos();
-	//GameEngine::GameEngineMain::GetInstance()->RemoveEntity(m_player);
-
-	m_player = new PlayerEntity(z_level);
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player);
-	m_player->SetPos(oldPlayerPos);
-	m_player->SetSize(sf::Vector2f(114.f, 205.f));
 }
 
 void GameBoard::NewRoom(int _id, int _prevId) {
@@ -289,7 +267,7 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 		printf("SHOULD NOT BE HERE!");
 		break;
 	case 2: // Upper Elevator
-		render->SetTexture(GameEngine::eTexture::HallwayBg);
+		render->SetTexture(GameEngine::eTexture::HallwayBg2);
 		printf("Prev ID: %d", _prevId);
 		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
 		{
@@ -297,30 +275,45 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 			m_player->SetPos(sf::Vector2f(150.f, 450.f));
 			break;
 		case 4:
-			m_player->SetPos(sf::Vector2f(800.f, 350.f));
 			break;
-		case 5:
-			m_player->SetPos(sf::Vector2f(1100.f, 600.f));
+		}
+		break;
+	case 3: // From upper elevator hallway to lower elevator hallway
+		m_player->SetPos(sf::Vector2f(1100.f, 300.f));
+		break;
+	case 4: // From elevator hallway to hacker room
+		render->SetTexture(GameEngine::eTexture::HallwayBg1);
+		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
+		{
+		case 2:
+			m_player->SetPos(sf::Vector2f(825.f, 400.f));
 			break;
 		default:
 			break;
 		}
 		break;
-	case 3: // From upper elevator hallway to lower elevator hallway
-		render->SetTexture(GameEngine::eTexture::HackRoomBg);
-		m_player->SetPos(sf::Vector2f(1100.f, 300.f));
-		break;
-	case 4: // From elevator hallway to hacker room
-		render->SetTexture(GameEngine::eTexture::HallwayBg);
-		m_player->SetPos(sf::Vector2f(1100.f, 300.f));
 		break;
 	case 5:
 		render->SetTexture(GameEngine::eTexture::StairsBg);
-		m_player->SetPos(sf::Vector2f(1100.f, 300.f));
+		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
+		{
+		case 2:
+			m_player->SetPos(sf::Vector2f(300.f, 500.f));
+			break;
+		default:
+			break;
+		}
 		break;
 	case 6:
 		render->SetTexture(GameEngine::eTexture::StairsBg);
-		m_player->SetPos(sf::Vector2f(1100.f, 300.f));
+		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
+		{
+		case 4:
+			m_player->SetPos(sf::Vector2f(300.f, 500.f));
+			break;
+		default:
+			break;
+		}
 		break;
 	case 7:
 		render->SetTexture(GameEngine::eTexture::SponsorFoodBg);
@@ -344,36 +337,22 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
 	m_backGround = bgEntity;
 }
-// TODO: CHRISTINA
-/*
-void GameBoard::PrintDialog(int _id) {
-	GameEngine::Entity* dialogEntity = new GameEngine::Entity();
-	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(dialogEntity->AddComponent<GameEngine::SpriteRenderComponent>());
-	render->SetTexture(GameEngine::eTexture::DialogExample);
+
+void GameBoard::ShowDialogue(int _id) {
+	GameEngine::Entity* dialogueEntity = new GameEngine::Entity();
+	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(dialogueEntity->AddComponent<GameEngine::SpriteRenderComponent>());
+	render->SetTexture(GameEngine::eTexture::DialogueBox);
 	render->SetZLevel(z_level + 4);
-	dialogEntity->SetPos(sf::Vector2f(640.f, 360.f));
-	dialogEntity->SetSize(sf::Vector2f(1280.f, 360.f));
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(dialogEntity);
-	m_dialog = dialogEntity;
-}*/
+	dialogueEntity->SetPos(sf::Vector2f(640.f, 625.f));
+	dialogueEntity->SetSize(sf::Vector2f(672.f, 168.f));
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(dialogueEntity);
+	m_dialogues.push_back(dialogueEntity);
+}
 
-void GameBoard::HideDialog(GameEngine::Entity* diag) {
-
-	//RepaintEverything();
-/*
-	sf::Transform d;
-	d.scale(sf::Vector2f(0.f, 0.f));*/
-
-	//diag = static_cast<GameEngine::Entity>(d);
-
-	//	//create invis diag to replace
-	//	GameEngine::Entity* dialogEntity = new GameEngine::Entity();
-	//	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(dialogEntity->AddComponent<GameEngine::SpriteRenderComponent>());
-	//	render->SetTexture(GameEngine::eTexture::DialogExample);
-	//	render->SetZLevel(-1);
-	//	dialogEntity->SetPos(sf::Vector2f(640.f, 360.f));
-	//	dialogEntity->SetSize(sf::Vector2f(128.f, 36.f));
-	//	GameEngine::GameEngineMain::GetInstance()->AddEntity(dialogEntity);
-	//	m_dialog = dialogEntity;
-	//}
+void GameBoard::HideDialogue() {
+	for (std::vector<GameEngine::Entity*>::iterator it = m_dialogues.begin(); it != m_dialogues.end();) {
+		GameEngine::Entity* dialogue = (*it);
+		GameEngine::GameEngineMain::GetInstance()->RemoveEntity(dialogue);
+		it = m_dialogues.erase(it);
+	}
 }
