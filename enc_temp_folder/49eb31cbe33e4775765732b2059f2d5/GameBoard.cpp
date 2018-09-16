@@ -48,9 +48,6 @@ GameBoard::~GameBoard()
 
 void GameBoard::Update()
 {	
-	if ((m_energy_level == 0) || (m_time_level == 0) || (m_project_completion_level == 100)) {
-		m_isGameOver = true;
-	}
 }
 
 
@@ -500,12 +497,12 @@ void GameBoard::DrawBars() {
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(timeBarEntity);
 	m_timeBar = timeBarEntity;
 
-	/*GameEngine::Entity* hungerBarEntity = new GameEngine::Entity();
+	GameEngine::Entity* hungerBarEntity = new GameEngine::Entity();
 	GameEngine::SpriteRenderComponent* render3 = static_cast<GameEngine::SpriteRenderComponent*>(hungerBarEntity->AddComponent<GameEngine::SpriteRenderComponent>());
 	render3->SetTexture(GameEngine::eTexture::HungerLevel);
 	render3->SetZLevel(z_level + 5);
 	hungerBarEntity->SetPos(sf::Vector2f(426.f, 50.f));
 	hungerBarEntity->SetSize(sf::Vector2f(153.f, 36.f));
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(hungerBarEntity);
-	m_hungerBar = hungerBarEntity;*/
+	m_hungerBar = hungerBarEntity;
 }

@@ -163,9 +163,9 @@ void GameEngineMain::UpdateWindowEvents()
 			}
 			if (event.key.code == sf::Keyboard::Y) {
 				GameEngineMain::GetInstance()->m_gameBoard->HideDialogue();
-				GameEngineMain::GetInstance()->m_gameBoard->ChangeEnergyLevel(-5);
-				GameEngineMain::GetInstance()->m_gameBoard->ChangeTimeLevel(-10);
-				GameEngineMain::GetInstance()->m_gameBoard->ChangeProjectCompletionLevel(+10);
+				GameEngineMain::GetInstance()->m_gameBoard->ChangeEnergyLevel(-10);
+				GameEngineMain::GetInstance()->m_gameBoard->ChangeTimeLevel(-7);
+				GameEngineMain::GetInstance()->m_gameBoard->ChangeProjectCompletionLevel(+6);
 			}
 		}
 	}
