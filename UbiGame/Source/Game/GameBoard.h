@@ -22,10 +22,11 @@ namespace Game
 		void Update();
 		void UpdatePlayerDying();
 		void SpawnRoomObstacles(int id);
-		void SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id, int _curId, int zVal=2);
+		void SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size, int texture, int _id, int _curId, int zVal = 2);
 		void ClearObstacles();
 
-		bool IsGameOver() const { return m_isGameOver; }	
+		bool IsGameOver() const { return m_isGameOver; }
+		int eventId() { return m_eventId; }
 
 		void NewRoom(int _id, int _prevId);
 		void ShowDialogue(int _id);
@@ -66,6 +67,7 @@ namespace Game
 		int m_time_level;
 		int m_hunger_level;
 		int m_project_completion_level;
+		int m_eventId;
 	};
 }
 

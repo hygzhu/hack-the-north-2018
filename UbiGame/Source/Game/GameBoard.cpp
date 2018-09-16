@@ -24,6 +24,7 @@ GameBoard::GameBoard()
 	, m_energyBar(nullptr)
 	, m_timeBar(nullptr)
 	, m_hungerBar(nullptr)
+	, m_eventId(100)
 {
 	m_player = new PlayerEntity(0);
 	
@@ -103,7 +104,7 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		// Snack Table
 		sf::Vector2f snackTablePos = sf::Vector2f(1200.f, 500.f);
 		sf::Vector2f snackTableSize = sf::Vector2f(184.f, 312.f);
-		SpawnNewObstacle(snackTablePos, snackTableSize, 9, 1, id);
+		SpawnNewObstacle(snackTablePos, snackTableSize, 9, 102, id);
 
 		//Top Wall boundaries
 		SpawnNewObstacle(sf::Vector2f(640.f, 150.f), sf::Vector2f(1280.f, 10.f), 1, 1, id);
@@ -279,19 +280,21 @@ void GameBoard::CreateBackGround()
 
 void GameBoard::ChangeEnergyLevel(int amount) {
 	m_energy_level += amount;
+	printf("Energy Level: %d", m_energy_level);
 	int x = 19 - m_energy_level / 5;
 	int tileIndex = min(19, x);
 	m_energyBar->GetComponent<GameEngine::SpriteRenderComponent>()->SetTileIndex(tileIndex, 0);
 }
 void GameBoard::ChangeHungerLevel(int amount) {
 	m_hunger_level += amount;
-	int x = 19 - m_energy_level / 5;
+	int x = 19 - m_hunger_level / 5;
 	int tileIndex = min(19, x);
 	m_hungerBar->GetComponent<GameEngine::SpriteRenderComponent>()->SetTileIndex(tileIndex, 0);
 }
 void GameBoard::ChangeTimeLevel(int amount) {
 	m_time_level += amount;
-	int x = 19 - m_energy_level / 5;
+	printf("Time Level: %d", m_time_level);
+	int x = 19 - m_time_level / 5;
 	int tileIndex = min(19, x);
 	m_timeBar->GetComponent<GameEngine::SpriteRenderComponent>()->SetTileIndex(tileIndex, 0);
 }
@@ -453,21 +456,27 @@ void GameBoard::ShowDialogue(int _id) {
 	switch (_id) {
 	case 100:
 		render->SetTexture(GameEngine::eTexture::DialogueDesk);
+		m_eventId = 100;
 		break;
 	case 101:
 		render->SetTexture(GameEngine::eTexture::DialogueSponsor);
+		m_eventId = 101;
 		break;
 	case 102:
 		render->SetTexture(GameEngine::eTexture::DialogueFood);
+		m_eventId = 102;
 		break;
 	case 103:
 		render->SetTexture(GameEngine::eTexture::DialogueElevator1);
+		m_eventId = 103;
 		break;
 	case 104:
 		render->SetTexture(GameEngine::eTexture::DialogueElevator2);
+		m_eventId = 104;
 		break;
 	default:
 		render->SetTexture(GameEngine::eTexture::DialogueBox);
+		m_eventId = 100;
 		break;
 	}
 
@@ -476,10 +485,6 @@ void GameBoard::ShowDialogue(int _id) {
 	dialogueEntity->SetSize(sf::Vector2f(672.f, 168.f));
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(dialogueEntity);
 	m_dialogues.push_back(dialogueEntity);
-
-	if (_id == 100) {
-		// table
-	}
 }
 
 void GameBoard::HideDialogue() {
