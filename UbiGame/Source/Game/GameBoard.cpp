@@ -145,14 +145,14 @@ void GameBoard::SpawnRoomObstacles(int id) {
 		SpawnNewObstacle(sf::Vector2f(130.f, 540.f), sf::Vector2f(20, 100.f), 1, 1, id);
 		//Right stair (GOTO 6 STAIR)
 		SpawnNewObstacle(sf::Vector2f(490.f, 540.f), sf::Vector2f(20, 100.f), 1, 6, id);
-		//Top Wall boundaries
-		SpawnNewObstacle(sf::Vector2f(640.f, 110.f), sf::Vector2f(1280.f, 10.f), 1, 1, id);
+		//Top Wall boundaries (GO TO DOOR 2)
+		SpawnNewObstacle(sf::Vector2f(640.f, 110.f), sf::Vector2f(1280.f, 10.f), 1, 2, id);
 		//Left wall 
 		SpawnNewObstacle(sf::Vector2f(130.f, 360.f), sf::Vector2f(10, 720.f), 1, 1, id);
 		//right wall 
 		SpawnNewObstacle(sf::Vector2f(490.f, 360.f), sf::Vector2f(10, 720.f), 1, 1, id);
-		//bottom wall (Door 2)
-		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 10.f), 1, 2, id);
+		//bottom wall 
+		SpawnNewObstacle(sf::Vector2f(640.f, 720.f), sf::Vector2f(1280.f, 10.f), 1, 1, id);
 	}
 	if (id == 6) {
 		//left Stair (GOTO 5 STAIR)
@@ -292,6 +292,7 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 		}
 		break;
 	case 3: // From upper elevator hallway to lower elevator hallway
+		render->SetTexture(GameEngine::eTexture::HackRoomBg);
 		m_player->SetPos(sf::Vector2f(1100.f, 300.f));
 		break;
 	case 4: // From elevator hallway to hacker room
@@ -313,10 +314,10 @@ void GameBoard::NewRoom(int _id, int _prevId) {
 		switch (_prevId) // Determine where the player is coming from and spawn the player from that direction
 		{
 		case 2:
-			m_player->SetPos(sf::Vector2f(300.f, 550.f));
+			m_player->SetPos(sf::Vector2f(300.f, 300.f));
 			break;
 		case 6:
-			m_player->SetPos(sf::Vector2f(350.f, 500.f));
+			m_player->SetPos(sf::Vector2f(300.f, 500.f));
 			break;
 		default:
 			break;
